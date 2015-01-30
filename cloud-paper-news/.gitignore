@@ -1,0 +1,12 @@
+*.pyc
+*.*~
+.git/
+.settings/
+*.swp
+.project
+.pydevproject
+
+local_settings.py
+db.sqlite3
+
+test.*

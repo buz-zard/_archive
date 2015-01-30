@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>
+		{% block title %}
+		  Cloud paper news
+		{% endblock title %}
+	</title>
+	{% block stylesheets %}
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css">
+	{% endblock stylesheets %}
+</head>
+<body>
+<div id="body_wrapper">
+	<div id="wrapper">
+	    <div id="header">
+			{% block header %}
+			{% endblock header %}
+	    </div>
+	        
+	    <div id="main">
+			{% block body %}
+			{% endblock body %}
+	    </div>
+	
+	    <div id="footer">
+			{% block footer %}
+			{% endblock footer %}
+	    </div>
+	</div>
+</div>
+</body>
+</html>

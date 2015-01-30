@@ -1,0 +1,40 @@
+
+body {
+	background-color: #34495e;
+}
+
+.posts-wrapper {
+	width: 80%;
+	margin: 100px auto;
+	border: 10px solid #2c3e50;
+	padding: 20px;
+	background-color: #fbfcfc;
+}
+
+.posts-wrapper > .post {
+	margin: 0 40px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.posts-wrapper > .post > .title {
+	margin-left: 30px;
+}
+
+.posts-wrapper > .post > .author {
+	float: right;
+	margin-right: 30px;
+}
+
+.posts-wrapper > .post > .content {
+	margin-top: 70px;
+}
+
+.posts-wrapper > .pics {
+	margin: 0 40px;
+	margin-bottom: 30px;
+}
+
+.posts-wrapper > .pics img {
+	margin: 10px;
+}

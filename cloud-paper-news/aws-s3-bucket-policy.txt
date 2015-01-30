@@ -1,0 +1,35 @@
+{
+	"Version": "2008-10-17",
+	"Statement": [
+		{
+			"Sid": "Upload and read s3",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::980034405256:user/buzzard"
+			},
+			"Action": [
+				"s3:GetObjectAcl",
+				"s3:ListBucket",
+				"s3:DeleteObject",
+				"s3:GetObject",
+				"s3:PutObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::cloud-paper-us",
+				"arn:aws:s3:::cloud-paper-us/*"
+			]
+		},
+		{
+			"Sid": "AllowPublicRead",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "*"
+			},
+			"Action": "s3:GetObject",
+			"Resource": [
+				"arn:aws:s3:::cloud-paper-us",
+				"arn:aws:s3:::cloud-paper-us/*"
+			]
+		}
+	]
+}

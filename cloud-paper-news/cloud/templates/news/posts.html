@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% load staticfiles thumbnail %}
+{% block body %}
+	<div class="posts-wrapper">
+		<h1>Cloud-paper naujienos</h1>
+		
+        {% for news_post in object_list %}
+            <div class="post">
+	            <h3 class="title">
+	            {{ news_post.title }}
+	            </h3>
+	            <div class="author">
+	            {{ news_post.author }}
+	            </div>
+	            <div class="content">
+	            {{ news_post.content }}
+	            </div>
+            </div>
+            <div class="pics">
+	            {% for picture in news_post.pictures %}
+					{% thumbnail picture "100x100" crop="center" as im %}
+					    <a href="{{ MEDIA_URL }}{{ picture }}">
+					    	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+					    </a>
+					{% endthumbnail %}
+	            {% endfor %}
+            </div>
+            <hr/>
+        {% endfor %}
+	</div>
+{% endblock body %}
