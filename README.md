@@ -6,7 +6,7 @@
 ## Vilnius University, Faculty of Mathematics and Informatics
 ---
 
-Some of my projects through 2013-2015 year for Computer Modeling studies.
+Some of my projects for Computer Modeling Masters studies (2013-2015).
 
 + 1.
 
