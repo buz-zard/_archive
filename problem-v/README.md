@@ -1,5 +1,6 @@
-Solution
 ----------------------------
+
+### Solution
 Python 2.7 and 3.4 compatible.
 
 * To run tests:
@@ -8,8 +9,9 @@ Python 2.7 and 3.4 compatible.
 * To run program:
 >python main.py
 
-Requirements
 ----------------------------
+
+### Requirements
 * Time is not constrained, feel free to solve it whenever you're able. Just don't forget to communicate with us if you couldn't find a free evening for a couple of weeks :-)
 * Feel free to pick your favourite programming language, no constraints here either.
 * Solution should match philosophy described above.
@@ -17,9 +19,8 @@ Requirements
 * There should be an easy way to start the solution and tests. (in Ruby case, it could be something like: "rake run input.txt", "rake test")
 * Short documentation of design decisions and assumptions can be provided in code itself.
 
-Problem
-----------------------------
-The local commuter boatyard services a number of suburbs in Venice. Because of monetary concerns, all of the canals are â€˜one-way.â€™ That is, a route from suburb A to suburb B does not imply the existence of a route from suburb B to suburb A. In fact, even if both of these routes do happen to exist, they are distinct and are not necessarily the same distance!
+### Problem
+The local commuter boatyard services a number of suburbs in Venice. Because of monetary concerns, all of the canals are one-way. That is, a route from suburb A to suburb B does not imply the existence of a route from suburb B to suburb A. In fact, even if both of these routes do happen to exist, they are distinct and are not necessarily the same distance!
 
 The purpose of this problem is to help the boatyard provide its customers with information about the routes. In particular, you will compute the distance along a certain route, the number of different routes between two suburbs, and the shortest route between two suburbs.
 
@@ -57,3 +58,5 @@ Expected output:
 #9: 9
 #10: 7
 ```
+
+----------------------------
