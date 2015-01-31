@@ -17,7 +17,10 @@ A primitive news [web portal][1], where authors, articles and pictures are added
 
 #### Other:
 
-Technology stack: Python 3.4, Django 1.7.1 framework & [other small libs][3]
+Technology stack:
+* Python 3.4
+* Django 1.7.1 framework
+* [Other small libs][3]
 
 `Fabric` commands for local development:
 * `install` - create Python virtual environment and install required dependecies.
@@ -27,11 +30,9 @@ Technology stack: Python 3.4, Django 1.7.1 framework & [other small libs][3]
 
 
 [Admin console][2] credentials:
+> username - `tester`
 
-| | |
-|---|---|
-| __username__ | `tester` |
-| __password__ | `tester` |
+> password -`tester`
 
 ---
 
