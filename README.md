@@ -7,15 +7,17 @@
 
 Some of my projects for Computer Modeling Masters studies (2013-2015).
 
-+ [Cloud service based web platform][1]
++ Cloud service based web platform[(`cloud-paper-news`)][1]:
+  * __Lecture__ - Programming in Cloud Computing.
+  * __Task__ - to create a project where 1 or more cloud services would be used togerther.
 
-| | |
-|---|---|
-| __Lecture__ | Programming in Cloud Computing |
-|__Task__| Create a project where 1 or more cloud services would be used togerther |
-|__Language__| Python |
+---
+### Non-university tasks
+
++ Graph problem solution ([`solution-v`][2]).
 
 
 ---
 
-[1]: https://github.com/buz-zard/uni/tree/master/cloud-paper-news
+[1]: /cloud-paper-news
+[2]: /solution_v
