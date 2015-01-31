@@ -14,10 +14,10 @@ Some of my projects for Computer Modeling Masters studies (2013-2015).
 ---
 ### Non-university tasks
 
-+ Graph problem solution [[`solution-v`][2]].
++ Graph problem solution [[`problem-v`][2]].
 
 
 ---
 
 [1]: /cloud-paper-news
-[2]: /solution-v
+[2]: /problem-v
