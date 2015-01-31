@@ -4,7 +4,7 @@
 
 ![alt text](http://upload.wikimedia.org/wikipedia/commons/1/1d/AmazonWebservices_Logo.svg)
 
-# Programming in Cloud Computing Project
+# *Programming in Cloud Computing* Project
 
 #### Task:
  Create a project where 1 or more cloud services would be used togerther.
@@ -17,7 +17,7 @@ A primitive news [web portal][1], where authors, articles and pictures are added
 
 #### Other:
 
-Technology stack: Python 3.4, Django 1.7.1 & [other libs][3]
+Technology stack: Python 3.4, Django 1.7.1 framework & [other small libs][3]
 
 `Fabric` commands for local development:
 * `install` - create Python virtual environment and install required dependecies.
