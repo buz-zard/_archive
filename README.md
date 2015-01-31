@@ -4,10 +4,18 @@
   <img src="/static/vu_mif.png"  height="160" width="159"/>
 </p>
 ## Vilnius University, Faculty of Mathematics and Informatics
----
 
 Some of my projects for Computer Modeling Masters studies (2013-2015).
 
-+ 1.
++ [Cloud service based web platform][1]
+
+| | |
+|---|---|
+| __Lecture__ | Programming in Cloud Computing |
+|__Task__| Create a project where 1 or more cloud services would be used togerther |
+|__Language__| Python |
+
 
 ---
+
+[1]: https://github.com/buz-zard/uni/tree/master/cloud-paper-news
