@@ -1,25 +1,22 @@
----
+----
 
-### Dalykinė sritis:
+**Subject area:**
 
 * People and their relatives.
 
-### Internetinėje vartotojo sąsajoje rodomos dvi pagrindinės formos:
+**Webpage interface with 2 forms:**
 
+* people list - table with 3 columns: name, surname & date of birth.
+* edit form of selected person, where one can also see it's relatives.
 
-* žmonių sarašas – lentelė su trimis stulpeliais: vardas, pavardė ir gimimo data
-* pasirinkto asmens informacijos redagavimo forma, kurioje taip pat rodomas automatiškai
-surastų giminaičių sąrašas
-
-
-### Required technologies:
+**Required technologies:**
 
 * Java 1.6+
 * Project building/packaging using Maven 3
-* Trijų lygių architektūra (panaudojant Spring MVC karkasą):
-  * vaizdavimo lygmenyje naudoti jsp .
-  * verslo logikos lymenyje („Domain“, „Business login“, „Service), pvz. giminaičių paieškai, neprivalomi jokie programiniai karkasai.
-  * duomenų prieigos lygmenyje reikia panaudoti Hibernate karkasą DAO esybes aprašant per anotacijas (*. hbm.xml failais naudotis griežtai draudžiama ).
+* 3 level architecture (using Spring MVC framework): 
+  * `jsp` in the view layer.
+  * In the logic layer („Domain“, „Business logic“, „Service“) no frameworks are required.
+  * Use Hibernate DAO entities in persistence layer with the help of annotations.
 * Automatic JUnit tests.
 
----
+----
