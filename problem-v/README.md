@@ -1,7 +1,7 @@
 ----------------------------
 
 ### Solution
-Python 2.7 and 3.4 compatible.
+A console tool compatible with Python 2.7 & 3.4.
 
 * To run tests:
 >python runtests.py
