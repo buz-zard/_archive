@@ -6,9 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import lombok.Setter;
+import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
+import lt.solutioni.core.service.PersonService;
 
 import org.joda.time.Period;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 
@@ -16,6 +20,10 @@ import org.joda.time.Period;
  *
  */
 public class DateServiceImpl implements DateService {
+
+    @Autowired
+    @Setter
+    private PersonService personService;
 
     private DateFormat dateFormat;
 
@@ -67,6 +75,21 @@ public class DateServiceImpl implements DateService {
         } else {
             return period.getYears();
         }
+    }
+
+    /**
+     * Get age difference in years between two people.
+     */
+    @Override
+    public Integer getAgeDifference(Person person1, Person person2) {
+        if (personService.isAgeValid(person1)
+                && personService.isAgeValid(person2)) {
+            Period period = new Period(person1.getDateOfBirth().getTime(),
+                    person2.getDateOfBirth().getTime());
+            int diff = period.getYears();
+            return diff < 0 ? -diff : diff;
+        }
+        return null;
     }
 
 }

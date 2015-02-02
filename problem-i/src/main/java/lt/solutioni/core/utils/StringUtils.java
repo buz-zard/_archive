@@ -8,7 +8,7 @@ package lt.solutioni.core.utils;
 public class StringUtils {
 
     /**
-     * Find longest common prefix between 2 strings.
+     * Find longest common prefix (case insensitive) between 2 strings.
      */
     public static String commonPrefix(String val1, String val2) {
         if (val1 != null && val2 != null) {
@@ -22,6 +22,16 @@ public class StringUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns true if given string ends with given regex value.
+     */
+    public static boolean endsWithRegex(String s, String regex) {
+        if (s != null) {
+            return s.matches(".*" + regex + "$");
+        }
+        return false;
     }
 
 }

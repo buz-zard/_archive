@@ -10,6 +10,7 @@ import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
 
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * 
@@ -27,13 +28,14 @@ public class TestPersonServiceImpl extends CoreTestCase {
     public void setUp() throws Exception {
         super.setUp();
         service = new PersonServiceImpl();
-        dateService = context.getBean(DateService.class);
+        dateService = getBean(DateService.class);
         ((PersonServiceImpl) service).setDateService(dateService);
     }
 
     /**
      * Test for {@link PersonServiceImpl#isNameValid(Person)}
      */
+    @Test
     public void testNameValidation() {
         Person p1 = new Person("J", "");
         Person p2 = new Person("Jonas", "");
@@ -63,6 +65,7 @@ public class TestPersonServiceImpl extends CoreTestCase {
     /**
      * Test for {@link PersonServiceImpl#isSurnameValid(Person)}
      */
+    @Test
     public void testSurnameValidation() {
         Person p1 = new Person("", "K");
         Person p2 = new Person("", "Žiežirbinis");
@@ -112,6 +115,7 @@ public class TestPersonServiceImpl extends CoreTestCase {
     /**
      * Test for {@link PersonServiceImpl#isGenderValid(Person)}
      */
+    @Test
     public void testGenderValidation() {
         Person p1 = new Person("", "");
         Person p2 = new Person("", "");
@@ -125,19 +129,51 @@ public class TestPersonServiceImpl extends CoreTestCase {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#setGender(Person)}
+     * Test for {@link PersonServiceImpl#getGender(Person)}
      */
-    public void testSetGender() {
+    @Test
+    public void testGetGender() {
         Person p1 = new Person("", "qwerty");
-        service.setGender(p1);
         Person p2 = new Person("", "Pavardenis");
-        service.setGender(p2);
         Person p3 = new Person("", "Pavardenytė");
-        service.setGender(p3);
 
-        assertNull(p1.getGender());
-        assertEquals(Gender.MALE, p2.getGender());
-        assertEquals(Gender.FEMALE, p3.getGender());
+        assertNull(service.getGender(p1));
+        assertEquals(Gender.MALE, service.getGender(p2));
+        assertEquals(Gender.FEMALE, service.getGender(p3));
+    }
+
+    /**
+     * Test for {@link PersonServiceImpl#getFirstSurname(Person)}
+     */
+    public void testGetFirstSurname() {
+        Person p1 = new Person("", "qwerty");
+        Person p2 = new Person("", "Pavardenis");
+        Person p3 = new Person("", "pavardenis-Bumblauskas");
+        Person p4 = new Person("", "Pavardenytė");
+        Person p5 = new Person("", "pavardenytė-Bumblauskienė");
+
+        assertNull(service.getFirstSurname(p1));
+        assertEquals("Pavardenis", service.getFirstSurname(p2));
+        assertEquals("Pavardenis", service.getFirstSurname(p3));
+        assertEquals("Pavardenytė", service.getFirstSurname(p4));
+        assertEquals("Pavardenytė", service.getFirstSurname(p5));
+    }
+
+    /**
+     * Test for {@link PersonServiceImpl#getLastSurname(Person)}
+     */
+    public void testGetLastSurname() {
+        Person p1 = new Person("", "qwerty");
+        Person p2 = new Person("", "Pavardenis");
+        Person p3 = new Person("", "pavardenis-Bumblauskas");
+        Person p4 = new Person("", "Pavardenytė");
+        Person p5 = new Person("", "pavardenytė-bumblauskienė");
+
+        assertNull(service.getLastSurname(p1));
+        assertEquals("Pavardenis", service.getLastSurname(p2));
+        assertEquals("Bumblauskas", service.getLastSurname(p3));
+        assertEquals("Pavardenytė", service.getLastSurname(p4));
+        assertEquals("bumblauskienė", service.getLastSurname(p5));
     }
 
 }

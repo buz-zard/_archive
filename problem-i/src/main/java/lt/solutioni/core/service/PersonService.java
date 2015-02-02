@@ -1,5 +1,6 @@
 package lt.solutioni.core.service;
 
+import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 
 /**
@@ -19,6 +20,10 @@ public interface PersonService {
 
     boolean isGenderValid(Person person);
 
-    void setGender(Person person);
+    Gender getGender(Person person);
+
+    String getFirstSurname(Person person);
+
+    String getLastSurname(Person person);
 
 }

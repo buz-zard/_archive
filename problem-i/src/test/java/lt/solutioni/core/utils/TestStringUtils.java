@@ -29,4 +29,22 @@ public class TestStringUtils extends CoreTestCase {
                 StringUtils.commonPrefix("vandenis", "Vandenienė"));
     }
 
+    /**
+     * Test for {@link StringUtils#endsWithRegex(String, String)}
+     */
+    @Test
+    public void testEndsWithRegex() {
+        String regex = "(as|is)";
+        String s1 = "";
+        String s2 = "aska";
+        String s3 = "Jonas";
+        String s4 = "Aspirinas";
+
+        assertFalse(StringUtils.endsWithRegex(null, regex));
+        assertFalse(StringUtils.endsWithRegex(s1, regex));
+        assertFalse(StringUtils.endsWithRegex(s2, regex));
+        assertTrue(StringUtils.endsWithRegex(s3, regex));
+        assertTrue(StringUtils.endsWithRegex(s4, regex));
+    }
+
 }

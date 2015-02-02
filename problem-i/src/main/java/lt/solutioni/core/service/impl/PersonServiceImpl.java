@@ -6,6 +6,7 @@ import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -42,9 +43,8 @@ public class PersonServiceImpl implements PersonService {
         if (isNameOrSurnameLengthValid(person.getName())
                 && person.getName().toLowerCase().matches(nameRegex)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -55,9 +55,8 @@ public class PersonServiceImpl implements PersonService {
         if (isNameOrSurnameLengthValid(person.getSurname())
                 && person.getSurname().toLowerCase().matches(surnameRegex)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -68,17 +67,15 @@ public class PersonServiceImpl implements PersonService {
         if (person.getDateOfBirth() != null
                 && dateService.getAge(person.getDateOfBirth()) >= 0) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     private boolean isNameOrSurnameLengthValid(String value) {
         if (value != null && value.length() >= 2 && value.length() <= 50) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -89,17 +86,51 @@ public class PersonServiceImpl implements PersonService {
         return person.getGender() != null;
     }
 
+    /**
+     * Get person's gender.
+     */
     @Override
-    public void setGender(Person person) {
+    public Gender getGender(Person person) {
         person.setGender(null);
         if (isSurnameValid(person)) {
             String surname = person.getSurname().toLowerCase();
             if (surname.endsWith("s")) {
-                person.setGender(Gender.MALE);
+                return Gender.MALE;
             } else if (surname.endsWith("ė")) {
-                person.setGender(Gender.FEMALE);
+                return Gender.FEMALE;
             }
         }
+        return null;
+    }
+
+    /**
+     * Get person's first surname (if he has that).
+     */
+    @Override
+    public String getFirstSurname(Person person) {
+        if (isSurnameValid(person)) {
+            String surname = person.getSurname().toLowerCase();
+            if (surname.indexOf("-") != -1) {
+                surname = surname.substring(0, surname.indexOf("-"));
+            }
+            return WordUtils.capitalize(surname);
+        }
+        return null;
+    }
+
+    /**
+     * Get person's last surname.
+     */
+    @Override
+    public String getLastSurname(Person person) {
+        if (isSurnameValid(person)) {
+            String surname = person.getSurname().toLowerCase();
+            if (surname.indexOf("-") != -1) {
+                surname = surname.substring(surname.indexOf("-") + 1);
+            }
+            return WordUtils.capitalize(surname);
+        }
+        return null;
     }
 
 }

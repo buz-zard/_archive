@@ -1,7 +1,12 @@
 package lt.solutioni.core.domain;
 
+/**
+ * 
+ * @author buzzard
+ *
+ */
 public enum Relationship {
 
-    UNDEFINED, NONE, FATHER, MOTHER, BROTHER, SISTER, CHILD, GRANDMOTHER, GRANDFATHER, GRANDCHILD;
+    NONE, HUSBAND, WIFE, FATHER, MOTHER, BROTHER, SISTER, SON, DAUGHTER, GRANDMOTHER, GRANDFATHER, GRANDSON, GRANDAUGHTER;
 
 }

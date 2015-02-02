@@ -1,5 +1,8 @@
 package lt.solutioni.core.service;
 
+import java.util.List;
+import java.util.Map;
+
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.domain.Relationship;
 
@@ -10,6 +13,11 @@ import lt.solutioni.core.domain.Relationship;
  */
 public interface RelationshipService {
 
+    boolean areSurnamesRelated(String surname1, String surname2);
+
     Relationship getRelationship(Person fromPerson, Person toPerson);
+
+    Map<Person, Relationship> getRelationships(Person fromPerson,
+            List<Person> toPeople);
 
 }
