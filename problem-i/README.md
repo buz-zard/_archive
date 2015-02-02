@@ -1,5 +1,11 @@
 ----
 
+`mvn spring-boot:run`
+
+`mvn clean install spring-boot:repackage`
+
+----
+
 **Subject area:**
 
 * People and their relatives.
