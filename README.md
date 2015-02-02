@@ -3,7 +3,7 @@
   <img src="/static/vu.png"  height="160" width="135"/>
   <img src="/static/vu_mif.png"  height="160" width="159"/>
 </p>
-## Vilnius University, Faculty of Mathematics and Informatics
+### Vilnius University, Faculty of Mathematics and Informatics
 
 Some of my projects for Computer Modeling Masters studies (2013-2015).
 
@@ -13,7 +13,7 @@ Some of my projects for Computer Modeling Masters studies (2013-2015).
   * __Language__ - `Python`
 
 ---
-### Non-university tasks
+#### Non-university tasks
 
 + Console tool to solve graph path task [[`problem-v`][problem-v]].
   * __Language__ - `Python`
