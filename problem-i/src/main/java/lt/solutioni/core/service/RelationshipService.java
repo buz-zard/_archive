@@ -15,9 +15,9 @@ public interface RelationshipService {
 
     boolean areSurnamesRelated(String surname1, String surname2);
 
-    Relationship getRelationship(Person fromPerson, Person toPerson);
+    Relationship getRelationship(Person basePerson, Person person);
 
-    Map<Person, Relationship> getRelationships(Person fromPerson,
-            List<Person> toPeople);
+    Map<Person, Relationship> getRelationships(Person basePerson,
+            List<Person> people);
 
 }
