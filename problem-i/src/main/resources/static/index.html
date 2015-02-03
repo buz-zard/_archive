@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>R-late it!</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+<link rel="stylesheet" href="/app/css/main.css" />
+</head>
+<body ng-app>
+	<p>
+		Enter Name: <input type="text" ng-model="myname">
+	</p>
+	<p>Hello {{myname}}!!</p>
+
+	<script>
+        function Hello($scope, $http) {
+            $http.get('/people/').success(function(data) {
+                $scope.people = data;
+            });
+        }
+    </script>
+
+	<div ng-controller="Hello">
+		<h2>Hello from others : {{people}}</h2>
+	</div>
+
+</body>
+</html>
