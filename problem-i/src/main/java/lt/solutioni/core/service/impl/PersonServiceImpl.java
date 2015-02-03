@@ -91,7 +91,6 @@ public class PersonServiceImpl implements PersonService {
      */
     @Override
     public Gender getGender(Person person) {
-        person.setGender(null);
         if (isSurnameValid(person)) {
             String surname = person.getSurname().toLowerCase();
             if (surname.endsWith("s")) {

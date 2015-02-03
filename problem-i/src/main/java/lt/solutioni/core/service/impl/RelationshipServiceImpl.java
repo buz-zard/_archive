@@ -41,12 +41,12 @@ public class RelationshipServiceImpl implements RelationshipService {
     public boolean areSurnamesRelated(String surname1, String surname2) {
         if (surname1 != null && surname1.length() > 0 && surname2 != null
                 && surname2.length() > 0) {
-            surname1 = surname1.toLowerCase();
-            surname2 = surname2.toLowerCase();
-            if (surname1.equals(surname2)) {
+            String s1 = surname1.toLowerCase();
+            String s2 = surname2.toLowerCase();
+            if (s1.equals(s2)) {
                 return true;
             }
-            String surnameRoot = StringUtils.commonPrefix(surname1, surname2);
+            String surnameRoot = StringUtils.commonPrefix(s1, s2);
             if (surnameRoot != null) {
                 if (surnameRoot.endsWith("i")) {
                     surnameRoot = surnameRoot.substring(0,
@@ -55,8 +55,7 @@ public class RelationshipServiceImpl implements RelationshipService {
                 String regex = surnameRoot + "(" + menSurnameEndingsRegex + "|"
                         + marriedWomenSurnameEndingsRegex + "|"
                         + womenSurnameEndingsRegex + ")";
-                System.out.println(regex);
-                return surname1.matches(regex) && surname2.matches(regex);
+                return s1.matches(regex) && s2.matches(regex);
             }
         }
         return false;
@@ -64,23 +63,29 @@ public class RelationshipServiceImpl implements RelationshipService {
 
     @Override
     public Relationship getRelationship(Person fromPerson, Person toPerson) {
+        System.out.println("----------------getRelationship "
+                + personService.isPersonValid(fromPerson) + " " + fromPerson);
         if (personService.isPersonValid(fromPerson)
                 && personService.isPersonValid(toPerson)) {
             Gender fromGender = personService.getGender(fromPerson);
             String fromFirstSurname = personService.getFirstSurname(fromPerson);
             String fromLastSurname = personService.getLastSurname(fromPerson);
 
-            Gender toGender = personService.getGender(fromPerson);
+            Gender toGender = personService.getGender(toPerson);
             String toFirstSurname = personService.getFirstSurname(toPerson);
             String toLastSurname = personService.getLastSurname(toPerson);
 
             int ageDiff = dateService.getAgeDifference(fromPerson, toPerson);
+            System.out.println(ageDiff);
             if (ageDiff >= 0 && ageDiff <= 15) {
                 if (areSurnamesRelated(fromFirstSurname, toFirstSurname)) {
+                    System.out.println(StringUtils.endsWithRegex(
+                            toFirstSurname, womenSurnameEndingsRegex));
                     if (toGender == Gender.MALE) {
                         return Relationship.BROTHER;
-                    } else if (StringUtils.endsWithRegex(toFirstSurname,
-                            womenSurnameEndingsRegex)) {
+                    } else if (toGender == Gender.FEMALE
+                            && StringUtils.endsWithRegex(toFirstSurname,
+                                    womenSurnameEndingsRegex)) {
                         return Relationship.SISTER;
                     }
                 }

@@ -18,15 +18,17 @@ public class TestStringUtils extends CoreTestCase {
      */
     @Test
     public void testCommonPrefix() {
+        String vandenis = "Vandenis";
         assertEquals(null, StringUtils.commonPrefix(null, ""));
         assertEquals(null, StringUtils.commonPrefix("", null));
         assertEquals(null, StringUtils.commonPrefix(null, null));
         assertEquals(null, StringUtils.commonPrefix("", ""));
-        assertEquals(null, StringUtils.commonPrefix("", "Vandenis"));
-        assertEquals(null, StringUtils.commonPrefix("Pavandenis", "Vandenis"));
-        assertEquals(null, StringUtils.commonPrefix("aVandenis", "Vandenis"));
+        assertEquals(null, StringUtils.commonPrefix("", vandenis));
+        assertEquals(null, StringUtils.commonPrefix("Pavandenis", vandenis));
+        assertEquals(null, StringUtils.commonPrefix("aVandenis", vandenis));
         assertEquals("vandeni",
                 StringUtils.commonPrefix("vandenis", "Vandenienė"));
+        assertEquals("Vandenis", vandenis);
     }
 
     /**

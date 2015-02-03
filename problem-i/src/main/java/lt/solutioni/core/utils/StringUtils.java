@@ -1,5 +1,6 @@
 package lt.solutioni.core.utils;
 
+
 /**
  * 
  * @author buzzard
@@ -12,13 +13,13 @@ public class StringUtils {
      */
     public static String commonPrefix(String val1, String val2) {
         if (val1 != null && val2 != null) {
-            val1 = val1.toLowerCase();
-            val2 = val2.toLowerCase();
-            while (val1.length() > 0) {
-                if (val2.startsWith(val1)) {
-                    return val1;
+            String s1 = val1.toLowerCase();
+            String s2 = val2.toLowerCase();
+            while (s1.length() > 0) {
+                if (s2.startsWith(s1)) {
+                    return s1;
                 }
-                val1 = val1.substring(0, val1.length() - 1);
+                s1 = s1.substring(0, s1.length() - 1);
             }
         }
         return null;
