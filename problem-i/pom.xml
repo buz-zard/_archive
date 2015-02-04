@@ -9,9 +9,11 @@
 	<url></url>
 
 	<properties>
-		<java-version>1.7</java-version>
-		<spring-version>4.0.8.RELEASE</spring-version>
-		<spring-boot-main-class>lt.solutioni.web.Application</spring-boot-main-class>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<jdk.version>1.7</jdk.version>
+		<spring.version>4.0.8.RELEASE</spring.version>
+		<spring.boot.main.class>lt.solutioni.web.Application</spring.boot.main.class>
 	</properties>
 
 	<parent>
@@ -41,13 +43,23 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring-version}</version>
+			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.185</version>
+		</dependency>
+
 
 		<!-- Boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<!-- Testing -->
@@ -67,14 +79,14 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- Set Java version -->
+				<!-- Java version -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.2</version>
 					<configuration>
-						<source>${java-version}</source>
-						<target>${java-version}</target>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
 					</configuration>
 				</plugin>
 
@@ -83,7 +95,7 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
-						<mainClass>${spring-boot-main-class}</mainClass>
+						<mainClass>${spring.boot.main.class}</mainClass>
 					</configuration>
 					<executions>
 						<execution>

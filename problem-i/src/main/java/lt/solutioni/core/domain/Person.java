@@ -2,6 +2,7 @@ package lt.solutioni.core.domain;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -10,8 +11,10 @@ import lombok.Data;
  *
  */
 @Data
+@AllArgsConstructor
 public class Person {
 
+    private long id;
     private String name;
     private String surname;
     private Date dateOfBirth;
