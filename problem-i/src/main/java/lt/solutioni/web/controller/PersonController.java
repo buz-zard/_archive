@@ -1,9 +1,16 @@
 package lt.solutioni.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import lt.solutioni.core.domain.Person;
+import lt.solutioni.core.domain.Relationship;
+import lt.solutioni.core.service.RelationshipService;
 import lt.solutioni.persistence.domain.PersonDAO;
 import lt.solutioni.persistence.service.PersonRepositoryService;
 import lt.solutioni.web.WebConfiguration;
+import lt.solutioni.web.domain.RelatedPerson;
 import lt.solutioni.web.domain.RestResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +31,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(WebConfiguration.PERSON_URL)
 public class PersonController extends AbstractController {
 
+    @Autowired
+    private PersonRepositoryService repositoryService;
+
+    @Autowired
+    private RelationshipService relationshipService;
+
     private static final String URL_ALL = "/all";
     private static final String URL_GET = "/get/{personId}";
     private static final String URL_SAVE = "/save";
     private static final String URL_DELETE = "/delete/{personId}";
     private static final String URL_UPDATE = "/update";
+    private static final String URL_RELATIONSHIPS = "/relationships/{personId}";
 
     private static final String MSG_PERSON_FIND_FAILED = "No person record with such id found.";
     private static final String MSG_PERSON_SAVED = "Person record successfully created.";
     private static final String MSG_PERSON_SAVE_FAILED = "Failed to save person record.";
     private static final String MSG_PERSON_DELETED = "Person record successfully deleted.";
-    private static final String MSG_PERSON_DELETE_FAILED = "Failed to delete person record.";
+    private static final String MSG_PERSON_DELETE_FAILED = "Failed to delete person record with such id.";
     private static final String MSG_PERSON_UPDATED = "Person record successfully updated.";
     private static final String MSG_PERSON_UPDATE_FAILED = "Failed to update person record.";
-
-    @Autowired
-    private PersonRepositoryService repositoryService;
 
     /**
      * Get a list of all {@link Person}.
@@ -97,6 +108,29 @@ public class PersonController extends AbstractController {
             return RestResponse.ok(MSG_PERSON_UPDATED);
         } else {
             return RestResponse.error(MSG_PERSON_UPDATE_FAILED);
+        }
+    }
+
+    /**
+     * Get all related people to a {@link Person} by id.
+     */
+    @RequestMapping(value = URL_RELATIONSHIPS, method = RequestMethod.GET)
+    public @ResponseBody RestResponse relationships(
+            @PathVariable(value = "personId") Long personId) {
+        Person person = repositoryService.findOne(personId);
+        if (person != null) {
+            List<RelatedPerson> relatedPeople = new ArrayList<RelatedPerson>();
+            Map<Person, Relationship> relationships = relationshipService
+                    .getRelationships(person, repositoryService.findAll());
+            for (Person relatedPerson : relationships.keySet()) {
+                if (relatedPerson.getId() != person.getId()) {
+                    relatedPeople.add(new RelatedPerson(relationships
+                            .get(relatedPerson), relatedPerson));
+                }
+            }
+            return RestResponse.ok(relatedPeople);
+        } else {
+            return RestResponse.error(MSG_PERSON_FIND_FAILED);
         }
     }
 

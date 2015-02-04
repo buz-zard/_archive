@@ -149,7 +149,10 @@ public class RelationshipServiceImpl implements RelationshipService {
             List<Person> people) {
         Map<Person, Relationship> items = new HashMap<>();
         for (Person person : people) {
-            items.put(person, getRelationship(basePerson, person));
+            Relationship relationship = getRelationship(basePerson, person);
+            if (relationship != Relationship.NONE) {
+                items.put(person, relationship);
+            }
         }
         return items;
     }

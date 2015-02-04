@@ -25,7 +25,7 @@ public interface RelationshipService {
     Relationship getRelationship(Person basePerson, Person person);
 
     /**
-     * Determine given people list relationships to basePerson.
+     * Filter all related people to basePerson.
      */
     Map<Person, Relationship> getRelationships(Person basePerson,
             List<Person> people);

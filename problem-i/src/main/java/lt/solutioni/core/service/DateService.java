@@ -14,9 +14,8 @@ import lt.solutioni.core.domain.Person;
 public interface DateService {
 
     /**
-     * Parse date from string object.
-     * 
-     * @param - date in {@link CoreConfiguration#DATE_FORMAT} format.
+     * Parse date from string object in {@link CoreConfiguration#DATE_FORMAT}
+     * format.
      */
     Date getDate(String date);
 

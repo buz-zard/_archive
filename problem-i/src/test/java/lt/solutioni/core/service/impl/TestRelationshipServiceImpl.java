@@ -279,10 +279,12 @@ public class TestRelationshipServiceImpl extends CoreTestCase {
         Person p2 = mockPerson("Toma", "Lašytė-Vandenienė", "1970-07-13");
         Person p3 = mockPerson("Kamilė", "Vandenytė-Butkienė", "1993-07-13");
         Person p4 = mockPerson("Tomas", "Lašas-Vandenis", "1990-07-13");
+        Person p5 = mockPerson("Kristijonas", "Pašalietis", "1980-07-13");
         List<Person> people = new ArrayList<Person>();
         people.add(p2);
         people.add(p3);
         people.add(p4);
+        people.add(p5);
 
         Map<Person, Relationship> expectedResult = new HashMap<Person, Relationship>();
         expectedResult.put(p2, Relationship.WIFE);
