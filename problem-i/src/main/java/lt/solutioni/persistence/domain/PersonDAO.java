@@ -16,6 +16,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
+import lt.solutioni.core.utils.DateDeserializer;
+import lt.solutioni.core.utils.DateSerializer;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Persistence representation of {@link lt.solutioni.core.domain.Person}
@@ -29,31 +34,33 @@ import lt.solutioni.core.domain.Person;
 @Entity
 public class PersonDAO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    private String name;
+	private String name;
 
-    private String surname;
+	private String surname;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+	@JsonDeserialize(using = DateDeserializer.class)
+	@JsonSerialize(using = DateSerializer.class)
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
 
-    @Enumerated(value = EnumType.STRING)
-    private Gender gender;
+	@Enumerated(value = EnumType.STRING)
+	private Gender gender;
 
-    /**
-     * Convert to {@link Person} instance.
-     */
-    public Person toPerson() {
-        return new Person(id, name, surname, dateOfBirth, gender);
-    }
+	/**
+	 * Convert to {@link Person} instance.
+	 */
+	public Person toPerson() {
+		return new Person(id, name, surname, dateOfBirth, gender);
+	}
 
-    public static PersonDAO fromPerson(Person person) {
-        return new PersonDAO(person.getId(), person.getName(),
-                person.getSurname(), person.getDateOfBirth(),
-                person.getGender());
-    }
+	public static PersonDAO fromPerson(Person person) {
+		return new PersonDAO(person.getId(), person.getName(),
+				person.getSurname(), person.getDateOfBirth(),
+				person.getGender());
+	}
 
 }

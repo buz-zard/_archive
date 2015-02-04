@@ -20,19 +20,21 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({ "lt.solutioni.core" })
 public class CoreConfiguration {
 
-    @Bean
-    public DateService getDateService() {
-        return new DateServiceImpl();
-    }
+	public static final String DATE_FORMAT = "yyyy-MM-dd";
 
-    @Bean
-    public PersonService getPersonService() {
-        return new PersonServiceImpl();
-    }
+	@Bean
+	public DateService getDateService() {
+		return new DateServiceImpl();
+	}
 
-    @Bean
-    public RelationshipService getRelationshipService() {
-        return new RelationshipServiceImpl();
-    }
+	@Bean
+	public PersonService getPersonService() {
+		return new PersonServiceImpl();
+	}
+
+	@Bean
+	public RelationshipService getRelationshipService() {
+		return new RelationshipServiceImpl();
+	}
 
 }
