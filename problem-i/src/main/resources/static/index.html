@@ -15,7 +15,7 @@
 
 	<script>
         function Hello($scope, $http) {
-            $http.get('/people/').success(function(data) {
+            $http.get('/person/all').success(function(data) {
                 $scope.people = data;
             });
         }

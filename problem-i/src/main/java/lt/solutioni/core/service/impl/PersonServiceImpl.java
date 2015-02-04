@@ -26,18 +26,12 @@ public class PersonServiceImpl implements PersonService {
     @Setter
     private DateService dateService;
 
-    /**
-     * Validate person.
-     */
     @Override
     public boolean isPersonValid(Person person) {
         return isNameValid(person) && isSurnameValid(person)
                 && isGenderValid(person) && isAgeValid(person);
     }
 
-    /**
-     * Validate person's name.
-     */
     @Override
     public boolean isNameValid(Person person) {
         if (isNameOrSurnameLengthValid(person.getName())
@@ -47,9 +41,6 @@ public class PersonServiceImpl implements PersonService {
         return false;
     }
 
-    /**
-     * Validate person's name.
-     */
     @Override
     public boolean isSurnameValid(Person person) {
         if (isNameOrSurnameLengthValid(person.getSurname())
@@ -59,9 +50,6 @@ public class PersonServiceImpl implements PersonService {
         return false;
     }
 
-    /**
-     * Validate person's age.
-     */
     @Override
     public boolean isAgeValid(Person person) {
         if (person.getDateOfBirth() != null
@@ -78,17 +66,11 @@ public class PersonServiceImpl implements PersonService {
         return false;
     }
 
-    /**
-     * Validate person's gender.
-     */
     @Override
     public boolean isGenderValid(Person person) {
         return person.getGender() != null;
     }
 
-    /**
-     * Get person's gender.
-     */
     @Override
     public Gender getGender(Person person) {
         if (isSurnameValid(person)) {
@@ -102,9 +84,6 @@ public class PersonServiceImpl implements PersonService {
         return null;
     }
 
-    /**
-     * Get person's first surname (if he has that).
-     */
     @Override
     public String getFirstSurname(Person person) {
         if (isSurnameValid(person)) {
@@ -117,9 +96,6 @@ public class PersonServiceImpl implements PersonService {
         return null;
     }
 
-    /**
-     * Get person's last surname.
-     */
     @Override
     public String getLastSurname(Person person) {
         if (isSurnameValid(person)) {

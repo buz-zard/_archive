@@ -2,6 +2,7 @@ package lt.solutioni.persistence.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
- * Persistence representation of {@link lt.solutioni.core.domain.Person}
+ * Persistence object representation of {@link Person}.
  * 
  * @author buzzard
  *
@@ -34,33 +35,40 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Entity
 public class PersonDAO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	private String name;
+    @Column(nullable = false)
+    private String name;
 
-	private String surname;
+    @Column(nullable = false)
+    private String surname;
 
-	@JsonDeserialize(using = DateDeserializer.class)
-	@JsonSerialize(using = DateSerializer.class)
-	@Temporal(TemporalType.DATE)
-	private Date dateOfBirth;
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
 
-	@Enumerated(value = EnumType.STRING)
-	private Gender gender;
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
 
-	/**
-	 * Convert to {@link Person} instance.
-	 */
-	public Person toPerson() {
-		return new Person(id, name, surname, dateOfBirth, gender);
-	}
+    /**
+     * Convert to {@link Person} instance.
+     */
+    public Person toPerson() {
+        return new Person(id, name, surname, dateOfBirth, gender);
+    }
 
-	public static PersonDAO fromPerson(Person person) {
-		return new PersonDAO(person.getId(), person.getName(),
-				person.getSurname(), person.getDateOfBirth(),
-				person.getGender());
-	}
+    /**
+     * Create object from {@link Person} instance.
+     */
+    public static PersonDAO fromPerson(Person person) {
+        return new PersonDAO(person.getId(), person.getName(),
+                person.getSurname(), person.getDateOfBirth(),
+                person.getGender());
+    }
 
 }

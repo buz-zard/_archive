@@ -12,29 +12,30 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * Core business logic related configuration.
  * 
  * @author buzzard
  *
  */
 @Configuration
-@ComponentScan({ "lt.solutioni.core" })
+@ComponentScan("lt.solutioni.core")
 public class CoreConfiguration {
 
-	public static final String DATE_FORMAT = "yyyy-MM-dd";
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
 
-	@Bean
-	public DateService getDateService() {
-		return new DateServiceImpl();
-	}
+    @Bean
+    public DateService getDateService() {
+        return new DateServiceImpl();
+    }
 
-	@Bean
-	public PersonService getPersonService() {
-		return new PersonServiceImpl();
-	}
+    @Bean
+    public PersonService getPersonService() {
+        return new PersonServiceImpl();
+    }
 
-	@Bean
-	public RelationshipService getRelationshipService() {
-		return new RelationshipServiceImpl();
-	}
+    @Bean
+    public RelationshipService getRelationshipService() {
+        return new RelationshipServiceImpl();
+    }
 
 }

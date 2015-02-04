@@ -1,6 +1,7 @@
 package lt.solutioni.core.domain;
 
 /**
+ * {@link Person} to another {@link Person} relationship type.
  * 
  * @author buzzard
  *

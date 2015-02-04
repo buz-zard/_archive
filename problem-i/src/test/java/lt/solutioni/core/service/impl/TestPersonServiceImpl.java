@@ -172,7 +172,7 @@ public class TestPersonServiceImpl extends CoreTestCase {
         assertEquals("Pavardenis", service.getLastSurname(p2));
         assertEquals("Bumblauskas", service.getLastSurname(p3));
         assertEquals("Pavardenytė", service.getLastSurname(p4));
-        assertEquals("bumblauskienė", service.getLastSurname(p5));
+        assertEquals("Bumblauskienė", service.getLastSurname(p5));
     }
 
 }

@@ -1,6 +1,7 @@
 package lt.solutioni.core.domain;
 
 /**
+ * {@link Person} gender type.
  * 
  * @author buzzard
  *

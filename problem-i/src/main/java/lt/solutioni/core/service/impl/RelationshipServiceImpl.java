@@ -34,9 +34,6 @@ public class RelationshipServiceImpl implements RelationshipService {
     private String marriedWomenSurnameEndingsRegex = "(ienė)";
     private String womenSurnameEndingsRegex = "(ytė|aitė|[i]{0,1}ūtė)";
 
-    /**
-     * Determine if given string surnames are related by examining their root.
-     */
     @Override
     public boolean areSurnamesRelated(String surname1, String surname2) {
         if (surname1 != null && surname1.length() > 0 && surname2 != null
@@ -61,9 +58,6 @@ public class RelationshipServiceImpl implements RelationshipService {
         return false;
     }
 
-    /**
-     * Determine relationship type: what person is to basePerson.
-     */
     @Override
     public Relationship getRelationship(Person basePerson, Person person) {
         if (personService.isPersonValid(basePerson)
@@ -150,9 +144,6 @@ public class RelationshipServiceImpl implements RelationshipService {
         return Relationship.NONE;
     }
 
-    /**
-     * Determine given people list relationships to basePerson.
-     */
     @Override
     public Map<Person, Relationship> getRelationships(Person basePerson,
             List<Person> people) {

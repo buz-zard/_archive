@@ -21,23 +21,23 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @AllArgsConstructor
 public class Person {
 
-	private long id;
-	private String name;
-	private String surname;
+    private long id;
 
-	@JsonDeserialize(using = DateDeserializer.class)
-	@JsonSerialize(using = DateSerializer.class)
-	private Date dateOfBirth;
-	private Gender gender;
+    private String name;
+    private String surname;
+    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
+    private Date dateOfBirth;
+    private Gender gender;
 
-	public Person(String name, String surname, Date dateOfBirth) {
-		this(name, surname);
-		this.dateOfBirth = dateOfBirth;
-	}
+    public Person(String name, String surname, Date dateOfBirth) {
+        this(name, surname);
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	public Person(String name, String surname) {
-		this.name = name;
-		this.surname = surname;
-	}
+    public Person(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
 
 }
