@@ -1,47 +1,55 @@
 package lt.solutioni.core.service.impl;
 
+import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-import lt.solutioni.core.CoreTest;
+import lt.solutioni.core.BaseTest;
+import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.domain.Relationship;
 import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
 import lt.solutioni.core.service.RelationshipService;
+import lt.solutioni.core.utils.DateUtils;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 /**
- * Test for {@link RelationshipServiceImpl}
+ * Test for {@link RelationshipServiceImpl}.
  * 
  * @author buzzard
  * 
  */
-public class TestRelationshipServiceImpl extends CoreTest {
+public class TestRelationshipServiceImpl extends BaseTest {
 
+    @InjectMocks
     private RelationshipService service;
 
-    @Autowired
-    private DateService dateService;
+    @Mock
+    private DateService dateServiceMock;
 
-    @Autowired
-    private PersonService personService;
+    @Mock
+    private PersonService personServiceMock;
 
     @Before
     public void setUp() throws Exception {
+        super.setUp();
         service = new RelationshipServiceImpl();
-        ((RelationshipServiceImpl) service).setDateService(dateService);
-        ((RelationshipServiceImpl) service).setPersonService(personService);
+        super.finishSetup();
     }
 
     /**
      * Test for
-     * {@link RelationshipServiceImpl#areSurnamesRelated(String, String)}
+     * {@link RelationshipServiceImpl#areSurnamesRelated(String, String)}.
      */
     @Test
     public void testAreSurnamesRelated() {
@@ -76,45 +84,48 @@ public class TestRelationshipServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}
+     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}.
      */
     @Test
     public void testBrotherSisterRelationship() {
-        Person p1 = mockPerson("Jonas", "Vandenis", "1990-07-13");
-        Person p2 = mockPerson("Toma", "Vandenytė", "1990-07-13");
+        Person p1 = newMale();
+        Person p2 = newFemale();
+        setSurnames(p1, "Vandenis");
+        setSurnames(p2, "Vandenytė");
+        setAgeBetween(p1, p2, 0);
 
         assertEquals(Relationship.SISTER, service.getRelationship(p1, p2));
         assertEquals(Relationship.BROTHER, service.getRelationship(p2, p1));
 
-        p1.setDateOfBirth(dateService.getDate("1974-07-14"));
+        setAgeBetween(p1, p2, 15);
         assertEquals(Relationship.SISTER, service.getRelationship(p1, p2));
         assertEquals(Relationship.BROTHER, service.getRelationship(p2, p1));
 
-        p1.setDateOfBirth(dateService.getDate("1974-07-12"));
+        setAgeBetween(p1, p2, 40);
         assertFalse(service.getRelationship(p2, p1) == Relationship.SISTER);
         assertFalse(service.getRelationship(p2, p1) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p2) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p2) == Relationship.SISTER);
 
-        p1.setSurname("Vandenis-Kebabinskas");
-        p2.setSurname("Vandeniūtė-Sausumienė");
-        p1.setDateOfBirth(dateService.getDate("1990-07-13"));
-
+        setSurnames(p1, "Vandenis", "Kebabinskas");
+        setSurnames(p2, "Vandenytė", "Sausumienė");
+        setAgeBetween(p1, p2, 0);
         assertEquals(Relationship.SISTER, service.getRelationship(p1, p2));
         assertEquals(Relationship.BROTHER, service.getRelationship(p2, p1));
 
-        p1.setDateOfBirth(dateService.getDate("1974-07-14"));
+        setAgeBetween(p1, p2, 15);
         assertEquals(Relationship.SISTER, service.getRelationship(p1, p2));
         assertEquals(Relationship.BROTHER, service.getRelationship(p2, p1));
 
-        p1.setDateOfBirth(dateService.getDate("1974-07-12"));
+        setAgeBetween(p1, p2, 40);
         assertFalse(service.getRelationship(p2, p1) == Relationship.SISTER);
         assertFalse(service.getRelationship(p2, p1) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p2) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p2) == Relationship.SISTER);
 
-        p1.setDateOfBirth(dateService.getDate("1990-07-13"));
-        Person p3 = mockPerson("Toma", "Kebabinskyė", "1990-07-13");
+        Person p3 = newFemale();
+        setSurnames(p3, "Kebabinskyė");
+        setAgeBetween(p1, p3, 0);
         assertFalse(service.getRelationship(p3, p1) == Relationship.SISTER);
         assertFalse(service.getRelationship(p3, p1) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p3) == Relationship.BROTHER);
@@ -122,31 +133,34 @@ public class TestRelationshipServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}
+     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}.
      */
     @Test
     public void testWifeHusbandRelationship() {
-        Person p1 = mockPerson("Jonas", "Butkus-Vandenis", "1980-07-13");
-        Person p2 = mockPerson("Toma", "Lašytė-Vandenienė", "1985-07-13");
+        Person p1 = newMale();
+        Person p2 = newFemale();
+        setSurnames(p1, "Butkus", "Vandenis");
+        setSurnames(p2, "Lašytė", "Vandenienė");
 
+        setAgeBetween(p1, p2, 5);
         assertEquals(Relationship.WIFE, service.getRelationship(p1, p2));
         assertEquals(Relationship.HUSBAND, service.getRelationship(p2, p1));
 
-        p2.setSurname("Vandenienė");
+        setSurnames(p2, "Vandenienė");
         assertEquals(Relationship.WIFE, service.getRelationship(p1, p2));
         assertEquals(Relationship.HUSBAND, service.getRelationship(p2, p1));
 
-        p1.setSurname("Vandenis");
+        setSurnames(p1, "Vandenis");
         assertEquals(Relationship.WIFE, service.getRelationship(p1, p2));
         assertEquals(Relationship.HUSBAND, service.getRelationship(p2, p1));
 
-        p2.setSurname("Vandenytė-Lašienė");
+        setSurnames(p2, "Vandenytė", "Lašienė");
         assertFalse(service.getRelationship(p2, p1) == Relationship.WIFE);
         assertFalse(service.getRelationship(p2, p1) == Relationship.HUSBAND);
         assertFalse(service.getRelationship(p1, p2) == Relationship.HUSBAND);
         assertFalse(service.getRelationship(p1, p2) == Relationship.WIFE);
 
-        p2.setSurname("Vandenytė");
+        setSurnames(p2, "Vandenytė");
         assertFalse(service.getRelationship(p2, p1) == Relationship.WIFE);
         assertFalse(service.getRelationship(p2, p1) == Relationship.HUSBAND);
         assertFalse(service.getRelationship(p1, p2) == Relationship.HUSBAND);
@@ -154,14 +168,31 @@ public class TestRelationshipServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}
+     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}.
      */
     @Test
     public void testSonDaughterFatherMotherRelationship() {
-        Person p1 = mockPerson("Jonas", "Purvas-Vandenis", "1970-07-13");
-        Person p2 = mockPerson("Toma", "Lašytė-Vandenienė", "1970-07-13");
-        Person p3 = mockPerson("Kamilė", "Vandenytė-Butkienė", "1993-07-13");
-        Person p4 = mockPerson("Tomas", "Lašas-Vandenis", "1990-07-13");
+        Person p1 = newMale();
+        Person p2 = newFemale();
+        Person p3 = newFemale();
+        Person p4 = newMale();
+        setSurnames(p1, "Purvas", "Vandenis");
+        setAge(p1, 45);
+        setSurnames(p2, "Lašytė", "Vandenienė");
+        setAge(p2, 45);
+        setSurnames(p3, "Vandenytė", "Butkienė");
+        setAge(p3, 22);
+        setSurnames(p4, "Lašas", "Vandenis");
+        setAge(p4, 25);
+
+        setAgeBetween(p1, p2, 0);
+        setAgeBetween(p1, p3, 23);
+        setAgeBetween(p1, p4, 20);
+
+        setAgeBetween(p2, p3, 23);
+        setAgeBetween(p2, p4, 20);
+
+        setAgeBetween(p3, p4, 3);
 
         assertEquals(Relationship.DAUGHTER, service.getRelationship(p1, p3));
         assertEquals(Relationship.SON, service.getRelationship(p1, p4));
@@ -173,10 +204,10 @@ public class TestRelationshipServiceImpl extends CoreTest {
         assertEquals(Relationship.MOTHER, service.getRelationship(p3, p2));
         assertEquals(Relationship.MOTHER, service.getRelationship(p4, p2));
 
-        p1.setSurname("Vandenis");
-        p2.setSurname("Vandenienė");
-        p3.setSurname("Vandenytė");
-        p4.setSurname("Vandenis");
+        setSurnames(p1, "Vandenis");
+        setSurnames(p2, "Vandenienė");
+        setSurnames(p3, "Vandenytė");
+        setSurnames(p4, "Vandenis");
         assertEquals(Relationship.DAUGHTER, service.getRelationship(p1, p3));
         assertEquals(Relationship.SON, service.getRelationship(p1, p4));
         assertEquals(Relationship.FATHER, service.getRelationship(p3, p1));
@@ -187,10 +218,10 @@ public class TestRelationshipServiceImpl extends CoreTest {
         assertEquals(Relationship.MOTHER, service.getRelationship(p3, p2));
         assertEquals(Relationship.MOTHER, service.getRelationship(p4, p2));
 
-        p1.setSurname("Lašas");
-        p2.setSurname("Lašienė");
-        p3.setSurname("Vandenytė-Lašienė");
-        p4.setSurname("Lašas-Vandenis");
+        setSurnames(p1, "Lašas");
+        setSurnames(p2, "Lašienė");
+        setSurnames(p3, "Vandenytė", "Lašienė");
+        setSurnames(p4, "Lašas", "Vandenis");
         assertFalse(service.getRelationship(p1, p3) == Relationship.DAUGHTER);
         assertFalse(service.getRelationship(p1, p4) == Relationship.SON);
         assertFalse(service.getRelationship(p3, p1) == Relationship.FATHER);
@@ -203,14 +234,31 @@ public class TestRelationshipServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}
+     * Test for {@link RelationshipServiceImpl#getRelationship(Person, Person)}.
      */
     @Test
     public void testGrandSonDaughterFatherMotherRelationship() {
-        Person p1 = mockPerson("Jonas", "Purvas-Vandenis", "1950-07-13");
-        Person p2 = mockPerson("Toma", "Lašytė-Vandenienė", "1950-07-13");
-        Person p3 = mockPerson("Kamilė", "Vandenytė-Butkienė", "1993-07-13");
-        Person p4 = mockPerson("Tomas", "Lašas-Vandenis", "1991-07-13");
+        Person p1 = newMale();
+        Person p2 = newFemale();
+        Person p3 = newFemale();
+        Person p4 = newMale();
+        setSurnames(p1, "Purvas", "Vandenis");
+        setAge(p1, 65);
+        setSurnames(p2, "Lašytė", "Vandenienė");
+        setAge(p2, 65);
+        setSurnames(p3, "Vandenytė", "Butkienė");
+        setAge(p3, 22);
+        setSurnames(p4, "Lašas", "Vandenis");
+        setAge(p4, 25);
+
+        setAgeBetween(p1, p2, 0);
+        setAgeBetween(p1, p3, 43);
+        setAgeBetween(p1, p4, 41);
+
+        setAgeBetween(p2, p3, 43);
+        setAgeBetween(p2, p4, 41);
+
+        setAgeBetween(p3, p4, 3);
 
         assertEquals(Relationship.GRANDAUGHTER, service.getRelationship(p1, p3));
         assertEquals(Relationship.GRANDSON, service.getRelationship(p1, p4));
@@ -222,10 +270,10 @@ public class TestRelationshipServiceImpl extends CoreTest {
         assertEquals(Relationship.GRANDMOTHER, service.getRelationship(p3, p2));
         assertEquals(Relationship.GRANDMOTHER, service.getRelationship(p4, p2));
 
-        p1.setSurname("Vandenis");
-        p2.setSurname("Vandenienė");
-        p3.setSurname("Vandenytė");
-        p4.setSurname("Vandenis");
+        setSurnames(p1, "Vandenis");
+        setSurnames(p2, "Vandenienė");
+        setSurnames(p3, "Vandenytė");
+        setSurnames(p4, "Vandenis");
         assertEquals(Relationship.GRANDAUGHTER, service.getRelationship(p1, p3));
         assertEquals(Relationship.GRANDSON, service.getRelationship(p1, p4));
         assertEquals(Relationship.GRANDFATHER, service.getRelationship(p3, p1));
@@ -236,10 +284,10 @@ public class TestRelationshipServiceImpl extends CoreTest {
         assertEquals(Relationship.GRANDMOTHER, service.getRelationship(p3, p2));
         assertEquals(Relationship.GRANDMOTHER, service.getRelationship(p4, p2));
 
-        p1.setSurname("Lašas");
-        p2.setSurname("Lašienė");
-        p3.setSurname("Vandenytė-Lašienė");
-        p4.setSurname("Lašas-Vandenis");
+        setSurnames(p1, "Lašas");
+        setSurnames(p2, "Lašienė");
+        setSurnames(p3, "Vandenytė", "Lašienė");
+        setSurnames(p4, "Lašas", "Vandenis");
         assertFalse(service.getRelationship(p1, p3) == Relationship.GRANDAUGHTER);
         assertFalse(service.getRelationship(p1, p4) == Relationship.GRANDSON);
         assertFalse(service.getRelationship(p3, p1) == Relationship.GRANDFATHER);
@@ -252,14 +300,32 @@ public class TestRelationshipServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link RelationshipServiceImpl#getRelationships(Person, List)}
+     * Test for {@link RelationshipServiceImpl#getRelationships(Person, List)}.
      */
     @Test
     public void testGetRelationships1() {
-        Person p1 = mockPerson("Jonas", "Purvas-Vandenis", "1950-07-13");
-        Person p2 = mockPerson("Toma", "Lašytė-Vandenienė", "1950-07-13");
-        Person p3 = mockPerson("Kamilė", "Vandenytė-Butkienė", "1993-07-13");
-        Person p4 = mockPerson("Tomas", "Lašas-Vandenis", "1991-07-13");
+        Person p1 = newMale();
+        Person p2 = newFemale();
+        Person p3 = newFemale();
+        Person p4 = newMale();
+        setSurnames(p1, "Purvas", "Vandenis");
+        setAge(p1, 65);
+        setSurnames(p2, "Lašytė", "Vandenienė");
+        setAge(p2, 65);
+        setSurnames(p3, "Vandenytė", "Butkienė");
+        setAge(p3, 22);
+        setSurnames(p4, "Lašas", "Vandenis");
+        setAge(p4, 25);
+
+        setAgeBetween(p1, p2, 0);
+        setAgeBetween(p1, p3, 43);
+        setAgeBetween(p1, p4, 41);
+
+        setAgeBetween(p2, p3, 43);
+        setAgeBetween(p2, p4, 41);
+
+        setAgeBetween(p3, p4, 3);
+
         List<Person> people = new ArrayList<Person>();
         people.add(p2);
         people.add(p3);
@@ -273,15 +339,40 @@ public class TestRelationshipServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link RelationshipServiceImpl#getRelationships(Person, List)}
+     * Test for {@link RelationshipServiceImpl#getRelationships(Person, List)}.
      */
     @Test
     public void testGetRelationships2() {
-        Person p1 = mockPerson("Jonas", "Purvas-Vandenis", "1970-07-13");
-        Person p2 = mockPerson("Toma", "Lašytė-Vandenienė", "1970-07-13");
-        Person p3 = mockPerson("Kamilė", "Vandenytė-Butkienė", "1993-07-13");
-        Person p4 = mockPerson("Tomas", "Lašas-Vandenis", "1990-07-13");
-        Person p5 = mockPerson("Kristijonas", "Pašalietis", "1980-07-13");
+        Person p1 = newMale();
+        Person p2 = newFemale();
+        Person p3 = newFemale();
+        Person p4 = newMale();
+        Person p5 = newMale();
+        setSurnames(p1, "Purvas", "Vandenis");
+        setAge(p1, 45);
+        setSurnames(p2, "Lašytė", "Vandenienė");
+        setAge(p2, 45);
+        setSurnames(p3, "Vandenytė", "Butkienė");
+        setAge(p3, 22);
+        setSurnames(p4, "Lašas", "Vandenis");
+        setAge(p4, 25);
+        setSurnames(p5, "Kristijonas", "Pašalietis");
+        setAge(p4, 35);
+
+        setAgeBetween(p1, p2, 0);
+        setAgeBetween(p1, p3, 23);
+        setAgeBetween(p1, p4, 20);
+        setAgeBetween(p1, p5, 10);
+
+        setAgeBetween(p2, p3, 23);
+        setAgeBetween(p2, p4, 20);
+        setAgeBetween(p1, p5, 10);
+
+        setAgeBetween(p3, p4, 3);
+        setAgeBetween(p3, p5, 13);
+
+        setAgeBetween(p4, p5, 10);
+
         List<Person> people = new ArrayList<Person>();
         people.add(p2);
         people.add(p3);
@@ -295,11 +386,53 @@ public class TestRelationshipServiceImpl extends CoreTest {
         assertEquals(expectedResult, service.getRelationships(p1, people));
     }
 
-    private Person mockPerson(String name, String surname, String date) {
-        Person p1 = new Person(name, surname);
-        p1.setGender(personService.getGender(p1));
-        p1.setDateOfBirth(dateService.getDate(date));
-        return p1;
+    /*
+     * ==================================================================
+     * HELPERS
+     * ==================================================================
+     */
+
+    private Random rand = new Random();
+
+    private Person newPerson() {
+        Person person = new Person();
+        person.setId(rand.nextLong());
+        when(personServiceMock.isPersonValid(person)).thenReturn(true);
+        return person;
+    }
+
+    private Person newMale() {
+        Person person = newPerson();
+        person.setGender(Gender.MALE);
+        return person;
+    }
+
+    private Person newFemale() {
+        Person person = newPerson();
+        person.setGender(Gender.FEMALE);
+        return person;
+    }
+
+    private void setSurnames(Person p1, String s1) {
+        setSurnames(p1, s1, s1);
+    }
+
+    private void setSurnames(Person p1, String s1, String s2) {
+        when(personServiceMock.getFirstSurname(p1)).thenReturn(s1);
+        when(personServiceMock.getLastSurname(p1)).thenReturn(s2);
+    }
+
+    private void setAge(Person p1, int age) {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.YEAR, -age);
+        DateUtils.resetTime(c);
+        p1.setDateOfBirth(c.getTime());
+        when(dateServiceMock.getAge(p1.getDateOfBirth())).thenReturn(age);
+    }
+
+    private void setAgeBetween(Person p1, Person p2, int age) {
+        when(dateServiceMock.getAgeDifference(p1, p2)).thenReturn(age);
+        when(dateServiceMock.getAgeDifference(p2, p1)).thenReturn(age);
     }
 
 }

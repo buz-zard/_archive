@@ -4,6 +4,7 @@ import java.util.List;
 
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.persistence.domain.PersonDAO;
+import lt.solutioni.persistence.repository.PersonRepository;
 
 /**
  * {@link PersonRepository} service to interact with JPA repository using

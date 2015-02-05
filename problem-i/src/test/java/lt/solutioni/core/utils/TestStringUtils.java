@@ -1,19 +1,19 @@
 package lt.solutioni.core.utils;
 
-import lt.solutioni.core.CoreTest;
+import lt.solutioni.core.BaseTest;
 
 import org.junit.Test;
 
 /**
- * Test for {@link StringUtils}
+ * Test for {@link StringUtils}.
  * 
  * @author buzzard
  * 
  */
-public class TestStringUtils extends CoreTest {
+public class TestStringUtils extends BaseTest {
 
     /**
-     * Test for {@link StringUtils#commonPrefix(String, String)}
+     * Test for {@link StringUtils#commonPrefix(String, String)}.
      */
     @Test
     public void testCommonPrefix() {
@@ -30,7 +30,7 @@ public class TestStringUtils extends CoreTest {
     }
 
     /**
-     * Test for {@link StringUtils#endsWithRegex(String, String)}
+     * Test for {@link StringUtils#endsWithRegex(String, String)}.
      */
     @Test
     public void testEndsWithRegex() {

@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import lombok.Setter;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.PersonService;
 import lt.solutioni.persistence.domain.PersonDAO;
@@ -22,11 +21,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
  */
 public class PersonRepositoryServiceImpl implements PersonRepositoryService {
 
-    @Setter
     @Autowired
     private PersonService service;
 
-    @Setter
     @Autowired
     private PersonRepository repository;
 
@@ -42,7 +39,7 @@ public class PersonRepositoryServiceImpl implements PersonRepositoryService {
     @Override
     public Person findOne(long id) {
         try {
-            return repository.getOne(id).toPerson();
+            return repository.findOne(id).toPerson();
         } catch (EntityNotFoundException ex) {
             return null;
         }
@@ -50,10 +47,12 @@ public class PersonRepositoryServiceImpl implements PersonRepositoryService {
 
     @Override
     public boolean save(Person person) {
-        person.setGender(service.getGender(person));
-        if (service.isPersonValid(person)) {
-            repository.save(PersonDAO.fromPerson(person));
-            return true;
+        if (person != null) {
+            person.setGender(service.getGender(person));
+            if (service.isPersonValid(person)) {
+                repository.save(PersonDAO.fromPerson(person));
+                return true;
+            }
         }
         return false;
     }
@@ -70,7 +69,7 @@ public class PersonRepositoryServiceImpl implements PersonRepositoryService {
 
     @Override
     public boolean update(Person person) {
-        if (findOne(person.getId()) != null) {
+        if (person != null && findOne(person.getId()) != null) {
             person.setGender(service.getGender(person));
             if (service.isPersonValid(person)) {
                 repository.save(PersonDAO.fromPerson(person));

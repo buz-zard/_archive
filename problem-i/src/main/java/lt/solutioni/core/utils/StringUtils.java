@@ -1,7 +1,7 @@
 package lt.solutioni.core.utils;
 
 /**
- * Utility String manipulation methods.
+ * Common {@link String} manipulation methods collection.
  * 
  * @author buzzard
  *

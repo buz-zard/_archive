@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lt.solutioni.core.utils.DateDeserializer;
 import lt.solutioni.core.utils.DateSerializer;
+import lt.solutioni.core.utils.DateUtils;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -30,14 +31,14 @@ public class Person {
     private Date dateOfBirth;
     private Gender gender;
 
-    public Person(String name, String surname, Date dateOfBirth) {
-        this(name, surname);
-        this.dateOfBirth = dateOfBirth;
+    public Person(String name, String surname) {
+        this(name, surname, null);
     }
 
-    public Person(String name, String surname) {
+    public Person(String name, String surname, String dateOfBirth) {
         this.name = name;
         this.surname = surname;
+        this.dateOfBirth = DateUtils.getDate(dateOfBirth);
     }
 
 }

@@ -1,9 +1,7 @@
 package lt.solutioni.core.service.impl;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import lt.solutioni.core.CoreTest;
+import static org.mockito.Mockito.when;
+import lt.solutioni.core.BaseTest;
 import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
@@ -11,29 +9,32 @@ import lt.solutioni.core.service.PersonService;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 /**
- * Test for {@link PersonServiceImpl}
+ * Test for {@link PersonServiceImpl}.
  * 
  * @author buzzard
  * 
  */
-public class TestPersonServiceImpl extends CoreTest {
+public class TestPersonServiceImpl extends BaseTest {
 
+    @InjectMocks
     private PersonService service;
 
-    @Autowired
-    private DateService dateService;
+    @Mock
+    private DateService dateServiceMock;
 
     @Before
     public void setUp() throws Exception {
+        super.setUp();
         service = new PersonServiceImpl();
-        ((PersonServiceImpl) service).setDateService(dateService);
+        super.finishSetup();
     }
 
     /**
-     * Test for {@link PersonServiceImpl#isNameValid(Person)}
+     * Test for {@link PersonServiceImpl#isNameValid(Person)}.
      */
     @Test
     public void testNameValidation() {
@@ -61,7 +62,7 @@ public class TestPersonServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#isSurnameValid(Person)}
+     * Test for {@link PersonServiceImpl#isSurnameValid(Person)}.
      */
     @Test
     public void testSurnameValidation() {
@@ -89,27 +90,21 @@ public class TestPersonServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#isAgeValid(Person)}
+     * Test for {@link PersonServiceImpl#isAgeValid(Person)}.
      */
+    @Test
     public void testAgeValidation() {
-        Person p1 = new Person("", "");
-        p1.setDateOfBirth(dateService.getDate("1990-07-13"));
-        Person p2 = new Person("", "");
-        p2.setDateOfBirth(new Date());
-        Person p3 = new Person("", "");
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, 1);
-        p3.setDateOfBirth(c.getTime());
-        Person p4 = new Person("", "");
+        Person p1 = new Person("", "", "1990-07-13");
+        Person p2 = new Person("", "", "2000-07-13");
 
+        when(dateServiceMock.getAge(p1.getDateOfBirth())).thenReturn(99);
+        when(dateServiceMock.getAge(p2.getDateOfBirth())).thenReturn(-1);
         assertTrue(service.isAgeValid(p1));
-        assertTrue(service.isAgeValid(p2));
-        assertFalse(service.isAgeValid(p3));
-        assertFalse(service.isAgeValid(p4));
+        assertFalse(service.isAgeValid(p2));
     }
 
     /**
-     * Test for {@link PersonServiceImpl#isGenderValid(Person)}
+     * Test for {@link PersonServiceImpl#isGenderValid(Person)}.
      */
     @Test
     public void testGenderValidation() {
@@ -125,7 +120,7 @@ public class TestPersonServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#getGender(Person)}
+     * Test for {@link PersonServiceImpl#getGender(Person)}.
      */
     @Test
     public void testGetGender() {
@@ -139,7 +134,7 @@ public class TestPersonServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#getFirstSurname(Person)}
+     * Test for {@link PersonServiceImpl#getFirstSurname(Person)}.
      */
     public void testGetFirstSurname() {
         Person p1 = new Person("", "qwerty");
@@ -156,7 +151,7 @@ public class TestPersonServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#getLastSurname(Person)}
+     * Test for {@link PersonServiceImpl#getLastSurname(Person)}.
      */
     public void testGetLastSurname() {
         Person p1 = new Person("", "qwerty");
@@ -173,7 +168,7 @@ public class TestPersonServiceImpl extends CoreTest {
     }
 
     /**
-     * Test for {@link PersonServiceImpl#createPerson(String, String, String)}
+     * Test for {@link PersonServiceImpl#createPerson(String, String, String)}.
      */
     @Test
     public void testCreatePerson() {
@@ -186,15 +181,14 @@ public class TestPersonServiceImpl extends CoreTest {
         assertNull(service.createPerson("Jonas", "Vandenis", ""));
         assertNull(service.createPerson("Jonas", "asdasdasd", "1990-07-13"));
 
-        Person p1 = new Person("Jonas", "Vandenis", dateService.getDate("1990-07-13"));
+        Person p1 = new Person("Jonas", "Vandenis", "1990-07-13");
         p1.setGender(Gender.MALE);
-        assertEquals(p1, service.createPerson("Jonas", "Vandenis", "1990-07-13"));
-
-        Person p2 = new Person("Janina", "Vandenienė", dateService.getDate("1990-07-13"));
+        Person p2 = new Person("Janina", "Vandenienė", "1990-07-13");
         p2.setGender(Gender.FEMALE);
-        assertEquals(p2, service.createPerson("Janina", "Vandenienė", "1990-07-13"));
+        Person p3 = new Person("Jonas", "Vandenis", "1990-07-13");
 
-        Person p3 = new Person("Jonas", "Vandenis", dateService.getDate("1990-07-13"));
+        assertEquals(p1, service.createPerson("Jonas", "Vandenis", "1990-07-13"));
+        assertEquals(p2, service.createPerson("Janina", "Vandenienė", "1990-07-13"));
         assertFalse(p3.equals(service.createPerson("Jonas", "Vandenis", "1990-07-13")));
     }
 

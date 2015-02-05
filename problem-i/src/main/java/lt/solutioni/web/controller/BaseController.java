@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-public class BaseController extends AbstractController implements
-        ErrorController {
+public class BaseController extends AbstractController implements ErrorController {
 
     private static final String ERROR_PATH = "/error";
 
     @RequestMapping(value = ERROR_PATH)
-    public @ResponseBody RestResponse onGlobalError(HttpServletRequest request,
-            Exception exception) {
+    public @ResponseBody RestResponse onGlobalError(HttpServletRequest request, Exception exception) {
         return super.errorResponse(request, exception);
     }
 

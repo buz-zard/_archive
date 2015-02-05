@@ -1,60 +1,47 @@
 package lt.solutioni.core.service.impl;
 
-import java.util.Calendar;
+import static org.mockito.Mockito.when;
+
 import java.util.Date;
 
-import lt.solutioni.core.CoreTest;
+import lt.solutioni.core.BaseTest;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
+import lt.solutioni.core.utils.DateUtils;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 /**
- * Test for {@link DateServiceImpl}
+ * Test for {@link DateServiceImpl}.
  * 
  * @author buzzard
  * 
  */
-public class TestDateServiceImpl extends CoreTest {
+public class TestDateServiceImpl extends BaseTest {
 
+    @InjectMocks
     private DateService service;
 
-    @Autowired
-    private PersonService personService;
+    @Mock
+    private PersonService personServiceMock;
 
     @Before
     public void setUp() throws Exception {
+        super.setUp();
         service = new DateServiceImpl();
-        ((DateServiceImpl) service).setPersonService(personService);
+        super.finishSetup();
     }
 
     /**
-     * Test for {@link DateServiceImpl#getDate(String)}
-     */
-    @Test
-    public void testGetDate() {
-        Date date1 = service.getDate("1990-07-13");
-        Calendar c = Calendar.getInstance();
-        c.set(1990, 6, 13, 0, 0, 0);
-        c.set(Calendar.MILLISECOND, 0);
-        Date expectedDate = c.getTime();
-        Date date2 = service.getDate("1990-15-45");
-
-        assertEquals(expectedDate, date1);
-        assertNull(date2);
-        assertNull(service.getDate(""));
-        assertNull(service.getDate(null));
-    }
-
-    /**
-     * Test for {@link DateServiceImpl#getAge(Date)}
+     * Test for {@link DateServiceImpl#getAge(Date)}.
      */
     @Test
     public void testGetAge() {
-        Date now = service.getDate("2015-02-15");
+        Date now = DateUtils.getDate("2015-02-15");
 
         assertAge(now, "2013-02-13", 2);
         assertAge(now, "2014-02-15", 1);
@@ -64,26 +51,32 @@ public class TestDateServiceImpl extends CoreTest {
     }
 
     private void assertAge(Date now, String fromDate, int value) {
-        assertEquals(value, service.getAge(service.getDate(fromDate), now));
+        assertEquals(value, service.getAge(DateUtils.getDate(fromDate), now));
     }
 
     /**
-     * Test for {@link DateServiceImpl#getAgeDifference(Person, Person)}
+     * Test for {@link DateServiceImpl#getAgeDifference(Person, Person)}.
      */
     @Test
     public void testGetAgeDiffrence() {
-        Person p1 = new Person("", "");
-        p1.setDateOfBirth(service.getDate("1990-07-13"));
-        Person p2 = new Person("", "");
-        p2.setDateOfBirth(service.getDate("1990-01-13"));
-        Person p3 = new Person("", "");
-        p3.setDateOfBirth(service.getDate("1985-07-13"));
+        Person p1 = new Person("", "", "1990-07-13");
+        Person p2 = new Person("", "", "1990-01-13");
+        Person p3 = new Person("", "", "1985-07-13");
+        Person p4 = new Person("", "");
 
+        when(personServiceMock.isAgeValid(p1)).thenReturn(true);
+        when(personServiceMock.isAgeValid(p2)).thenReturn(true);
+        when(personServiceMock.isAgeValid(p3)).thenReturn(true);
+        when(personServiceMock.isAgeValid(p4)).thenReturn(false);
+        assertSame(0, service.getAgeDifference(p1, p1));
         assertSame(0, service.getAgeDifference(p1, p2));
         assertSame(5, service.getAgeDifference(p1, p3));
         assertSame(5, service.getAgeDifference(p3, p1));
         assertSame(4, service.getAgeDifference(p2, p3));
         assertSame(4, service.getAgeDifference(p3, p2));
+        assertEquals(null, service.getAgeDifference(p1, p4));
+        assertEquals(null, service.getAgeDifference(p4, p1));
+        assertEquals(null, service.getAgeDifference(p4, p4));
     }
 
 }

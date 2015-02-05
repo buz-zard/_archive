@@ -44,13 +44,13 @@ public class PersonController extends AbstractController {
     private static final String URL_UPDATE = "/update";
     private static final String URL_RELATIONSHIPS = "/relationships/{personId}";
 
-    private static final String MSG_PERSON_FIND_FAILED = "No person record with such id found.";
-    private static final String MSG_PERSON_SAVED = "Person record successfully created.";
-    private static final String MSG_PERSON_SAVE_FAILED = "Failed to save person record.";
-    private static final String MSG_PERSON_DELETED = "Person record successfully deleted.";
-    private static final String MSG_PERSON_DELETE_FAILED = "Failed to delete person record with such id.";
-    private static final String MSG_PERSON_UPDATED = "Person record successfully updated.";
-    private static final String MSG_PERSON_UPDATE_FAILED = "Failed to update person record.";
+    public static final String MSG_PERSON_FIND_FAILED = "No person record with such id found.";
+    public static final String MSG_PERSON_SAVED = "Person record successfully created.";
+    public static final String MSG_PERSON_SAVE_FAILED = "Failed to save person record.";
+    public static final String MSG_PERSON_DELETED = "Person record successfully deleted.";
+    public static final String MSG_PERSON_DELETE_FAILED = "Failed to delete person record with such id.";
+    public static final String MSG_PERSON_UPDATED = "Person record successfully updated.";
+    public static final String MSG_PERSON_UPDATE_FAILED = "Failed to update person record.";
 
     /**
      * Get a list of all {@link Person}.
@@ -64,8 +64,7 @@ public class PersonController extends AbstractController {
      * Retrieve {@link Person} object by it's id.
      */
     @RequestMapping(value = URL_GET, method = RequestMethod.GET)
-    public @ResponseBody RestResponse getPerson(
-            @PathVariable(value = "personId") Long id) {
+    public @ResponseBody RestResponse getPerson(@PathVariable(value = "personId") Long id) {
         Person person = repositoryService.findOne(id);
         if (person != null) {
             return RestResponse.ok(person);
@@ -90,8 +89,7 @@ public class PersonController extends AbstractController {
      * Delete {@link PersonDAO} by it's id.
      */
     @RequestMapping(value = URL_DELETE, method = RequestMethod.POST)
-    public @ResponseBody RestResponse deletePerson(
-            @PathVariable(value = "personId") Long id) {
+    public @ResponseBody RestResponse deletePerson(@PathVariable(value = "personId") Long id) {
         if (repositoryService.delete(id)) {
             return RestResponse.ok(MSG_PERSON_DELETED);
         } else {
@@ -115,17 +113,16 @@ public class PersonController extends AbstractController {
      * Get all related people to a {@link Person} by id.
      */
     @RequestMapping(value = URL_RELATIONSHIPS, method = RequestMethod.GET)
-    public @ResponseBody RestResponse relationships(
-            @PathVariable(value = "personId") Long personId) {
+    public @ResponseBody RestResponse relationships(@PathVariable(value = "personId") Long personId) {
         Person person = repositoryService.findOne(personId);
         if (person != null) {
             List<RelatedPerson> relatedPeople = new ArrayList<RelatedPerson>();
-            Map<Person, Relationship> relationships = relationshipService
-                    .getRelationships(person, repositoryService.findAll());
+            Map<Person, Relationship> relationships = relationshipService.getRelationships(person,
+                    repositoryService.findAll());
             for (Person relatedPerson : relationships.keySet()) {
                 if (relatedPerson.getId() != person.getId()) {
-                    relatedPeople.add(new RelatedPerson(relationships
-                            .get(relatedPerson), relatedPerson));
+                    relatedPeople.add(new RelatedPerson(relationships.get(relatedPerson),
+                            relatedPerson));
                 }
             }
             return RestResponse.ok(relatedPeople);

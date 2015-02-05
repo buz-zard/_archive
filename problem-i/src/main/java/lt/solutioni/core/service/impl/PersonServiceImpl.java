@@ -1,6 +1,5 @@
 package lt.solutioni.core.service.impl;
 
-import lombok.Setter;
 import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
@@ -17,22 +16,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class PersonServiceImpl implements PersonService {
 
     private String ltLetterRegex = "[a-ząčęėįšųūž]";
-    private String nameRegex = "^(" + ltLetterRegex + "+|" + ltLetterRegex + "+[ ]" + ltLetterRegex + "+)$";
-    private String surnameRegex = "^(" + ltLetterRegex + "+[sė]|" + ltLetterRegex + "+[sė][-]" + ltLetterRegex
-            + "+[sė])$";
+    private String nameRegex = "^(" + ltLetterRegex + "+|" + ltLetterRegex + "+[ ]" + ltLetterRegex
+            + "+)$";
+    private String surnameRegex = "^(" + ltLetterRegex + "+[sė]|" + ltLetterRegex + "+[sė][-]"
+            + ltLetterRegex + "+[sė])$";
 
     @Autowired
-    @Setter
     private DateService dateService;
 
     @Override
     public boolean isPersonValid(Person person) {
-        return isNameValid(person) && isSurnameValid(person) && isGenderValid(person) && isAgeValid(person);
+        return isNameValid(person) && isSurnameValid(person) && isGenderValid(person)
+                && isAgeValid(person);
     }
 
     @Override
     public boolean isNameValid(Person person) {
-        if (isNameOrSurnameLengthValid(person.getName()) && person.getName().toLowerCase().matches(nameRegex)) {
+        if (isNameOrSurnameLengthValid(person.getName())
+                && person.getName().toLowerCase().matches(nameRegex)) {
             return true;
         }
         return false;
@@ -40,7 +41,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean isSurnameValid(Person person) {
-        if (isNameOrSurnameLengthValid(person.getSurname()) && person.getSurname().toLowerCase().matches(surnameRegex)) {
+        if (isNameOrSurnameLengthValid(person.getSurname())
+                && person.getSurname().toLowerCase().matches(surnameRegex)) {
             return true;
         }
         return false;
@@ -105,8 +107,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person createPerson(String name, String surname, String dateOfBirth) {
-        Person person = new Person(name, surname);
-        person.setDateOfBirth(dateService.getDate(dateOfBirth));
+        Person person = new Person(name, surname, dateOfBirth);
         person.setGender(getGender(person));
         if (isPersonValid(person)) {
             return person;

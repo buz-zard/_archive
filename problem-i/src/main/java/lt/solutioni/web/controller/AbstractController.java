@@ -24,13 +24,14 @@ public abstract class AbstractController {
      * Returns exceptions details as valid JSON response.
      */
     @ExceptionHandler(Exception.class)
-    protected @ResponseBody RestResponse onError(HttpServletRequest request,
-            Exception exception) {
+    protected @ResponseBody RestResponse onError(HttpServletRequest request, Exception exception) {
         return errorResponse(request, exception);
     }
 
-    protected RestResponse errorResponse(HttpServletRequest request,
-            Exception exception) {
+    /**
+     * Make a generic error {@link RestResponse}.
+     */
+    protected RestResponse errorResponse(HttpServletRequest request, Exception exception) {
         Map<String, String> response = new HashMap<String, String>();
         response.put("URL", request.getRequestURL().toString());
         response.put("Controller", this.getClass().getCanonicalName());

@@ -66,9 +66,8 @@ public class PersonDAO {
      * Create object from {@link Person} instance.
      */
     public static PersonDAO fromPerson(Person person) {
-        return new PersonDAO(person.getId(), person.getName(),
-                person.getSurname(), person.getDateOfBirth(),
-                person.getGender());
+        return new PersonDAO(person.getId(), person.getName(), person.getSurname(),
+                person.getDateOfBirth(), person.getGender());
     }
 
 }

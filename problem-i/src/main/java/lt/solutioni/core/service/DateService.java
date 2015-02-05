@@ -2,22 +2,15 @@ package lt.solutioni.core.service;
 
 import java.util.Date;
 
-import lt.solutioni.core.CoreConfiguration;
 import lt.solutioni.core.domain.Person;
 
 /**
- * Service interface for {@link Date} related functions.
+ * Service interface for {@link Date} and {@link Person} related functions.
  * 
  * @author buzzard
  *
  */
 public interface DateService {
-
-    /**
-     * Parse date from string object in {@link CoreConfiguration#DATE_FORMAT}
-     * format.
-     */
-    Date getDate(String date);
 
     /**
      * Get time difference in years from given date to now. Returns -1 if
