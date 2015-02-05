@@ -3,7 +3,8 @@ package lt.solutioni.core.service.impl;
 import java.util.Calendar;
 import java.util.Date;
 
-import lt.solutioni.core.CoreTestCase;
+import junit.framework.TestCase;
+import lt.solutioni.core.CoreConfiguration;
 import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
@@ -11,6 +12,10 @@ import lt.solutioni.core.service.PersonService;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test for {@link PersonServiceImpl}
@@ -18,16 +23,18 @@ import org.junit.Test;
  * @author buzzard
  * 
  */
-public class TestPersonServiceImpl extends CoreTestCase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = CoreConfiguration.class)
+public class TestPersonServiceImpl extends TestCase {
 
     private PersonService service;
+
+    @Autowired
     private DateService dateService;
 
     @Before
     public void setUp() throws Exception {
-        super.setUp();
         service = new PersonServiceImpl();
-        dateService = getBean(DateService.class);
         ((PersonServiceImpl) service).setDateService(dateService);
     }
 

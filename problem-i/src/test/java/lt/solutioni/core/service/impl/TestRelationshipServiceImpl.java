@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lt.solutioni.core.CoreTestCase;
+import junit.framework.TestCase;
+import lt.solutioni.core.CoreConfiguration;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.domain.Relationship;
 import lt.solutioni.core.service.DateService;
@@ -14,6 +15,10 @@ import lt.solutioni.core.service.RelationshipService;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test for {@link RelationshipServiceImpl}
@@ -21,18 +26,21 @@ import org.junit.Test;
  * @author buzzard
  * 
  */
-public class TestRelationshipServiceImpl extends CoreTestCase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = CoreConfiguration.class)
+public class TestRelationshipServiceImpl extends TestCase {
 
     private RelationshipService service;
+
+    @Autowired
     private DateService dateService;
+
+    @Autowired
     private PersonService personService;
 
     @Before
     public void setUp() throws Exception {
-        super.setUp();
         service = new RelationshipServiceImpl();
-        dateService = getBean(DateService.class);
-        personService = getBean(PersonService.class);
         ((RelationshipServiceImpl) service).setDateService(dateService);
         ((RelationshipServiceImpl) service).setPersonService(personService);
     }
