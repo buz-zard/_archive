@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import lombok.Setter;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.PersonService;
 import lt.solutioni.persistence.domain.PersonDAO;
@@ -21,9 +22,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
  */
 public class PersonRepositoryServiceImpl implements PersonRepositoryService {
 
+    @Setter
     @Autowired
     private PersonService service;
 
+    @Setter
     @Autowired
     private PersonRepository repository;
 
