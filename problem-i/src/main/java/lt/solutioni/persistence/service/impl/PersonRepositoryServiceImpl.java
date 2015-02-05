@@ -67,10 +67,12 @@ public class PersonRepositoryServiceImpl implements PersonRepositoryService {
 
     @Override
     public boolean update(Person person) {
-        person.setGender(service.getGender(person));
-        if (service.isPersonValid(person)) {
-            repository.save(PersonDAO.fromPerson(person));
-            return true;
+        if (findOne(person.getId()) != null) {
+            person.setGender(service.getGender(person));
+            if (service.isPersonValid(person)) {
+                repository.save(PersonDAO.fromPerson(person));
+                return true;
+            }
         }
         return false;
     }
