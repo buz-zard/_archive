@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
-import lt.solutioni.core.CoreConfiguration;
+import lt.solutioni.core.CoreTest;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.domain.Relationship;
 import lt.solutioni.core.service.DateService;
@@ -15,10 +14,7 @@ import lt.solutioni.core.service.RelationshipService;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test for {@link RelationshipServiceImpl}
@@ -26,9 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author buzzard
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CoreConfiguration.class)
-public class TestRelationshipServiceImpl extends TestCase {
+public class TestRelationshipServiceImpl extends CoreTest {
 
     private RelationshipService service;
 

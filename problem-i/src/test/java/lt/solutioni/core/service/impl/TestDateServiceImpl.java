@@ -3,18 +3,14 @@ package lt.solutioni.core.service.impl;
 import java.util.Calendar;
 import java.util.Date;
 
-import junit.framework.TestCase;
-import lt.solutioni.core.CoreConfiguration;
+import lt.solutioni.core.CoreTest;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test for {@link DateServiceImpl}
@@ -22,9 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author buzzard
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CoreConfiguration.class)
-public class TestDateServiceImpl extends TestCase {
+public class TestDateServiceImpl extends CoreTest {
 
     private DateService service;
 
@@ -51,6 +45,8 @@ public class TestDateServiceImpl extends TestCase {
 
         assertEquals(expectedDate, date1);
         assertNull(date2);
+        assertNull(service.getDate(""));
+        assertNull(service.getDate(null));
     }
 
     /**

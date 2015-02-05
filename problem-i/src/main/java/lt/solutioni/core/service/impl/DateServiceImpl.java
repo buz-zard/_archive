@@ -38,11 +38,13 @@ public class DateServiceImpl implements DateService {
 
     @Override
     public Date getDate(String date) {
-        try {
-            return getDateFormat().parse(date);
-        } catch (ParseException e) {
-            return null;
+        if (date != null) {
+            try {
+                return getDateFormat().parse(date);
+            } catch (ParseException e) {
+            }
         }
+        return null;
     }
 
     @Override
@@ -67,10 +69,8 @@ public class DateServiceImpl implements DateService {
 
     @Override
     public Integer getAgeDifference(Person person1, Person person2) {
-        if (personService.isAgeValid(person1)
-                && personService.isAgeValid(person2)) {
-            Period period = new Period(person1.getDateOfBirth().getTime(),
-                    person2.getDateOfBirth().getTime());
+        if (personService.isAgeValid(person1) && personService.isAgeValid(person2)) {
+            Period period = new Period(person1.getDateOfBirth().getTime(), person2.getDateOfBirth().getTime());
             int diff = period.getYears();
             return diff < 0 ? -diff : diff;
         }

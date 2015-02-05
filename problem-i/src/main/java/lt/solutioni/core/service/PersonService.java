@@ -51,4 +51,9 @@ public interface PersonService {
      */
     String getLastSurname(Person person);
 
+    /**
+     * Create person instance from name, surname and dateOfBirth string values.
+     */
+    Person createPerson(String name, String surname, String dateOfBirth);
+
 }

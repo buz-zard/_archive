@@ -3,8 +3,7 @@ package lt.solutioni.core.service.impl;
 import java.util.Calendar;
 import java.util.Date;
 
-import junit.framework.TestCase;
-import lt.solutioni.core.CoreConfiguration;
+import lt.solutioni.core.CoreTest;
 import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
@@ -12,10 +11,7 @@ import lt.solutioni.core.service.PersonService;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test for {@link PersonServiceImpl}
@@ -23,9 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author buzzard
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = CoreConfiguration.class)
-public class TestPersonServiceImpl extends TestCase {
+public class TestPersonServiceImpl extends CoreTest {
 
     private PersonService service;
 
@@ -45,10 +39,8 @@ public class TestPersonServiceImpl extends TestCase {
     public void testNameValidation() {
         Person p1 = new Person("J", "");
         Person p2 = new Person("Jonas", "");
-        Person p3 = new Person(
-                "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonas", "");
-        Person p4 = new Person(
-                "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonasA", "");
+        Person p3 = new Person("JonasJonasJonasJonasJonasJonasJonasJonasJonasJonas", "");
+        Person p4 = new Person("JonasJonasJonasJonasJonasJonasJonasJonasJonasJonasA", "");
         Person p5 = new Person("Jonas Antanas", "");
         Person p6 = new Person("J0nas", "");
         Person p7 = new Person("Jonas-Antanas", "");
@@ -75,10 +67,8 @@ public class TestPersonServiceImpl extends TestCase {
     public void testSurnameValidation() {
         Person p1 = new Person("", "K");
         Person p2 = new Person("", "Žiežirbinis");
-        Person p3 = new Person("",
-                "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonas");
-        Person p4 = new Person("",
-                "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonass");
+        Person p3 = new Person("", "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonas");
+        Person p4 = new Person("", "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonass");
         Person p5 = new Person("", "Jonas-Antanas");
         Person p6 = new Person("", "J0nas");
         Person p7 = new Person("", "Jonas Antanas");
@@ -180,6 +170,32 @@ public class TestPersonServiceImpl extends TestCase {
         assertEquals("Bumblauskas", service.getLastSurname(p3));
         assertEquals("Pavardenytė", service.getLastSurname(p4));
         assertEquals("Bumblauskienė", service.getLastSurname(p5));
+    }
+
+    /**
+     * Test for {@link PersonServiceImpl#createPerson(String, String, String)}
+     */
+    @Test
+    public void testCreatePerson() {
+        assertNull(service.createPerson("", "", ""));
+        assertNull(service.createPerson("", null, ""));
+        assertNull(service.createPerson("", "", null));
+        assertNull(service.createPerson("Jonas", "", ""));
+        assertNull(service.createPerson("", "Pavardenis", ""));
+        assertNull(service.createPerson("", "", "1990-07-13"));
+        assertNull(service.createPerson("Jonas", "Vandenis", ""));
+        assertNull(service.createPerson("Jonas", "asdasdasd", "1990-07-13"));
+
+        Person p1 = new Person("Jonas", "Vandenis", dateService.getDate("1990-07-13"));
+        p1.setGender(Gender.MALE);
+        assertEquals(p1, service.createPerson("Jonas", "Vandenis", "1990-07-13"));
+
+        Person p2 = new Person("Janina", "Vandenienė", dateService.getDate("1990-07-13"));
+        p2.setGender(Gender.FEMALE);
+        assertEquals(p2, service.createPerson("Janina", "Vandenienė", "1990-07-13"));
+
+        Person p3 = new Person("Jonas", "Vandenis", dateService.getDate("1990-07-13"));
+        assertFalse(p3.equals(service.createPerson("Jonas", "Vandenis", "1990-07-13")));
     }
 
 }

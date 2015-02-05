@@ -17,10 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class PersonServiceImpl implements PersonService {
 
     private String ltLetterRegex = "[a-ząčęėįšųūž]";
-    private String nameRegex = "^(" + ltLetterRegex + "+|" + ltLetterRegex
-            + "+[ ]" + ltLetterRegex + "+)$";
-    private String surnameRegex = "^(" + ltLetterRegex + "+[sė]|"
-            + ltLetterRegex + "+[sė][-]" + ltLetterRegex + "+[sė])$";
+    private String nameRegex = "^(" + ltLetterRegex + "+|" + ltLetterRegex + "+[ ]" + ltLetterRegex + "+)$";
+    private String surnameRegex = "^(" + ltLetterRegex + "+[sė]|" + ltLetterRegex + "+[sė][-]" + ltLetterRegex
+            + "+[sė])$";
 
     @Autowired
     @Setter
@@ -28,14 +27,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean isPersonValid(Person person) {
-        return isNameValid(person) && isSurnameValid(person)
-                && isGenderValid(person) && isAgeValid(person);
+        return isNameValid(person) && isSurnameValid(person) && isGenderValid(person) && isAgeValid(person);
     }
 
     @Override
     public boolean isNameValid(Person person) {
-        if (isNameOrSurnameLengthValid(person.getName())
-                && person.getName().toLowerCase().matches(nameRegex)) {
+        if (isNameOrSurnameLengthValid(person.getName()) && person.getName().toLowerCase().matches(nameRegex)) {
             return true;
         }
         return false;
@@ -43,8 +40,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean isSurnameValid(Person person) {
-        if (isNameOrSurnameLengthValid(person.getSurname())
-                && person.getSurname().toLowerCase().matches(surnameRegex)) {
+        if (isNameOrSurnameLengthValid(person.getSurname()) && person.getSurname().toLowerCase().matches(surnameRegex)) {
             return true;
         }
         return false;
@@ -52,8 +48,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean isAgeValid(Person person) {
-        if (person.getDateOfBirth() != null
-                && dateService.getAge(person.getDateOfBirth()) >= 0) {
+        if (person.getDateOfBirth() != null && dateService.getAge(person.getDateOfBirth()) >= 0) {
             return true;
         }
         return false;
@@ -104,6 +99,17 @@ public class PersonServiceImpl implements PersonService {
                 surname = surname.substring(surname.indexOf("-") + 1);
             }
             return WordUtils.capitalize(surname);
+        }
+        return null;
+    }
+
+    @Override
+    public Person createPerson(String name, String surname, String dateOfBirth) {
+        Person person = new Person(name, surname);
+        person.setDateOfBirth(dateService.getDate(dateOfBirth));
+        person.setGender(getGender(person));
+        if (isPersonValid(person)) {
+            return person;
         }
         return null;
     }
