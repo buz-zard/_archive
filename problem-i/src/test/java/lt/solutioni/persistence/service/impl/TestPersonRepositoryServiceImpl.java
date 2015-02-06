@@ -47,6 +47,7 @@ public class TestPersonRepositoryServiceImpl extends BaseTest {
     private List<Person> mockedPeople;
     private List<PersonDAO> mockedPeopleDAO;
 
+    @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
@@ -56,6 +57,7 @@ public class TestPersonRepositoryServiceImpl extends BaseTest {
         super.finishSetup();
     }
 
+    @Override
     @After
     public void tearDown() throws Exception {
         super.tearDown();
@@ -181,6 +183,8 @@ public class TestPersonRepositoryServiceImpl extends BaseTest {
      * HELPERS
      * ==================================================================
      */
+
+    // mock helpers
 
     private void createMockedPeople() {
         mockPerson(1, "Karolis", "Šarapnickis", "1990-07-13", Gender.MALE);

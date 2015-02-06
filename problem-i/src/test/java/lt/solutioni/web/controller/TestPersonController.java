@@ -42,13 +42,15 @@ public class TestPersonController extends BaseTest {
     @Mock
     private RelationshipService relationshipServiceMock;
 
+    @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         controller = new PersonController();
-        this.finishSetup();
+        finishSetup();
     }
 
+    @Override
     @After
     public void tearDown() throws Exception {
         super.tearDown();

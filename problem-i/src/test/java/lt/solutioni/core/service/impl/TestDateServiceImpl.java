@@ -1,5 +1,8 @@
 package lt.solutioni.core.service.impl;
 
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.Date;
@@ -10,6 +13,7 @@ import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
 import lt.solutioni.core.utils.DateUtils;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -29,11 +33,19 @@ public class TestDateServiceImpl extends BaseTest {
     @Mock
     private PersonService personServiceMock;
 
+    @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         service = new DateServiceImpl();
         super.finishSetup();
+    }
+
+    @Override
+    @After
+    public void tearDown() throws Exception {
+        super.tearDown();
+        verifyNoMoreInteractions(personServiceMock);
     }
 
     /**
@@ -50,10 +62,6 @@ public class TestDateServiceImpl extends BaseTest {
         assertAge(now, "2016-09-25", -1);
     }
 
-    private void assertAge(Date now, String fromDate, int value) {
-        assertEquals(value, service.getAge(DateUtils.getDate(fromDate), now));
-    }
-
     /**
      * Test for {@link DateServiceImpl#getAgeDifference(Person, Person)}.
      */
@@ -63,11 +71,11 @@ public class TestDateServiceImpl extends BaseTest {
         Person p2 = new Person("", "", "1990-01-13");
         Person p3 = new Person("", "", "1985-07-13");
         Person p4 = new Person("", "");
-
         when(personServiceMock.isAgeValid(p1)).thenReturn(true);
         when(personServiceMock.isAgeValid(p2)).thenReturn(true);
         when(personServiceMock.isAgeValid(p3)).thenReturn(true);
         when(personServiceMock.isAgeValid(p4)).thenReturn(false);
+
         assertSame(0, service.getAgeDifference(p1, p1));
         assertSame(0, service.getAgeDifference(p1, p2));
         assertSame(5, service.getAgeDifference(p1, p3));
@@ -77,6 +85,26 @@ public class TestDateServiceImpl extends BaseTest {
         assertEquals(null, service.getAgeDifference(p1, p4));
         assertEquals(null, service.getAgeDifference(p4, p1));
         assertEquals(null, service.getAgeDifference(p4, p4));
+        verfyPersonAgeValidation(p1);
+        verfyPersonAgeValidation(p2);
+        verfyPersonAgeValidation(p3);
+        verfyPersonAgeValidation(p4);
+    }
+
+    /*
+     * ==================================================================
+     * HELPERS
+     * ==================================================================
+     */
+
+    // assertion helpers
+
+    private void verfyPersonAgeValidation(Person p1) {
+        verify(personServiceMock, atLeastOnce()).isAgeValid(p1);
+    }
+
+    private void assertAge(Date now, String fromDate, int value) {
+        assertEquals(value, service.getAge(DateUtils.getDate(fromDate), now));
     }
 
 }

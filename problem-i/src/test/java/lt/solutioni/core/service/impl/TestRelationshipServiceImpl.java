@@ -1,5 +1,9 @@
 package lt.solutioni.core.service.impl;
 
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -7,7 +11,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import lt.solutioni.core.BaseTest;
 import lt.solutioni.core.domain.Gender;
@@ -18,6 +21,7 @@ import lt.solutioni.core.service.PersonService;
 import lt.solutioni.core.service.RelationshipService;
 import lt.solutioni.core.utils.DateUtils;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -40,11 +44,20 @@ public class TestRelationshipServiceImpl extends BaseTest {
     @Mock
     private PersonService personServiceMock;
 
+    @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         service = new RelationshipServiceImpl();
         super.finishSetup();
+    }
+
+    @Override
+    @After
+    public void tearDown() throws Exception {
+        super.tearDown();
+        verifyNoMoreInteractions(dateServiceMock);
+        verifyNoMoreInteractions(personServiceMock);
     }
 
     /**
@@ -126,10 +139,32 @@ public class TestRelationshipServiceImpl extends BaseTest {
         Person p3 = newFemale();
         setSurnames(p3, "Kebabinskyė");
         setAgeBetween(p1, p3, 0);
+        assertFalse(service.getRelationship(p3, p2) == Relationship.SISTER);
+        assertFalse(service.getRelationship(p3, p2) == Relationship.BROTHER);
+        assertFalse(service.getRelationship(p2, p3) == Relationship.BROTHER);
+        assertFalse(service.getRelationship(p2, p3) == Relationship.SISTER);
+
         assertFalse(service.getRelationship(p3, p1) == Relationship.SISTER);
         assertFalse(service.getRelationship(p3, p1) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p3) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p3) == Relationship.SISTER);
+
+        verfyPersonExamination(p1);
+        verfyPersonExamination(p2);
+        verfyPersonExamination(p3);
+
+        verifyAgeExamination(p1);
+        verifyPersonAgeDifferenceExamination(p1, p2);
+        verifyPersonAgeDifferenceExamination(p1, p3);
+
+        verifyAgeExamination(p2);
+        verifyPersonAgeDifferenceExamination(p2, p3);
+
+        verifyAgeExamination(p3);
+    }
+
+    private void verifyAgeExamination(Person p1) {
+        verify(dateServiceMock, atLeastOnce()).getAge(p1.getDateOfBirth());
     }
 
     /**
@@ -165,6 +200,10 @@ public class TestRelationshipServiceImpl extends BaseTest {
         assertFalse(service.getRelationship(p2, p1) == Relationship.HUSBAND);
         assertFalse(service.getRelationship(p1, p2) == Relationship.HUSBAND);
         assertFalse(service.getRelationship(p1, p2) == Relationship.WIFE);
+
+        verfyPersonExamination(p1);
+        verfyPersonExamination(p2);
+        verifyPersonAgeDifferenceExamination(p1, p2);
     }
 
     /**
@@ -231,6 +270,23 @@ public class TestRelationshipServiceImpl extends BaseTest {
         assertFalse(service.getRelationship(p2, p4) == Relationship.SON);
         assertFalse(service.getRelationship(p3, p2) == Relationship.MOTHER);
         assertFalse(service.getRelationship(p4, p2) == Relationship.FATHER);
+
+        verfyPersonExamination(p1);
+        verfyPersonExamination(p2);
+        verfyPersonExamination(p3);
+        verfyPersonExamination(p4);
+
+        verifyAgeExamination(p1);
+        verifyPersonAgeDifferenceExamination(p1, p3);
+        verifyPersonAgeDifferenceExamination(p1, p4);
+
+        verifyAgeExamination(p2);
+        verifyPersonAgeDifferenceExamination(p2, p3);
+        verifyPersonAgeDifferenceExamination(p2, p4);
+
+        verifyAgeExamination(p3);
+
+        verifyAgeExamination(p4);
     }
 
     /**
@@ -297,6 +353,23 @@ public class TestRelationshipServiceImpl extends BaseTest {
         assertFalse(service.getRelationship(p2, p4) == Relationship.GRANDSON);
         assertFalse(service.getRelationship(p3, p2) == Relationship.GRANDMOTHER);
         assertFalse(service.getRelationship(p4, p2) == Relationship.GRANDFATHER);
+
+        verfyPersonExamination(p1);
+        verfyPersonExamination(p2);
+        verfyPersonExamination(p3);
+        verfyPersonExamination(p4);
+
+        verifyAgeExamination(p1);
+        verifyPersonAgeDifferenceExamination(p1, p3);
+        verifyPersonAgeDifferenceExamination(p1, p4);
+
+        verifyAgeExamination(p2);
+        verifyPersonAgeDifferenceExamination(p2, p3);
+        verifyPersonAgeDifferenceExamination(p2, p4);
+
+        verifyAgeExamination(p3);
+
+        verifyAgeExamination(p4);
     }
 
     /**
@@ -336,6 +409,22 @@ public class TestRelationshipServiceImpl extends BaseTest {
         expectedResult.put(p3, Relationship.GRANDAUGHTER);
         expectedResult.put(p4, Relationship.GRANDSON);
         assertEquals(expectedResult, service.getRelationships(p1, people));
+
+        verfyPersonExamination(p1);
+        verfyPersonExamination(p2);
+        verfyPersonExamination(p3);
+        verfyPersonExamination(p4);
+
+        verifyAgeExamination(p1);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p2);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p3);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p4);
+
+        verifyAgeExamination(p2);
+
+        verifyAgeExamination(p3);
+
+        verifyAgeExamination(p4);
     }
 
     /**
@@ -384,6 +473,24 @@ public class TestRelationshipServiceImpl extends BaseTest {
         expectedResult.put(p3, Relationship.DAUGHTER);
         expectedResult.put(p4, Relationship.SON);
         assertEquals(expectedResult, service.getRelationships(p1, people));
+
+        verfyPersonExamination(p1);
+        verfyPersonExamination(p2);
+        verfyPersonExamination(p3);
+        verfyPersonExamination(p4);
+        verfyPersonExamination(p5);
+
+        verifyAgeExamination(p1);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p2);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p3);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p4);
+        verify(dateServiceMock, times(1)).getAgeDifference(p1, p5);
+
+        verifyAgeExamination(p2);
+
+        verifyAgeExamination(p3);
+
+        verifyAgeExamination(p4);
     }
 
     /*
@@ -392,11 +499,26 @@ public class TestRelationshipServiceImpl extends BaseTest {
      * ==================================================================
      */
 
-    private Random rand = new Random();
+    // assertion helpers
+
+    private void verifyPersonAgeDifferenceExamination(Person p1, Person p2) {
+        verify(dateServiceMock, atLeastOnce()).getAgeDifference(p1, p2);
+        verify(dateServiceMock, atLeastOnce()).getAgeDifference(p2, p1);
+    }
+
+    private void verfyPersonExamination(Person p1) {
+        verify(personServiceMock, atLeastOnce()).isPersonValid(p1);
+        verify(personServiceMock, atLeastOnce()).getFirstSurname(p1);
+        verify(personServiceMock, atLeastOnce()).getLastSurname(p1);
+    }
+
+    // mock helpers
+
+    private long nextId = 1;
 
     private Person newPerson() {
         Person person = new Person();
-        person.setId(rand.nextLong());
+        person.setId(nextId++);
         when(personServiceMock.isPersonValid(person)).thenReturn(true);
         return person;
     }

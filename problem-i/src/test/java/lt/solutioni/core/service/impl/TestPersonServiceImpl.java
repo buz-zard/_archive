@@ -1,12 +1,17 @@
 package lt.solutioni.core.service.impl;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import lt.solutioni.core.BaseTest;
 import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
+import lt.solutioni.core.utils.DateUtils;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -26,11 +31,19 @@ public class TestPersonServiceImpl extends BaseTest {
     @Mock
     private DateService dateServiceMock;
 
+    @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         service = new PersonServiceImpl();
         super.finishSetup();
+    }
+
+    @Override
+    @After
+    public void tearDown() throws Exception {
+        super.tearDown();
+        verifyNoMoreInteractions(dateServiceMock);
     }
 
     /**
@@ -101,6 +114,8 @@ public class TestPersonServiceImpl extends BaseTest {
         when(dateServiceMock.getAge(p2.getDateOfBirth())).thenReturn(-1);
         assertTrue(service.isAgeValid(p1));
         assertFalse(service.isAgeValid(p2));
+        verify(dateServiceMock, times(1)).getAge(DateUtils.getDate("1990-07-13"));
+        verify(dateServiceMock, times(1)).getAge(DateUtils.getDate("2000-07-13"));
     }
 
     /**
@@ -190,6 +205,6 @@ public class TestPersonServiceImpl extends BaseTest {
         assertEquals(p1, service.createPerson("Jonas", "Vandenis", "1990-07-13"));
         assertEquals(p2, service.createPerson("Janina", "Vandenienė", "1990-07-13"));
         assertFalse(p3.equals(service.createPerson("Jonas", "Vandenis", "1990-07-13")));
+        verify(dateServiceMock, times(3)).getAge(DateUtils.getDate("1990-07-13"));
     }
-
 }
