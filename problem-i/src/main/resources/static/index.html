@@ -1,29 +1,49 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>R-late it!</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
-<link rel="stylesheet" href="/app/css/main.css" />
-</head>
-<body ng-app>
-	<p>
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+		<link href="app/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+		<title>R-late!</title>
+
+
+		
+		<link rel="stylesheet" href="/app/css/main.css" />
+		<script src="app/js/rlate.js"></script>
+	</head>
+	<body ng-app="rlate">
+		<script src="app/lib/bootstrap/js/bootstrap.min.js"></script>
+		<div class="page-header">
+			<h2>People base</h2>
+		</div>
+		<div ng-controller="RlateController">
+			<span>{{remaining()}} of {{todos.length}} remaining</span> [ <a
+			href="" ng-click="archive()">archive</a> ]
+			<ul class="unstyled">
+				<li ng-repeat="todo in todos"><input type="checkbox"
+					ng-model="todo.done"> <span class="done-{{todo.done}}">{{todo.text}}</span>
+				</li>
+			</ul>
+			<form ng-submit="addTodo()">
+				<input type="text" ng-model="todoText" size="30"
+				placeholder="add new todo here"> <input class="btn-primary"
+				type="submit" value="add">
+			</form>
+		</div>
+		<p>
 		Enter Name: <input type="text" ng-model="myname">
-	</p>
-	<p>Hello {{myname}}!!</p>
-
-	<script>
-        function Hello($scope, $http) {
-            $http.get('/person/all').success(function(data) {
-                $scope.people = data;
-            });
-        }
-    </script>
-
-	<div ng-controller="Hello">
-		<h2>Hello from others : {{people}}</h2>
-	</div>
-
-</body>
+		</p>
+		<p>Hello {{myname}}!!</p>
+		<script>
+		function Hello($scope, $http) {
+		$http.get('/person/all').success(function(data) {
+		$scope.people = data;
+		});
+		}
+		</script>
+		<div ng-controller="Hello">
+			<h2>Hello from others : {{people}}</h2>
+		</div>
+	</body>
 </html>
