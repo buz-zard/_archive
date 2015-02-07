@@ -33,7 +33,7 @@ import org.mockito.Mock;
  * @author buzzard
  * 
  */
-public class TestRelationshipServiceImpl extends BaseTest {
+public class RelationshipServiceImplTest extends BaseTest {
 
     @InjectMocks
     private RelationshipService service;

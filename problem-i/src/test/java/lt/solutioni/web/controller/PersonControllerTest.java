@@ -31,7 +31,7 @@ import org.mockito.Mock;
  * @author buzzard
  *
  */
-public class TestPersonController extends BaseTest {
+public class PersonControllerTest extends BaseTest {
 
     @InjectMocks
     private PersonController controller;

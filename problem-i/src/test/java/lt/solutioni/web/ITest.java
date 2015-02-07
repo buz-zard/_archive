@@ -29,7 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public abstract class IntegrationTestBase extends TestCase {
+public abstract class ITest extends TestCase {
 
     /*
      * =========================================================================

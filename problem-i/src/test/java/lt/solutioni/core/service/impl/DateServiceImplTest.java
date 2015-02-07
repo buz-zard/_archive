@@ -25,7 +25,7 @@ import org.mockito.Mock;
  * @author buzzard
  * 
  */
-public class TestDateServiceImpl extends BaseTest {
+public class DateServiceImplTest extends BaseTest {
 
     @InjectMocks
     private DateService service;
@@ -36,7 +36,6 @@ public class TestDateServiceImpl extends BaseTest {
     @Override
     @Before
     public void setUp() throws Exception {
-        super.setUp();
         service = new DateServiceImpl();
         super.finishSetup();
     }

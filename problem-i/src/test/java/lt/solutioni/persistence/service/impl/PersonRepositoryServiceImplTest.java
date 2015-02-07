@@ -33,7 +33,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
  * @author buzzard
  *
  */
-public class TestPersonRepositoryServiceImpl extends BaseTest {
+public class PersonRepositoryServiceImplTest extends BaseTest {
 
     @InjectMocks
     private PersonRepositoryService service;

@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author buzzard
  * 
  */
-public class TestStringUtils extends BaseTest {
+public class StringUtilsTest extends BaseTest {
 
     /**
      * Test for {@link StringUtils#commonPrefix(String, String)}.

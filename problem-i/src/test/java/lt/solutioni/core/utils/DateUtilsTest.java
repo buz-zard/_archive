@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author buzzard
  *
  */
-public class TestDateUtils extends BaseTest {
+public class DateUtilsTest extends BaseTest {
 
     /**
      * Test for {@link DateUtils#getDate(String)}.

@@ -1,6 +1,6 @@
 package lt.solutioni.web.controller;
 
-import lt.solutioni.web.IntegrationTestBase;
+import lt.solutioni.web.ITest;
 
 /**
  * Integration test for {@link PersonController}.
@@ -8,6 +8,6 @@ import lt.solutioni.web.IntegrationTestBase;
  * @author buzzard
  *
  */
-public abstract class PersonControllerIT extends IntegrationTestBase {
+public abstract class PersonControllerITest extends ITest {
 
 }

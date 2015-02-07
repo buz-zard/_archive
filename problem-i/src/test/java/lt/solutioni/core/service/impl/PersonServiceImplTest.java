@@ -23,7 +23,7 @@ import org.mockito.Mock;
  * @author buzzard
  * 
  */
-public class TestPersonServiceImpl extends BaseTest {
+public class PersonServiceImplTest extends BaseTest {
 
     @InjectMocks
     private PersonService service;
