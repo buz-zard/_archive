@@ -21,7 +21,7 @@
   * Use Hibernate DAO entities in persistence layer with the help of annotations.
 * Automatic JUnit tests.
 
-Some simplification rules for input are given to determine person gender and relationships according to his surnames.
+Some simplification rules for input are given to determine person gender and relationships easier using according his/her surname.
 
 ----
 
