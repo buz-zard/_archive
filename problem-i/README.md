@@ -3,8 +3,10 @@
 
 <p align="center">
   <img src="/problem-i/static/spring.png" height="30%" width="30%"/>
-  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <img src="/problem-i/static/angularjs.png" height="30%" width="30%"/>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <img src="/problem-i/static/bootstrap.png" height="15%" width="15%"/>
 </p>
 
 A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][angular_url]+[Bootstrap][boostrap_url] as a front-end technology - all in one executable jar, built with [Maven][maven_url]. Spring application serves both REST api web service and Angular single-page html application.
