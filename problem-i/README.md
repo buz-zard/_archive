@@ -1,6 +1,12 @@
 ----
 ## Implementation
 
+<p align="center">
+  <img src="/problem-i/static/spring.png" height="30%" width="30%"/>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <img src="/problem-i/static/angularjs.png" height="30%" width="30%"/>
+</p>
+
 A [Spring-Boot][spring_url] REST application with [AngularJS][angular_url] as a front-end technology - all in one executable jar file.
 
 
