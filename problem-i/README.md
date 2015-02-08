@@ -7,8 +7,11 @@
   <img src="/problem-i/static/angularjs.png" height="30%" width="30%"/>
 </p>
 
-A [Spring-Boot][spring_url] REST application with [AngularJS][angular_url] as a front-end technology - all in one executable jar file.
+A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][angular_url]+[Bootstrap][boostrap_url] as a front-end technology - all in one executable jar, built with [Maven][maven_url]. Spring application serves both REST api web service and Angular single-page html application.
 
+* Requirements:
+  + **JDK 1.7**
+  + **Maven 3**
 
 * To run application from source: `mvn spring-boot:run`
 
@@ -59,6 +62,8 @@ GET|/person/relationships/**{id}**.json||Get all possible relatives records from
 [localhost]: http://localhost:8888/
 [spring_url]: http://projects.spring.io/spring-boot/
 [angular_url]: https://angularjs.org/
+[boostrap_url]: http://getbootstrap.com/
+[maven_url]: http://maven.apache.org/
 [mvn_site]: http://buz-zard.github.io/uni/projects/problem-i/site/
 [mvn_javadocs]: http://buz-zard.github.io/uni/projects/problem-i/site/apidocs/index.html
 [mvn_testcoverage]: http://buz-zard.github.io/uni/projects/problem-i/site/cobertura/index.html
