@@ -12,6 +12,8 @@ A [Spring-Boot][spring_url] REST application with [AngularJS][angular_url] as a 
 
 * To run the executable: `java -jar solutioni-1.0.jar` , after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]
 
+* Also maven generated [site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
+
 **RESTful** Web Service:
 
 HTTP method|URL|Request Body|Purpose
@@ -51,3 +53,7 @@ GET|/person/relationships/**{id}**.json||Get all possible relatives records from
 [localhost]: http://localhost:8888/
 [spring_url]: http://projects.spring.io/spring-boot/
 [angular_url]: https://angularjs.org/
+[mvn_site]: http://buz-zard.github.io/uni/projects/problem-i/site/
+[mvn_javadocs]: http://buz-zard.github.io/uni/projects/problem-i/site/apidocs/index.html
+[mvn_testcoverage]: http://buz-zard.github.io/uni/projects/problem-i/site/cobertura/index.html
+
