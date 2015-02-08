@@ -1,10 +1,9 @@
-angular.module('rlate', ['ui.bootstrap']);
-angular.module('rlate').controller('RlateController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+angular.module('rlate', ['angular-datepicker']);
+angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
     $scope.people = [];
     $scope.formPerson = null;
     $scope.relationships = null;
     $scope.alert = null;
-    $scope.parent = {dateOfBirth:''};
 
     // Inner
 
@@ -15,6 +14,7 @@ angular.module('rlate').controller('RlateController', ['$scope', '$http', '$time
     };
 
     var setAlert = function(type, text) {
+        hideAlert();
         $scope.alert = {
             "type": type,
             "text": text
@@ -31,29 +31,22 @@ angular.module('rlate').controller('RlateController', ['$scope', '$http', '$time
         $scope.relationships = null;
     };
 
-    var isPersonValid = function(person) {
-        return true;
+    var onDatepickerChange = function() {
+        var date = $('#inputDate').val();
+        if (new Date(date) !== "Invalid Date" && !isNaN(new Date(date)) && new Date(date) <= new Date()) {
+            $scope.formPerson = $scope.formPerson || {};
+            $scope.formPerson.dateOfBirth = date;
+        }
+        $scope.pForm.date.$validate();
     };
-
-    var loadRelationships = function(id) {
-        hideAlert();
-        $http.get('/person/relationships/' + id).success(function(data) {
-            if (data.status === "OK") {
-                $scope.relationships = data.data;
-            } else {
-                setAlert("error", data.data);
-            }
-        });
-    };
-
-    var isDateValid = function(val) {
-        console.log(val);
-        return new Date(val) < new Date();
-    }
 
     // Scope
 
     $scope.init = function() {
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            weekStart: 1
+        });
         $scope.loadPeople();
     };
 
@@ -104,49 +97,56 @@ angular.module('rlate').controller('RlateController', ['$scope', '$http', '$time
         });
     };
 
-    $scope.savePerson = function(errors) {
+    $scope.savePerson = function() {
         hideAlert();
-        console.log($scope.parent);
-        var form = $scope.formPerson || {};
-        if ($.isEmptyObject(errors) && isDateValid(form.dateOfBirth)) {
-            var person = {
-                name: form.name,
-                surname: form.surname,
-                dateOfBirth: form.dateOfBirth
-            };
-            $http.post('/person/save', person).success(function(data) {
-                if (data.status === "OK") {
-                    unselectPerson();
-                    setAlert("success", data.data);
-                    $scope.loadPeople();
-                } else {
-                    setAlert("error", data.data);
-                }
-            }).error(function(data) {
-                setAlert("error", data);
-            });
-        } else {
-            setAlert("error", VALIDATION_MSG);
-        }
+        onDatepickerChange();
+        // timeout workaround for form validation to kick-in
+        $timeout(function() {
+            var form = $scope.formPerson || {};
+            if ($.isEmptyObject($scope.pForm.$error)) {
+                var person = {
+                    name: form.name,
+                    surname: form.surname,
+                    dateOfBirth: form.dateOfBirth
+                };
+                $http.post('/person/save', person).success(function(data) {
+                    if (data.status === "OK") {
+                        unselectPerson();
+                        setAlert("success", data.data);
+                        $scope.loadPeople();
+                    } else {
+                        setAlert("error", data.data);
+                    }
+                }).error(function(data) {
+                    setAlert("error", data);
+                });
+            } else {
+                setAlert("error", VALIDATION_MSG);
+            }
+        });
     };
 
     $scope.updatePerson = function(errors) {
         hideAlert();
-        if ($.isEmptyObject(errors)) {
-            $http.post('/person/update', $scope.formPerson).success(function(data) {
-                if (data.status === "OK") {
-                    unselectPerson();
-                    setAlert("success", data.data);
-                    $scope.loadPeople();
-                } else {
-                    setAlert("error", data.data);
-                }
-            }).error(function(data) {
-                setAlert("error", data);
-            });
-        } else {
-            setAlert("error", VALIDATION_MSG);
-        }
+        onDatepickerChange();
+        // timeout workaround for form validation to kick-in
+        $timeout(function() {
+            if ($.isEmptyObject($scope.pForm.$error)) {
+                $http.post('/person/update', $scope.formPerson).success(function(data) {
+                    if (data.status === "OK") {
+                        unselectPerson();
+                        setAlert("success", data.data);
+                        $scope.loadPeople();
+                    } else {
+                        setAlert("error", data.data);
+                    }
+                }).error(function(data) {
+                    setAlert("error", data);
+                });
+            } else {
+                setAlert("error", VALIDATION_MSG);
+            }
+        });
     };
 
     $scope.deletePerson = function() {
@@ -157,6 +157,18 @@ angular.module('rlate').controller('RlateController', ['$scope', '$http', '$time
                 unselectPerson();
                 setAlert("success", data.data);
                 $scope.loadPeople();
+            } else {
+                setAlert("error", data.data);
+            }
+        }).error(function(data) {
+            setAlert("error", data);
+        });
+    };
+
+    var loadRelationships = function(id) {
+        $http.get('/person/relationships/' + id).success(function(data) {
+            if (data.status === "OK") {
+                $scope.relationships = data.data;
             } else {
                 setAlert("error", data.data);
             }
