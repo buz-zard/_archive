@@ -5,7 +5,9 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
     $scope.relationships = null;
     $scope.alert = null;
 
+    // ==========================================================
     // Inner
+    // ==========================================================
 
     var VALIDATION_MSG = "Form validation error(s) found.";
 
@@ -40,7 +42,9 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
         $scope.pForm.date.$validate();
     };
 
+    // ==========================================================
     // Scope
+    // ==========================================================
 
     $scope.init = function() {
         $('.datepicker').datepicker({
@@ -86,7 +90,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
     // REST api actions
 
     $scope.loadPeople = function() {
-        $http.get('/person/all').success(function(data) {
+        $http.get('/person/all.json').success(function(data) {
             if (data.status === "OK") {
                 $scope.people = data.data;
             } else {
@@ -109,7 +113,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
                     surname: form.surname,
                     dateOfBirth: form.dateOfBirth
                 };
-                $http.post('/person/save', person).success(function(data) {
+                $http.post('/person/save.json', person).success(function(data) {
                     if (data.status === "OK") {
                         unselectPerson();
                         setAlert("success", data.data);
@@ -132,7 +136,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
         // timeout workaround for form validation to kick-in
         $timeout(function() {
             if ($.isEmptyObject($scope.pForm.$error)) {
-                $http.post('/person/update', $scope.formPerson).success(function(data) {
+                $http.post('/person/update.json', $scope.formPerson).success(function(data) {
                     if (data.status === "OK") {
                         unselectPerson();
                         setAlert("success", data.data);
@@ -151,7 +155,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
 
     $scope.deletePerson = function() {
         hideAlert();
-        $http.post('/person/delete/' + $scope.formPerson.id).success(function(data) {
+        $http.post('/person/delete/' + $scope.formPerson.id + '.json').success(function(data) {
             console.log(data);
             if (data.status === "OK") {
                 unselectPerson();
@@ -166,7 +170,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
     };
 
     var loadRelationships = function(id) {
-        $http.get('/person/relationships/' + id).success(function(data) {
+        $http.get('/person/relationships/' + id + '.json').success(function(data) {
             if (data.status === "OK") {
                 $scope.relationships = data.data;
             } else {

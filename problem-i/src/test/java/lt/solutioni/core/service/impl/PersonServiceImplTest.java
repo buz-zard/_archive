@@ -89,6 +89,7 @@ public class PersonServiceImplTest extends BaseTest {
         Person p8 = new Person("", "awdawd");
         Person p9 = new Person("", "Pavardenytė");
         Person p10 = new Person("", null);
+        Person p11 = new Person("", "Pavardenytė-Vandienė");
 
         assertFalse(service.isSurnameValid(p1));
         assertTrue(service.isSurnameValid(p2));
@@ -100,6 +101,7 @@ public class PersonServiceImplTest extends BaseTest {
         assertFalse(service.isSurnameValid(p8));
         assertTrue(service.isSurnameValid(p9));
         assertFalse(service.isSurnameValid(p10));
+        assertTrue(service.isSurnameValid(p11));
     }
 
     /**

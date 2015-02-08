@@ -15,11 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class PersonServiceImpl implements PersonService {
 
-    private String ltLetterRegex = "[a-ząčęėįšųūž]";
-    private String nameRegex = "^(" + ltLetterRegex + "+|" + ltLetterRegex + "+[ ]" + ltLetterRegex
-            + "+)$";
-    private String surnameRegex = "^(" + ltLetterRegex + "+[sė]|" + ltLetterRegex + "+[sė][-]"
-            + ltLetterRegex + "+[sė])$";
+    private String nameRegex = "^[a-ž]+(|[ ][a-ž]+)$";
+    private String surnameRegex = "^[a-ž]+[sė](|[-][a-ž]+[sė])$";
 
     @Autowired
     private DateService dateService;

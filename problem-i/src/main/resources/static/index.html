@@ -71,10 +71,15 @@
 						<div ng-if="displayRelationships()">
 							<div class="well">
 								<h4>Possible relatives:</h4>
-								<div ng-repeat="relationship in relationships" class="row-fluid">
-									<div class="span2"><b>{{relationship.relationship}}</b></div>
-									<div class="span9"><b># {{relationship.person.id}}</b> {{relationship.person.name}} {{relationship.person.surname}} ({{relationship.person.dateOfBirth}})</div>
-								</div>
+								<table >
+									<tbody>
+										<tr ng-repeat="relationship in relationships">
+											<td><b>{{relationship.relationship}}</b></td>
+											<td width="15"></td>
+											<td><b># {{relationship.person.id}}</b> {{relationship.person.name}} {{relationship.person.surname}} ({{relationship.person.dateOfBirth}})</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 						<hr/>

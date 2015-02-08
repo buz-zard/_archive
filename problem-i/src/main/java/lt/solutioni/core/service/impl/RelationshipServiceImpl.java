@@ -1,5 +1,8 @@
 package lt.solutioni.core.service.impl;
 
+import static lt.solutioni.core.domain.Gender.isFemale;
+import static lt.solutioni.core.domain.Gender.isMale;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +30,9 @@ public class RelationshipServiceImpl implements RelationshipService {
     @Autowired
     private PersonService personService;
 
-    private String menSurnameEndingsRegex = "(is|as|[i]{0,1}us)";
-    private String marriedWomenSurnameEndingsRegex = "(ienė)";
-    private String womenSurnameEndingsRegex = "(ytė|aitė|[i]{0,1}ūtė)";
+    private String menSurnameEndings = "(is|as|[i]{0,1}us)";
+    private String marriedWomenSurnameEndings = "(ienė)";
+    private String unmarriedWomenSurnameEndings = "(ytė|aitė|[i]{0,1}ūtė)";
 
     @Override
     public boolean areSurnamesRelated(String surname1, String surname2) {
@@ -44,8 +47,8 @@ public class RelationshipServiceImpl implements RelationshipService {
                 if (surnameRoot.endsWith("i")) {
                     surnameRoot = surnameRoot.substring(0, surnameRoot.length() - 1);
                 }
-                String regex = surnameRoot + "(" + menSurnameEndingsRegex + "|"
-                        + marriedWomenSurnameEndingsRegex + "|" + womenSurnameEndingsRegex + ")";
+                String regex = surnameRoot + "(" + menSurnameEndings + "|"
+                        + marriedWomenSurnameEndings + "|" + unmarriedWomenSurnameEndings + ")";
                 return s1.matches(regex) && s2.matches(regex);
             }
         }
@@ -53,70 +56,72 @@ public class RelationshipServiceImpl implements RelationshipService {
     }
 
     @Override
-    public Relationship getRelationship(Person basePerson, Person person) {
-        if (personService.isPersonValid(basePerson) && personService.isPersonValid(person)) {
-            Gender baseGender = basePerson.getGender();
-            String baseFirstSurname = personService.getFirstSurname(basePerson);
-            String baseLastSurname = personService.getLastSurname(basePerson);
-            Gender otherGender = person.getGender();
-            String otherFirstSurname = personService.getFirstSurname(person);
-            String otherLastSurname = personService.getLastSurname(person);
-            int ageDiff = dateService.getAgeDifference(basePerson, person);
-            if (ageDiff >= 0 && ageDiff <= 15) {
-                if (areSurnamesRelated(baseFirstSurname, otherFirstSurname)) {
-                    if (otherGender == Gender.MALE
-                            && StringUtils
-                                    .endsWithRegex(baseFirstSurname, womenSurnameEndingsRegex)) {
-                        return Relationship.BROTHER;
-                    } else if (StringUtils.endsWithRegex(otherFirstSurname,
-                            womenSurnameEndingsRegex)) {
-                        return Relationship.SISTER;
+    public Relationship getRelationship(Person basePerson, Person otherPerson) {
+        if (personService.isPersonValid(basePerson) && personService.isPersonValid(otherPerson)) {
+            String base1stSurname = personService.getFirstSurname(basePerson);
+            String base2ndSurname = personService.getLastSurname(basePerson);
+            String other1stSurname = personService.getFirstSurname(otherPerson);
+            String other2ndSurname = personService.getLastSurname(otherPerson);
+            int ageDifference = dateService.getAgeDifference(basePerson, otherPerson);
+            if (ageDifference >= 0 && ageDifference <= 15) {
+                if (isMale(basePerson)) {
+                    if (isMale(otherPerson)) {
+                        if (areSurnamesRelated(base2ndSurname, other2ndSurname)) {
+                            return Relationship.BROTHER;
+                        }
+                    } else {
+                        if (areSurnamesRelated(base2ndSurname, other1stSurname)
+                                && isWomansFirstSurnameUnamrried(otherPerson)) {
+                            return Relationship.SISTER;
+                        }
+                    }
+                } else {
+                    if (isMale(otherPerson)) {
+                        if (areSurnamesRelated(base1stSurname, other2ndSurname)
+                                && isWomansFirstSurnameUnamrried(basePerson)) {
+                            return Relationship.BROTHER;
+                        }
+                    } else {
+                        if (areSurnamesRelated(base1stSurname, other1stSurname)
+                                && isWomansFirstSurnameUnamrried(basePerson)
+                                && isWomansFirstSurnameUnamrried(otherPerson)) {
+                            return Relationship.SISTER;
+                        }
                     }
                 }
-                if (areSurnamesRelated(baseLastSurname, otherLastSurname)) {
-                    if (baseGender == Gender.MALE
-                            && otherGender == Gender.FEMALE
-                            && StringUtils.endsWithRegex(otherLastSurname,
-                                    marriedWomenSurnameEndingsRegex)) {
+                if (areSurnamesRelated(base2ndSurname, other2ndSurname)) {
+                    if (isMale(basePerson) && isFemale(otherPerson) && isWomanMarried(otherPerson)) {
                         return Relationship.WIFE;
-                    } else if (otherGender == Gender.MALE
-                            && baseGender == Gender.FEMALE
-                            && StringUtils.endsWithRegex(baseLastSurname,
-                                    marriedWomenSurnameEndingsRegex)) {
+                    } else if (isMale(otherPerson) && isFemale(basePerson)
+                            && isWomanMarried(basePerson)) {
                         return Relationship.HUSBAND;
                     }
                 }
-            } else if (ageDiff >= 16) {
-                if (dateService.getAge(person.getDateOfBirth()) < dateService.getAge(basePerson
-                        .getDateOfBirth())) {
-                    if (otherGender == Gender.FEMALE
-                            && StringUtils.endsWithRegex(otherFirstSurname,
-                                    womenSurnameEndingsRegex)
-                            && areSurnamesRelated(otherFirstSurname, baseLastSurname)) {
-                        return ageDiff >= 41 ? Relationship.GRANDAUGHTER : Relationship.DAUGHTER;
-                    } else if (otherGender == Gender.MALE
-                            && areSurnamesRelated(otherLastSurname, baseLastSurname)) {
-                        return ageDiff >= 41 ? Relationship.GRANDSON : Relationship.SON;
+            } else if (ageDifference >= 16) {
+                if (dateService.getAge(otherPerson.getDateOfBirth()) < dateService
+                        .getAge(basePerson.getDateOfBirth())) {
+                    if (isFemale(otherPerson) && areSurnamesRelated(other1stSurname, base2ndSurname)
+                            && isWomansFirstSurnameUnamrried(otherPerson)) {
+                        return ageDifference >= 41 ? Relationship.GRANDAUGHTER : Relationship.DAUGHTER;
+                    } else if (isMale(otherPerson)
+                            && areSurnamesRelated(other2ndSurname, base2ndSurname)) {
+                        return ageDifference >= 41 ? Relationship.GRANDSON : Relationship.SON;
                     }
                 } else {
-                    if (otherGender == Gender.FEMALE
-                            && StringUtils.endsWithRegex(otherLastSurname,
-                                    marriedWomenSurnameEndingsRegex)) {
-                        if (baseGender == Gender.MALE
-                                && areSurnamesRelated(baseLastSurname, otherLastSurname)) {
-                            return ageDiff >= 41 ? Relationship.GRANDMOTHER : Relationship.MOTHER;
+                    if (isFemale(otherPerson) && isWomanMarried(otherPerson)) {
+                        if (isMale(basePerson) && areSurnamesRelated(base2ndSurname, other2ndSurname)) {
+                            return ageDifference >= 41 ? Relationship.GRANDMOTHER : Relationship.MOTHER;
 
-                        } else if (baseGender == Gender.FEMALE
-                                && areSurnamesRelated(baseFirstSurname, otherLastSurname)) {
-                            return ageDiff >= 41 ? Relationship.GRANDMOTHER : Relationship.MOTHER;
+                        } else if (isFemale(basePerson)
+                                && areSurnamesRelated(base1stSurname, other2ndSurname)) {
+                            return ageDifference >= 41 ? Relationship.GRANDMOTHER : Relationship.MOTHER;
                         }
-                    } else if (otherGender == Gender.MALE) {
-                        if (baseGender == Gender.MALE
-                                && areSurnamesRelated(baseLastSurname, otherLastSurname)) {
-                            return ageDiff >= 41 ? Relationship.GRANDFATHER : Relationship.FATHER;
-                        } else if (baseGender == Gender.FEMALE
-                                && areSurnamesRelated(baseFirstSurname, otherLastSurname)) {
-                            return ageDiff >= 41 ? Relationship.GRANDFATHER : Relationship.FATHER;
+                    } else if (isMale(otherPerson)) {
+                        if (isMale(basePerson) && areSurnamesRelated(base2ndSurname, other2ndSurname)) {
+                            return ageDifference >= 41 ? Relationship.GRANDFATHER : Relationship.FATHER;
+                        } else if (isFemale(basePerson)
+                                && areSurnamesRelated(base1stSurname, other2ndSurname)) {
+                            return ageDifference >= 41 ? Relationship.GRANDFATHER : Relationship.FATHER;
                         }
                     }
                 }
@@ -135,6 +140,24 @@ public class RelationshipServiceImpl implements RelationshipService {
             }
         }
         return items;
+    }
+
+    private boolean isWomanMarried(Person person) {
+        if (person.getGender() == Gender.FEMALE) {
+            return StringUtils.endsWithRegex(personService.getLastSurname(person),
+                    marriedWomenSurnameEndings);
+        }
+        throw new IllegalArgumentException(
+                "Method isWomanMarried person parameter doesn't have WOMAN gender.");
+    }
+
+    private boolean isWomansFirstSurnameUnamrried(Person person) {
+        if (person.getGender() == Gender.FEMALE) {
+            return StringUtils.endsWithRegex(personService.getFirstSurname(person),
+                    unmarriedWomenSurnameEndings);
+        }
+        throw new IllegalArgumentException(
+                "Method isWomansFNUnamrried person parameter doesn't have WOMAN gender.");
     }
 
 }

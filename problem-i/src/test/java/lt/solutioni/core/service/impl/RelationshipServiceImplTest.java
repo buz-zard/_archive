@@ -120,7 +120,7 @@ public class RelationshipServiceImplTest extends BaseTest {
         assertFalse(service.getRelationship(p1, p2) == Relationship.BROTHER);
         assertFalse(service.getRelationship(p1, p2) == Relationship.SISTER);
 
-        setSurnames(p1, "Vandenis", "Kebabinskas");
+        setSurnames(p1, "Kebabinskas", "Vandenis");
         setSurnames(p2, "Vandenytė", "Sausumienė");
         setAgeBetween(p1, p2, 0);
         assertEquals(Relationship.SISTER, service.getRelationship(p1, p2));
@@ -161,10 +161,6 @@ public class RelationshipServiceImplTest extends BaseTest {
         verifyPersonAgeDifferenceExamination(p2, p3);
 
         verifyAgeExamination(p3);
-    }
-
-    private void verifyAgeExamination(Person p1) {
-        verify(dateServiceMock, atLeastOnce()).getAge(p1.getDateOfBirth());
     }
 
     /**
@@ -500,6 +496,10 @@ public class RelationshipServiceImplTest extends BaseTest {
      */
 
     // assertion helpers
+
+    private void verifyAgeExamination(Person person) {
+        verify(dateServiceMock, atLeastOnce()).getAge(person.getDateOfBirth());
+    }
 
     private void verifyPersonAgeDifferenceExamination(Person p1, Person p2) {
         verify(dateServiceMock, atLeastOnce()).getAgeDifference(p1, p2);

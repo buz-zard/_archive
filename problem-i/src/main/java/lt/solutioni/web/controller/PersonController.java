@@ -37,12 +37,12 @@ public class PersonController extends AbstractController {
     @Autowired
     private RelationshipService relationshipService;
 
-    private static final String URL_ALL = "/all";
-    private static final String URL_GET = "/get/{personId}";
-    private static final String URL_SAVE = "/save";
-    private static final String URL_DELETE = "/delete/{personId}";
-    private static final String URL_UPDATE = "/update";
-    private static final String URL_RELATIONSHIPS = "/relationships/{personId}";
+    private static final String URL_ALL = "/all.json";
+    private static final String URL_GET = "/get/{personId}.json";
+    private static final String URL_SAVE = "/save.json";
+    private static final String URL_DELETE = "/delete/{personId}.json";
+    private static final String URL_UPDATE = "/update.json";
+    private static final String URL_RELATIONSHIPS = "/relationships/{personId}.json";
 
     public static final String MSG_PERSON_FIND_FAILED = "No person record with such id found.";
     public static final String MSG_PERSON_SAVED = "Person record successfully created.";
