@@ -49,7 +49,7 @@ A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][a
 
 * To run the Java executable: `java -jar solutioni-1.0.jar` , after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]
 
-* Also maven generated [site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
+* Also maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
 
 **RESTful** Web Service:
 
