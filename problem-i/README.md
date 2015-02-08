@@ -49,7 +49,12 @@ A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][a
 
 * To run the Java executable: `java -jar solutioni-1.0.jar` , after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]
 
-* Also maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
+* Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
+
+* To load application with some test data:
+  + From source: `mvn spring-boot:run -Drun.arguments="test"`
+  + Or from jar: `java -jar solutioni-1.0.jar test`
+
 
 **RESTful** Web Service:
 
