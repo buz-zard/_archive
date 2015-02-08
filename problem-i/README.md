@@ -58,7 +58,7 @@ A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][a
 
 **RESTful** Web Service:
 
-HTTP method|URL|Request Body|Purpose
+HTTP method|URI|Request Body|Purpose
 ---|---|---|---
 GET|/person/all.json||Retrieve a list all people records from the database.
 GET|/person/get/**{id}**.json||Retrieve a person record from the database by id.
