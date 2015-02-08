@@ -1,10 +1,32 @@
 ----
+## Implementation
 
-`mvn spring-boot:run`
+A [Spring-Boot][spring_url] REST application with [AngularJS][angular_url] as a front-end technology - all in one executable jar file.
 
-`mvn clean install spring-boot:repackage`
+
+* To run application from source: `mvn spring-boot:run`
+
+* To create an executable jar file: `mvn clean package spring-boot:repackage`
+
+* To run tests: `mvn test`
+
+* To run the executable: `java -jar solutioni-1.0.jar` , after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]
+
+**RESTful** Web Service:
+
+HTTP method|URL|Request Body|Purpose
+---|---|---|---
+GET|/person/all.json||Retrieve a list all people records from the database.
+GET|/person/get/**{id}**.json||Retrieve a person record from the database by id.
+POST|/person/save.json|Person object as JSON|Save a new person record to the databse.
+POST|/person/update.json|Person object as JSON|Update an existing person record in the databse.
+GET|/person/delete/**{id}**.json||Delete a person record from the database by id.
+GET|/person/relationships/**{id}**.json||Get all possible relatives records from the databse for a specific person.
+
 
 ----
+
+## The Task
 
 **Subject area:**
 
@@ -26,3 +48,6 @@
 * Automatic JUnit tests.
 
 ----
+[localhost]: http://localhost:8888/
+[spring_url]: http://projects.spring.io/spring-boot/
+[angular_url]: https://angularjs.org/
