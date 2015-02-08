@@ -1,6 +1,6 @@
 ----
 
-## The Task
+## Task
 
 **Subject area:**
 
