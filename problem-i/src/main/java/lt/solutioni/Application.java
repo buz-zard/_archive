@@ -2,11 +2,8 @@ package lt.solutioni;
 
 import lt.solutioni.core.CoreConfiguration;
 import lt.solutioni.core.domain.Person;
-import lt.solutioni.core.service.DateService;
-import lt.solutioni.core.service.PersonService;
 import lt.solutioni.persistence.PersistenceConfiguration;
-import lt.solutioni.persistence.domain.PersonDAO;
-import lt.solutioni.persistence.repository.PersonRepository;
+import lt.solutioni.persistence.service.PersonRepositoryService;
 import lt.solutioni.web.WebConfiguration;
 
 import org.springframework.boot.SpringApplication;
@@ -32,27 +29,21 @@ public class Application {
      * Application main method.
      */
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = SpringApplication.run(Application.class, args);
-
-        // TODO: remove mock data.
-        PersonRepository repository = ctx.getBean(PersonRepository.class);
-        PersonService personService = ctx.getBean(PersonService.class);
-        DateService dateService = ctx.getBean(DateService.class);
-        savePerson(repository, personService, dateService, "Karolis", "Šarapnickis", "1990-07-13");
-        savePerson(repository, personService, dateService, "Jonas", "Vandenis", "1970-07-13");
-        savePerson(repository, personService, dateService, "Toma", "Lašytė-Vandenienė",
-                "1970-07-13");
-        savePerson(repository, personService, dateService, "Kamilė", "Vandenytė-Butkienė",
-                "1993-07-13");
-        savePerson(repository, personService, dateService, "Tomas", "Lašas-Vandenis", "1990-07-13");
+        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        handleArgs(context, args);
     }
 
-    // TODO: remove
-    private static void savePerson(PersonRepository repository, PersonService personService,
-            DateService dateService, String name, String surname, String dateOfBirth) {
-        Person p = new Person(name, surname, dateOfBirth);
-        p.setGender(personService.getGender(p));
-        repository.save(PersonDAO.fromPerson(p));
+    private static void handleArgs(ConfigurableApplicationContext context, String[] args) {
+        for (String arg : args) {
+            if (arg.equals("test")) {
+                PersonRepositoryService service = context.getBean(PersonRepositoryService.class);
+                service.save(new Person("Karolis", "Šarapnickis", "1990-07-13"));
+                service.save(new Person("Jonas", "Vandenis", "1970-07-13"));
+                service.save(new Person("Toma", "Lašytė-Vandenienė", "1970-07-13"));
+                service.save(new Person("Kamilė", "Vandenytė-Butkienė", "1993-07-13"));
+                service.save(new Person("Tomas", "Lašas-Vandenis", "1990-07-13"));
+            }
+        }
     }
 
 }

@@ -24,7 +24,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
         if (type !== "error") {
             $timeout(function() {
                 $scope.alert = null;
-            }, 5000);
+            }, 10000);
         }
     };
 
