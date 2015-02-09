@@ -16,26 +16,26 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 
 /**
- * Integration test for {@link PersonController}.
+ * Simple integration test.
  * 
  * @author buzzard
  *
  */
-public class PersonControllerITest extends ITest {
+public class PersonControllerIT extends ITest {
 
     @Autowired
     private PersonRepositoryService service;
 
+    @Override
     @Before
     public void setUp() {
         super.setUp();
     }
 
-    // @Test
-    // public void testIndex() throws Exception {
-    // mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpect(
-    // MockMvcResultMatchers.status().isOk());
-    // }
+    @Test
+    public void testIndex() {
+        RestAssured.when().get("/").then().statusCode(HttpStatus.SC_OK);
+    }
 
     @Test
     public void testFindAll() {
