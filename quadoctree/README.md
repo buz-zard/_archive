@@ -9,6 +9,7 @@ Also Pygame's dependencies for Ubuntu:
 ```
 sudo apt-get build-dep python-pygame
 sudo apt-get install python-dev
+sudo apt-get install mercurial
 ```
 
 * **Setup**:
