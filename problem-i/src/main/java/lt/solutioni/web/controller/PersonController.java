@@ -13,6 +13,7 @@ import lt.solutioni.web.WebConfiguration;
 import lt.solutioni.web.domain.RelatedPerson;
 import lt.solutioni.web.domain.RestResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(WebConfiguration.PERSON_URI)
 public class PersonController extends AbstractController {
+
+    static Logger log = Logger.getLogger(PersonController.class.getName());
 
     @Autowired
     private PersonRepositoryService repositoryService;
@@ -79,6 +82,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value = URI_SAVE, method = RequestMethod.POST)
     public @ResponseBody RestResponse savePerson(@RequestBody Person person) {
         if (repositoryService.save(person)) {
+            log.info("New person record saved: " + person.toString());
             return RestResponse.ok(MSG_PERSON_SAVED);
         } else {
             return RestResponse.error(MSG_PERSON_SAVE_FAILED);
@@ -91,6 +95,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value = URI_DELETE, method = RequestMethod.POST)
     public @ResponseBody RestResponse deletePerson(@PathVariable(value = "personId") Long id) {
         if (repositoryService.delete(id)) {
+            log.info("Person record (id = " + id + ") deleted.");
             return RestResponse.ok(MSG_PERSON_DELETED);
         } else {
             return RestResponse.error(MSG_PERSON_DELETE_FAILED);
@@ -103,6 +108,7 @@ public class PersonController extends AbstractController {
     @RequestMapping(value = URI_UPDATE, method = RequestMethod.POST)
     public @ResponseBody RestResponse updatePerson(@RequestBody Person person) {
         if (repositoryService.update(person)) {
+            log.info("Person record updated: " + person.toString());
             return RestResponse.ok(MSG_PERSON_UPDATED);
         } else {
             return RestResponse.error(MSG_PERSON_UPDATE_FAILED);
