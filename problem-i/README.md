@@ -60,7 +60,7 @@ Unit test coverage (in general test coverage percentage is higher, but Cobertura
 
 Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be creatd with: `mvn site`
 
-**RESTful** Web Service:
+* **RESTful** Web Service:
 
 HTTP method|URI|Request Body|Purpose
 :---:|---|---|---
@@ -71,7 +71,7 @@ POST|/person/update.json|Person object as JSON|Update an existing person record 
 GET|/person/delete/**{id}**.json||Delete a person record from the database by id.
 GET|/person/relationships/**{id}**.json||Get all possible relatives records from the databse for a specific person.
 
-**Sample application screen:**
+* **Sample** application screen:
 
 <p align="center">
   <img src="/problem-i/static/sample.png"/>
