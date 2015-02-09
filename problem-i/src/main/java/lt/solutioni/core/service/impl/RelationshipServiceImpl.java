@@ -36,7 +36,7 @@ public class RelationshipServiceImpl implements RelationshipService {
 
     @Override
     public boolean areSurnamesRelated(String surname1, String surname2) {
-        if (surname1 != null && surname1.length() > 0 && surname2 != null && surname2.length() > 0) {
+        if (StringUtils.lenght(surname1) > 0 && StringUtils.lenght(surname2) > 0) {
             String s1 = surname1.toLowerCase();
             String s2 = surname2.toLowerCase();
             if (s1.equals(s2)) {
@@ -100,28 +100,36 @@ public class RelationshipServiceImpl implements RelationshipService {
             } else if (ageDifference >= 16) {
                 if (dateService.getAge(otherPerson.getDateOfBirth()) < dateService
                         .getAge(basePerson.getDateOfBirth())) {
-                    if (isFemale(otherPerson) && areSurnamesRelated(other1stSurname, base2ndSurname)
+                    if (isFemale(otherPerson)
+                            && areSurnamesRelated(other1stSurname, base2ndSurname)
                             && isWomansFirstSurnameUnamrried(otherPerson)) {
-                        return ageDifference >= 41 ? Relationship.GRANDAUGHTER : Relationship.DAUGHTER;
+                        return ageDifference >= 41 ? Relationship.GRANDAUGHTER
+                                : Relationship.DAUGHTER;
                     } else if (isMale(otherPerson)
                             && areSurnamesRelated(other2ndSurname, base2ndSurname)) {
                         return ageDifference >= 41 ? Relationship.GRANDSON : Relationship.SON;
                     }
                 } else {
                     if (isFemale(otherPerson) && isWomanMarried(otherPerson)) {
-                        if (isMale(basePerson) && areSurnamesRelated(base2ndSurname, other2ndSurname)) {
-                            return ageDifference >= 41 ? Relationship.GRANDMOTHER : Relationship.MOTHER;
+                        if (isMale(basePerson)
+                                && areSurnamesRelated(base2ndSurname, other2ndSurname)) {
+                            return ageDifference >= 41 ? Relationship.GRANDMOTHER
+                                    : Relationship.MOTHER;
 
                         } else if (isFemale(basePerson)
                                 && areSurnamesRelated(base1stSurname, other2ndSurname)) {
-                            return ageDifference >= 41 ? Relationship.GRANDMOTHER : Relationship.MOTHER;
+                            return ageDifference >= 41 ? Relationship.GRANDMOTHER
+                                    : Relationship.MOTHER;
                         }
                     } else if (isMale(otherPerson)) {
-                        if (isMale(basePerson) && areSurnamesRelated(base2ndSurname, other2ndSurname)) {
-                            return ageDifference >= 41 ? Relationship.GRANDFATHER : Relationship.FATHER;
+                        if (isMale(basePerson)
+                                && areSurnamesRelated(base2ndSurname, other2ndSurname)) {
+                            return ageDifference >= 41 ? Relationship.GRANDFATHER
+                                    : Relationship.FATHER;
                         } else if (isFemale(basePerson)
                                 && areSurnamesRelated(base1stSurname, other2ndSurname)) {
-                            return ageDifference >= 41 ? Relationship.GRANDFATHER : Relationship.FATHER;
+                            return ageDifference >= 41 ? Relationship.GRANDFATHER
+                                    : Relationship.FATHER;
                         }
                     }
                 }

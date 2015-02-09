@@ -4,6 +4,7 @@ import lt.solutioni.core.domain.Gender;
 import lt.solutioni.core.domain.Person;
 import lt.solutioni.core.service.DateService;
 import lt.solutioni.core.service.PersonService;
+import lt.solutioni.core.utils.StringUtils;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,35 +30,23 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean isNameValid(Person person) {
-        if (isNameOrSurnameLengthValid(person.getName())
-                && person.getName().toLowerCase().matches(nameRegex)) {
-            return true;
-        }
-        return false;
+        return isNameOrSurnameLengthValid(person.getName())
+                && person.getName().toLowerCase().matches(nameRegex);
     }
 
     @Override
     public boolean isSurnameValid(Person person) {
-        if (isNameOrSurnameLengthValid(person.getSurname())
-                && person.getSurname().toLowerCase().matches(surnameRegex)) {
-            return true;
-        }
-        return false;
+        return isNameOrSurnameLengthValid(person.getSurname())
+                && person.getSurname().toLowerCase().matches(surnameRegex);
+    }
+
+    private boolean isNameOrSurnameLengthValid(String value) {
+        return StringUtils.lenght(value) >= 2 && StringUtils.lenght(value) <= 50;
     }
 
     @Override
     public boolean isAgeValid(Person person) {
-        if (person.getDateOfBirth() != null && dateService.getAge(person.getDateOfBirth()) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isNameOrSurnameLengthValid(String value) {
-        if (value != null && value.length() >= 2 && value.length() <= 50) {
-            return true;
-        }
-        return false;
+        return person.getDateOfBirth() != null && dateService.getAge(person.getDateOfBirth()) >= 0;
     }
 
     @Override
@@ -106,10 +95,7 @@ public class PersonServiceImpl implements PersonService {
     public Person createPerson(String name, String surname, String dateOfBirth) {
         Person person = new Person(name, surname, dateOfBirth);
         person.setGender(getGender(person));
-        if (isPersonValid(person)) {
-            return person;
-        }
-        return null;
+        return isPersonValid(person) ? person : null;
     }
 
 }

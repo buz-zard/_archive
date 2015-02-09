@@ -12,7 +12,7 @@ public class StringUtils {
      * Find longest common prefix (case insensitive) between 2 strings.
      */
     public static String commonPrefix(String val1, String val2) {
-        if (val1 != null && val2 != null) {
+        if (lenght(val1) > 0 && lenght(val2) > 0) {
             String s1 = val1.toLowerCase();
             String s2 = val2.toLowerCase();
             while (s1.length() > 0) {
@@ -29,10 +29,20 @@ public class StringUtils {
      * Returns true if given string ends with given regex value.
      */
     public static boolean endsWithRegex(String s, String regex) {
-        if (s != null) {
+        if (lenght(s) > 0) {
             return s.matches(".*" + regex + "$");
         }
         return false;
+    }
+
+    /**
+     * Return length of the string. In case of null value return -1.
+     */
+    public static int lenght(String s) {
+        if (s != null) {
+            return s.length();
+        }
+        return -1;
     }
 
 }

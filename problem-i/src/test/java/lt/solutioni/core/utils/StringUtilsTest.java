@@ -47,4 +47,15 @@ public class StringUtilsTest extends BaseTest {
         assertTrue(StringUtils.endsWithRegex(s4, regex));
     }
 
+    /**
+     * Test for {@link StringUtils#lenght(String)}.
+     */
+    @Test
+    public void testLenght() {
+        assertEquals(-1, StringUtils.lenght(null));
+        assertEquals(0, StringUtils.lenght(""));
+        assertEquals(1, StringUtils.lenght(" "));
+        assertEquals(3, StringUtils.lenght("abc"));
+    }
+
 }

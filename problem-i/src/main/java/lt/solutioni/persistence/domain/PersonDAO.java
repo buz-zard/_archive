@@ -37,12 +37,12 @@ public class PersonDAO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String surname;
 
     @JsonDeserialize(using = DateDeserializer.class)
