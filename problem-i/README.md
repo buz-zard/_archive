@@ -37,29 +37,27 @@ Some simplification rules for input are given to determine person's gender and r
 
 A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][angular_url]+[Bootstrap][boostrap_url] as a front-end technology - all in one executable jar, built with [Maven][maven_url]. Spring application serves both REST api web service and Angular single-page html application.
 
-* Requirements:
-  + **JDK 1.7**
-  + **Maven 3**
+* **Requirements**:
+  + JDK 1.7
+  + Maven 3
 
-* To run application from source: `mvn spring-boot:run`
+* **Compiling** the app:
+  +  `mvn clean package spring-boot:repackage`
 
-* To create an executable jar file: `mvn clean package spring-boot:repackage`
+* **Running** the app (after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]):
+  + From source: `mvn spring-boot:run`
+  + From source with _sample_ data: `mvn spring-boot:run -Drun.arguments="test"`
+  + From compiled executable jar: `java -jar solutioni-1.0.jar` 
+  + From compiled executable jar with _sample_ data: `java -jar solutioni-1.0.jar test` 
 
-* To run JUnit tests: `mvn test`
+* **Testing** the app:
+  + Unit tests (34): `mvn test`
+  + Integration tests (2): `mvn failsafe:integration-test`
+  + Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be creatd with: `mvn site`
+
+Unit test coverage (in general test coverage percentage is higher, but Cobertura also checks Lombok's generated code):
 
 <img src="/problem-i/static/coverage.png"/>
-
-In general coverage percent is higher, but Cobertura also checks Lombok's generated code.
-
-* To run integration tests: `mvn failsafe:integration-test`
-
-* To run the Java executable: `java -jar solutioni-1.0.jar` , after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]
-
-* Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
-
-* To load application with some test data:
-  + From source: `mvn spring-boot:run -Drun.arguments="test"`
-  + Or from jar: `java -jar solutioni-1.0.jar test`
 
 
 **RESTful** Web Service:
@@ -73,7 +71,7 @@ POST|/person/update.json|Person object as JSON|Update an existing person record 
 GET|/person/delete/**{id}**.json||Delete a person record from the database by id.
 GET|/person/relationships/**{id}**.json||Get all possible relatives records from the databse for a specific person.
 
-**Sample screen:**
+**Sample application screen:**
 
 <p align="center">
   <img src="/problem-i/static/sample.png"/>
