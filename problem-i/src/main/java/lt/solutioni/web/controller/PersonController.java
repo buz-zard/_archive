@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping(WebConfiguration.PERSON_URL)
+@RequestMapping(WebConfiguration.PERSON_URI)
 public class PersonController extends AbstractController {
 
     @Autowired
@@ -37,12 +37,12 @@ public class PersonController extends AbstractController {
     @Autowired
     private RelationshipService relationshipService;
 
-    private static final String URL_ALL = "/all.json";
-    private static final String URL_GET = "/get/{personId}.json";
-    private static final String URL_SAVE = "/save.json";
-    private static final String URL_DELETE = "/delete/{personId}.json";
-    private static final String URL_UPDATE = "/update.json";
-    private static final String URL_RELATIONSHIPS = "/relationships/{personId}.json";
+    private static final String URI_ALL = "/all.json";
+    private static final String URI_GET = "/get/{personId}.json";
+    private static final String URI_SAVE = "/save.json";
+    private static final String URI_DELETE = "/delete/{personId}.json";
+    private static final String URI_UPDATE = "/update.json";
+    private static final String URI_RELATIONSHIPS = "/relationships/{personId}.json";
 
     public static final String MSG_PERSON_FIND_FAILED = "No person record with such id found.";
     public static final String MSG_PERSON_SAVED = "Person record successfully created.";
@@ -55,7 +55,7 @@ public class PersonController extends AbstractController {
     /**
      * Get a list of all {@link Person}.
      */
-    @RequestMapping(value = URL_ALL, method = RequestMethod.GET)
+    @RequestMapping(value = URI_ALL, method = RequestMethod.GET)
     public @ResponseBody RestResponse allPeople() {
         return RestResponse.ok(repositoryService.findAll());
     }
@@ -63,7 +63,7 @@ public class PersonController extends AbstractController {
     /**
      * Retrieve {@link Person} object by it's id.
      */
-    @RequestMapping(value = URL_GET, method = RequestMethod.GET)
+    @RequestMapping(value = URI_GET, method = RequestMethod.GET)
     public @ResponseBody RestResponse getPerson(@PathVariable(value = "personId") Long id) {
         Person person = repositoryService.findOne(id);
         if (person != null) {
@@ -76,7 +76,7 @@ public class PersonController extends AbstractController {
     /**
      * Save a new {@link Person} instance to repository.
      */
-    @RequestMapping(value = URL_SAVE, method = RequestMethod.POST)
+    @RequestMapping(value = URI_SAVE, method = RequestMethod.POST)
     public @ResponseBody RestResponse savePerson(@RequestBody Person person) {
         if (repositoryService.save(person)) {
             return RestResponse.ok(MSG_PERSON_SAVED);
@@ -88,7 +88,7 @@ public class PersonController extends AbstractController {
     /**
      * Delete {@link PersonDAO} by it's id.
      */
-    @RequestMapping(value = URL_DELETE, method = RequestMethod.POST)
+    @RequestMapping(value = URI_DELETE, method = RequestMethod.POST)
     public @ResponseBody RestResponse deletePerson(@PathVariable(value = "personId") Long id) {
         if (repositoryService.delete(id)) {
             return RestResponse.ok(MSG_PERSON_DELETED);
@@ -100,7 +100,7 @@ public class PersonController extends AbstractController {
     /**
      * Update {@link PersonDAO} record in repository.
      */
-    @RequestMapping(value = URL_UPDATE, method = RequestMethod.POST)
+    @RequestMapping(value = URI_UPDATE, method = RequestMethod.POST)
     public @ResponseBody RestResponse updatePerson(@RequestBody Person person) {
         if (repositoryService.update(person)) {
             return RestResponse.ok(MSG_PERSON_UPDATED);
@@ -112,7 +112,7 @@ public class PersonController extends AbstractController {
     /**
      * Get all related people to a {@link Person} by id.
      */
-    @RequestMapping(value = URL_RELATIONSHIPS, method = RequestMethod.GET)
+    @RequestMapping(value = URI_RELATIONSHIPS, method = RequestMethod.GET)
     public @ResponseBody RestResponse relationships(@PathVariable(value = "personId") Long personId) {
         Person person = repositoryService.findOne(personId);
         if (person != null) {

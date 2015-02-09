@@ -13,6 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("lt.solutioni.web")
 public class WebConfiguration {
 
-    public static final String PERSON_URL = "/person";
+    public static final String PERSON_URI = "/person";
 
 }
