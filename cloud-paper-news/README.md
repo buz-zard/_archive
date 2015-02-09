@@ -1,8 +1,11 @@
 ---
 
-![alt text](http://upload.wikimedia.org/wikipedia/en/a/a9/Heroku_logo.png)
+<p align="center">
+  <img src="http://upload.wikimedia.org/wikipedia/en/a/a9/Heroku_logo.png" height="30%" width="30%"/>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <img src="http://upload.wikimedia.org/wikipedia/commons/1/1d/AmazonWebservices_Logo.svg"  height="22%" width="22%">
+</p>
 
-![alt text](http://upload.wikimedia.org/wikipedia/commons/1/1d/AmazonWebservices_Logo.svg)
 
 # *Programming in Cloud Computing* Project
 
