@@ -47,6 +47,8 @@ A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][a
 
 * To run JUnit tests: `mvn test`
 
+* To run integration tests: `mvn failsafe:integration-test`
+
 * To run the Java executable: `java -jar solutioni-1.0.jar` , after the application has started, it can be accesed at [`http://localhost:8888/`][localhost]
 
 * Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be generated with: `mvn site`
