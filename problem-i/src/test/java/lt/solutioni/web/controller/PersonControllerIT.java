@@ -32,11 +32,18 @@ public class PersonControllerIT extends ITest {
         super.setUp();
     }
 
+    /**
+     * Simple test if index.html landing page is loading.
+     */
     @Test
     public void testIndex() {
-        RestAssured.when().get("/").then().statusCode(HttpStatus.SC_OK);
+        RestAssured.when().get("/").then().statusCode(HttpStatus.SC_OK)
+                .contentType(ContentType.HTML);
     }
 
+    /**
+     * Test if people list is loading properly with REST api.
+     */
     @Test
     public void testFindAll() {
         assertTrue(service.findAll().size() == 0);
