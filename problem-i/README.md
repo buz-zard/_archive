@@ -53,17 +53,17 @@ A Java [Spring-Boot][spring_url] REST web service application with [AngularJS][a
 * **Testing** the app:
   + Unit tests (34): `mvn test`
   + Integration tests (2): `mvn failsafe:integration-test`
-  + Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be creatd with: `mvn site`
 
 Unit test coverage (in general test coverage percentage is higher, but Cobertura also checks Lombok's generated code):
 
 <img src="/problem-i/static/coverage.png"/>
 
+Maven generated [info site][mvn_site], [javadocs][mvn_javadocs] and Cobertura test coverage [report][mvn_testcoverage] can be creatd with: `mvn site`
 
 **RESTful** Web Service:
 
 HTTP method|URI|Request Body|Purpose
----|---|---|---
+:---:|---|---|---
 GET|/person/all.json||Retrieve a list all people records from the database.
 GET|/person/get/**{id}**.json||Retrieve a person record from the database by id.
 POST|/person/save.json|Person object as JSON|Save a new person record to the databse.
