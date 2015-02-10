@@ -4,7 +4,7 @@
   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <img src="/static/vu_mif.png"  height="160" width="159"/>
 </p>
-#### Some of projects for lectures @ *Vilnius University, Faculty of Mathematics and Informatics*:
+#### Some of my projects for lectures @ *Vilnius University, Faculty of Mathematics and Informatics*:
 
 + Cloud service based web platform [[`cloud-paper-news`][cloud-news]]:
   * __Lecture__ - Programming in Cloud Computing.
