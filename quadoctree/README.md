@@ -20,7 +20,8 @@ An interactive Python application where one can draw obstacles, place a red poin
 
 * **Requirements**:
   + Python 3.4
-  + Fabric
+  + Pygame
+  + Fabric (for automatic setup/launching)
 
 
 Also Pygame's dependencies for Ubuntu:
