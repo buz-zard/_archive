@@ -197,7 +197,7 @@ def main():
     draw_text("Input:", (size[0] + 70, 5))
     draw_text("L_MOUSE:                   place a block", (size[0] + 15, 25))
     draw_text("BACK_SPACE:                  clear grid", (size[0] + 15, 40))
-    draw_text("RIGHT_SHIFT:             create Q-Tree", (size[0] + 15, 55))
+    draw_text("RIGHT_SHIFT:           create a Q-Tree", (size[0] + 15, 55))
     draw_text("1,2,3,4,5:         block size = 1,2,4,8,16", (size[0] + 15, 70))
 
     # Main loop
@@ -247,7 +247,7 @@ def main():
                 block_status = "OCCUPIED"
             draw_text("Selected block is " + block_status,
                       (size[0] + 15, 160), True)
-            draw_text("PAIESKOS KELIAS:", (size[0] + 15, 175), True)
+            draw_text("Tree path to point:", (size[0] + 15, 175), True)
             base_x, base_y = size[0] + 95, 195
             base_dif = int(30 / len(qtree.search_path))
             for val in qtree.search_path:
