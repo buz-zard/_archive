@@ -189,7 +189,7 @@ public class Game implements Runnable {
                 check();
 
                 Display.update();
-                // Display.sync(60);
+                Display.sync(60);
             }
             if (connection != null) {
                 connection.disconnect();
@@ -265,18 +265,17 @@ public class Game implements Runnable {
 
         if (connection != null) {
             switch (input.getTurnOfPlayer()) {
-                case 0:
-                    fontA.drawString(uibgBlock.getX() + 10, uibgBlock.getY() + 100,
-                            "WE HAVE A WINNER!");
-                    break;
-                case 1:
-                    fontA.drawString(uibgBlock.getX() + 10, uibgBlock.getY() + 100,
-                            "Waiting for X to make a move...");
-                    break;
-                case 2:
-                    fontA.drawString(uibgBlock.getX() + 10, uibgBlock.getY() + 100,
-                            "Waiting for O to make a move...");
-                    break;
+            case 0:
+                fontA.drawString(uibgBlock.getX() + 10, uibgBlock.getY() + 100, "WE HAVE A WINNER!");
+                break;
+            case 1:
+                fontA.drawString(uibgBlock.getX() + 10, uibgBlock.getY() + 100,
+                        "Waiting for X to make a move...");
+                break;
+            case 2:
+                fontA.drawString(uibgBlock.getX() + 10, uibgBlock.getY() + 100,
+                        "Waiting for O to make a move...");
+                break;
             }
         } else {
 

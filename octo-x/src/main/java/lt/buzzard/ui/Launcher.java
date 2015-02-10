@@ -30,6 +30,8 @@ public class Launcher {
      */
     public static void main(String[] args) {
 
+        System.setProperty("java.library.path", "natives/META-INF");
+
         grid_width = 37;
         grid_height = 31;
         signs2win = 5;
