@@ -1,10 +1,10 @@
 ---
-#### Some of projects for lectures @ *Vilnius University, Faculty of Mathematics and Informatics*:
-
 <p align="center">
-  <img src="/static/vu.png"  height="160" width="135"/>
+  <img src="/static/vu.png"  height="146" width="130"/>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <img src="/static/vu_mif.png"  height="160" width="159"/>
 </p>
+#### Some of projects for lectures @ *Vilnius University, Faculty of Mathematics and Informatics*:
 
 + Cloud service based web platform [[`cloud-paper-news`][cloud-news]]:
   * __Lecture__ - Programming in Cloud Computing.
@@ -15,8 +15,9 @@
   * __Task__ - to implement a data structure algorithm from a given scientific publication.
   * __Language__ - `Python`
 
+
 ---
-#### Non-university tasks
+#### Non-university tasks:
 
 + Console tool to solve graph path problem [[`problem-v`][problem-v]].
   * __Language__ - `Python`
