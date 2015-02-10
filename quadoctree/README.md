@@ -39,8 +39,8 @@ sudo apt-get install mercurial
 * **Sample** screens:
 
 <p align="center">
-  <img src="/quadoctree/static/1a.png" height="80%" width="80%"/>
-  <img src="/quadoctree/static/2a.png" height="80%" width="80%"/>
+  <img src="/quadoctree/static/1.png" height="80%" width="80%"/>
+  <img src="/quadoctree/static/2.png" height="80%" width="80%"/>
 </p>
 
 ----
