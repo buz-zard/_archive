@@ -13,7 +13,7 @@ sudo apt-get install mercurial
 ```
 
 * **Setup**:
- + `fab setup`
+ + Automatic setup (Ubuntu only): `fab setup`
 
 * **Running** the app:
  + `fab go`
