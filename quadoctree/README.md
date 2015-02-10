@@ -1,5 +1,23 @@
 ----
 
+### Mini-project for *Data Structure Algorithms* lecture
+
+The task was to imeplement [Quadtree (or q-tree)][qtree] data structure from [this][publication] publication.
+
+
+> A quadtree is a tree data structure in which each internal node has exactly four children. Quadtrees are most often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. The regions may be square or rectangular, or may have arbitrary shapes.
+
+An example preview:
+
+<p align="center">
+  <img src="/quadoctree/static/pub1.png" height="50%" width="50%"/>
+</p>
+
+
+### Implementation
+
+An interactive Python application where one can draw obstacles, place a red point. Then generate q-tree structure and effectively using that structure find if the placed red point is inside an obstacle or not.
+
 * **Requirements**:
   + Python 3.4
   + Fabric
@@ -18,5 +36,14 @@ sudo apt-get install mercurial
 * **Running** the app:
  + `fab go`
 
+Simple screens:
+
+<p align="center">
+  <img src="/quadoctree/static/1a.png" height="80%" width="80%"/>
+  <img src="/quadoctree/static/2a.png" height="80%" width="80%"/>
+</p>
 
 ----
+[qtree]: http://en.wikipedia.org/wiki/Quadtree
+[publication]: /quadoctree/static/quadoctree.pdf
+
