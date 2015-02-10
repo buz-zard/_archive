@@ -23,17 +23,19 @@ def virtualenv():
 # Fabric commands
 # ==============================================================================
 def setup():
-    local('virtualenv ' + ENV_DIR)
+    local('virtualenv -p python3 ' + ENV_DIR)
+    local('sudo apt-get build-dep python-pygame')
+    local('sudo apt-get install python-dev')
+    local('sudo apt-get install mercurial')
     with virtualenv():
-        local('pip install -r ' + REQUIREMENTS_FILE)
+        local('pip install hg+http://bitbucket.org/pygame/pygame')
 
 
 def go():
     with virtualenv():
-        local('./main.py')
+        local('python3 main.py')
 
 
 def freeze():
     with virtualenv():
         local('pip freeze > ' + REQUIREMENTS_FILE)
-
