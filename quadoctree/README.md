@@ -36,7 +36,7 @@ sudo apt-get install mercurial
 * **Running** the app:
  + `fab go`
 
-Simple screens:
+* **Sample** screens:
 
 <p align="center">
   <img src="/quadoctree/static/1a.png" height="80%" width="80%"/>
