@@ -16,7 +16,7 @@ An example preview:
 
 ### Implementation
 
-An interactive Python application where one can draw obstacles, place a red point. Then generate q-tree structure and effectively using that structure find if the placed red point is inside an obstacle or not.
+An interactive Python application where one can draw obstacles, place a red point. Then generate q-tree structure and using that structure effectively find if the placed red point is inside an obstacle or not.
 
 * **Requirements**:
   + Python 3.4
