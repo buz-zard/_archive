@@ -3,14 +3,15 @@
   <img src="/static/vu.png"  height="160" width="135"/>
   <img src="/static/vu_mif.png"  height="160" width="159"/>
 </p>
-### Vilnius University, Faculty of Mathematics and Informatics
+#### Some of projects for *Vilnius University, Faculty of Mathematics and Informatics* lectures (2013-2015):
 
 Some of my projects for Computer Modeling Masters studies (2013-2015).
 
-+ Cloud service based web platform [[`cloud-paper-news`][1]]:
++ Cloud service based web platform [[`cloud-paper-news`][cloud-news]]:
   * __Lecture__ - Programming in Cloud Computing.
   * __Task__ - to create a project where 1 or more cloud services would be used togerther.
   * __Language__ - `Python`
+
 
 ---
 #### Non-university tasks
@@ -22,6 +23,7 @@ Some of my projects for Computer Modeling Masters studies (2013-2015).
 
 ---
 
-[1]: /cloud-paper-news
+[cloud-news]: /cloud-paper-news
+[quadoctree]: /quadoctree
 [problem-v]: /problem-v
 [problem-i]: /problem-i
