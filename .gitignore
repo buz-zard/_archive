@@ -3,5 +3,5 @@
 *.pyc
 .project
 .pydevproject
-.gitignore
-
+.settings
+.classpath
