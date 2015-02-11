@@ -7,7 +7,7 @@
 </p>
 
 
-# *Programming in Cloud Computing* Project
+## Project for *Programming in Cloud Computing* lecture
 
 #### Task:
  Create a project where 1 or more cloud services would be used togerther.

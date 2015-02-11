@@ -92,7 +92,7 @@ public class PersonController extends AbstractController {
     /**
      * Delete {@link PersonDAO} by it's id.
      */
-    @RequestMapping(value = URI_DELETE, method = RequestMethod.POST)
+    @RequestMapping(value = URI_DELETE, method = RequestMethod.DELETE)
     public @ResponseBody RestResponse deletePerson(@PathVariable(value = "personId") Long id) {
         if (repositoryService.delete(id)) {
             log.info("Person record (id = " + id + ") deleted.");
