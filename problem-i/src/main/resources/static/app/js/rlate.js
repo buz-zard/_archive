@@ -155,7 +155,7 @@ angular.module('rlate', []).controller('RlateController', ['$scope', '$http', '$
 
     $scope.deletePerson = function() {
         hideAlert();
-        $http.post('/person/delete/' + $scope.formPerson.id + '.json').success(function(data) {
+        $http.delete('/person/delete/' + $scope.formPerson.id + '.json').success(function(data) {
             console.log(data);
             if (data.status === "OK") {
                 unselectPerson();
