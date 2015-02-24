@@ -1,0 +1,104 @@
+{
+    "ga-acs-0.5-rank": {
+        "distance": {
+            "average": 5062, 
+            "worst": 5225, 
+            "best": 4782
+        }, 
+        "time": {
+            "average": 4.51453, 
+            "worst": 4.73128, 
+            "best": 4.1137
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-acs-1.0-roulete": {
+        "distance": {
+            "average": 5085, 
+            "worst": 5225, 
+            "best": 4818
+        }, 
+        "time": {
+            "average": 4.58428, 
+            "worst": 5.25893, 
+            "best": 4.31639
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-acs-0.5-roulete": {
+        "distance": {
+            "average": 5069, 
+            "worst": 5225, 
+            "best": 4761
+        }, 
+        "time": {
+            "average": 4.54424, 
+            "worst": 4.95169, 
+            "best": 4.31118
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-rank": {
+        "distance": {
+            "average": 5290, 
+            "worst": 5948, 
+            "best": 4818
+        }, 
+        "time": {
+            "average": 4.50384, 
+            "worst": 4.93613, 
+            "best": 4.20352
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-acs-1.0-rank": {
+        "distance": {
+            "average": 5090, 
+            "worst": 5225, 
+            "best": 4828
+        }, 
+        "time": {
+            "average": 4.48025, 
+            "worst": 4.72721, 
+            "best": 4.15791
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-roulete": {
+        "distance": {
+            "average": 5351, 
+            "worst": 5921, 
+            "best": 4818
+        }, 
+        "time": {
+            "average": 4.50226, 
+            "worst": 4.79117, 
+            "best": 4.24327
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }
+}

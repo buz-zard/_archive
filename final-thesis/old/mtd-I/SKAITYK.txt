@@ -1,0 +1,25 @@
+----------------------------------------------------------------------------------------------
+Mokslo tiriamojo darbo II skaitmeninė versija:
+/doc direktorija
+originalus formatas: odt
+----------------------------------------------------------------------------------------------
+Programinis kodas:
+/src direktorijoje, nėra bin direktorijos, nes viskas parašyta naudojant Python 2.7 programinę kalbą.
+
+Sisteminiai reikalavimai:
+	Python 2.7
+	pip python įrankis
+
+linux aplinkos paruošimas:
+	cd src
+	pip install -r requirements.txt
+
+Norint vykdyti kodą:
+	python main.py
+
+Apie kodą:
+main.py faile yra keletas testų, kurie generuoja darbe naudotus grafikus.
+main() galima užkomentuoti nepageidaujamas funkcijas ir vykdyti tik tai kas lieka.
+Sugeneruoti grafikai išsaugomi /src/output.
+
+

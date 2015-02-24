@@ -1,0 +1,70 @@
+{
+    "m-sa-r": {
+        "distance": {
+            "average": 5309, 
+            "worst": 5930, 
+            "best": 4782
+        }, 
+        "time": {
+            "average": 2.40662, 
+            "worst": 2.89775, 
+            "best": 1.53528
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "m-sa": {
+        "distance": {
+            "average": 5293, 
+            "worst": 6271, 
+            "best": 4782
+        }, 
+        "time": {
+            "average": 2.53551, 
+            "worst": 2.79408, 
+            "best": 2.29409
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "m-sa-i": {
+        "distance": {
+            "average": 5315, 
+            "worst": 6155, 
+            "best": 4818
+        }, 
+        "time": {
+            "average": 2.39472, 
+            "worst": 2.67568, 
+            "best": 2.14347
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "m-swap": {
+        "distance": {
+            "average": 5505, 
+            "worst": 6360, 
+            "best": 4818
+        }, 
+        "time": {
+            "average": 2.57645, 
+            "worst": 2.85456, 
+            "best": 2.24805
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "roulete-ordinal": {
+        "distance": {
+            "average": 5164, 
+            "worst": 6429, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.07802, 
+            "worst": 0.09105, 
+            "best": 0.06807
+        }, 
+        "generations": {
+            "average": 201, 
+            "worst": 201, 
+            "best": 201
+        }
+    }, 
+    "roulete-ox": {
+        "distance": {
+            "average": 5132, 
+            "worst": 6317, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.07761, 
+            "worst": 0.09031, 
+            "best": 0.0672
+        }, 
+        "generations": {
+            "average": 201, 
+            "worst": 201, 
+            "best": 201
+        }
+    }, 
+    "rank-ox": {
+        "distance": {
+            "average": 5141, 
+            "worst": 6567, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.07862, 
+            "worst": 0.09101, 
+            "best": 0.06908
+        }, 
+        "generations": {
+            "average": 201, 
+            "worst": 201, 
+            "best": 201
+        }
+    }, 
+    "rank-ordinal": {
+        "distance": {
+            "average": 5202, 
+            "worst": 6448, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.07922, 
+            "worst": 0.1113, 
+            "best": 0.06823
+        }, 
+        "generations": {
+            "average": 201, 
+            "worst": 201, 
+            "best": 201
+        }
+    }
+}

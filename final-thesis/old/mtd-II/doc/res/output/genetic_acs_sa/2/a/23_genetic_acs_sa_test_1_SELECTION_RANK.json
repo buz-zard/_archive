@@ -1,0 +1,53 @@
+{
+    "ga-acs-sa1": {
+        "distance": {
+            "average": 5097, 
+            "worst": 5225, 
+            "best": 4761
+        }, 
+        "time": {
+            "average": 1.20104, 
+            "worst": 2.80547, 
+            "best": 1.09688
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ga-acs-sa3": {
+        "distance": {
+            "average": 4966, 
+            "worst": 5213, 
+            "best": 4761
+        }, 
+        "time": {
+            "average": 0.42315, 
+            "worst": 2.33956, 
+            "best": 0.35283
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ga-acs-sa2": {
+        "distance": {
+            "average": 5090, 
+            "worst": 5225, 
+            "best": 4828
+        }, 
+        "time": {
+            "average": 0.82634, 
+            "worst": 2.55526, 
+            "best": 0.71011
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}

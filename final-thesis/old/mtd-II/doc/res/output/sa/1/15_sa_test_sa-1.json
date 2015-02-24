@@ -1,0 +1,36 @@
+{
+    "sa-2": {
+        "distance": {
+            "average": 4825, 
+            "worst": 5241, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.11898, 
+            "worst": 0.15752, 
+            "best": 0.09261
+        }, 
+        "generations": {
+            "average": 459, 
+            "worst": 459, 
+            "best": 459
+        }
+    }, 
+    "sa-1": {
+        "distance": {
+            "average": 4839, 
+            "worst": 5340, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.123, 
+            "worst": 0.17639, 
+            "best": 0.09808
+        }, 
+        "generations": {
+            "average": 459, 
+            "worst": 459, 
+            "best": 459
+        }
+    }
+}

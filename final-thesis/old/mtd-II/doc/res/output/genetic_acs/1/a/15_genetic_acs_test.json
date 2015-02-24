@@ -1,0 +1,104 @@
+{
+    "ga-acs-0.5-rank": {
+        "distance": {
+            "average": 4491, 
+            "worst": 4748, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.65179, 
+            "worst": 0.80355, 
+            "best": 0.53725
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-acs-1.0-roulete": {
+        "distance": {
+            "average": 4508, 
+            "worst": 4748, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.7079, 
+            "worst": 0.78006, 
+            "best": 0.53535
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-acs-0.5-roulete": {
+        "distance": {
+            "average": 4493, 
+            "worst": 4748, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.70122, 
+            "worst": 0.78768, 
+            "best": 0.6068
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-rank": {
+        "distance": {
+            "average": 4499, 
+            "worst": 4751, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.66543, 
+            "worst": 0.7646, 
+            "best": 0.52093
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-acs-1.0-rank": {
+        "distance": {
+            "average": 4516, 
+            "worst": 4887, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.65643, 
+            "worst": 0.77019, 
+            "best": 0.4849
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }, 
+    "ga-roulete": {
+        "distance": {
+            "average": 4502, 
+            "worst": 4748, 
+            "best": 4468
+        }, 
+        "time": {
+            "average": 0.70897, 
+            "worst": 0.80841, 
+            "best": 0.6091
+        }, 
+        "generations": {
+            "average": 151, 
+            "worst": 151, 
+            "best": 151
+        }
+    }
+}

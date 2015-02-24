@@ -1,0 +1,27 @@
+----------------------------------------------------------------------------------------------
+Mokslo tiriamojo darbo projekto skaitmeninė versija:
+/doc direktorija
+originalus formatas: odt
+----------------------------------------------------------------------------------------------
+Programinis kodas:
+/src direktorijoje, nėra bin direktorijos, nes viskas parašyta naudojant Python 2.7 programinę kalbą.
+
+Sisteminiai reikalavimai:
+	Python 2.7
+	pip python įrankis
+
+linux aplinkos paruošimas:
+	cd src
+	pip install -r requirements.txt
+
+Norint vykdyti kodą:
+	cd code
+	python main.py
+
+Apie kodą:
+test_*.py - metodai, generuojantys grafikus
+analysis.py - faile yra funkcijos reikalingos grafikų generavimui
+tsp.py - bazinės klasės, išplėčiamos kuriant algoritmus, sprendžiančius tsp problemą
+brute/sa/ant/genetic - atitinkamų algoritmų klasės
+
+

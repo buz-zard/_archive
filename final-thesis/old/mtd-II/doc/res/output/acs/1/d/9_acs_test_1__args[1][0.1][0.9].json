@@ -1,0 +1,36 @@
+{
+    "acs-1": {
+        "distance": {
+            "average": 3148, 
+            "worst": 3280, 
+            "best": 3146
+        }, 
+        "time": {
+            "average": 0.15224, 
+            "worst": 0.15975, 
+            "best": 0.14409
+        }, 
+        "generations": {
+            "average": 31, 
+            "worst": 31, 
+            "best": 31
+        }
+    }, 
+    "acs-2": {
+        "distance": {
+            "average": 3174, 
+            "worst": 3466, 
+            "best": 3146
+        }, 
+        "time": {
+            "average": 0.05283, 
+            "worst": 0.05852, 
+            "best": 0.04966
+        }, 
+        "generations": {
+            "average": 31, 
+            "worst": 31, 
+            "best": 31
+        }
+    }
+}
