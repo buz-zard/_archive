@@ -23,10 +23,10 @@ def crossover_ox(parent_a, parent_b):
 
 
 def _crossover_ox_child(initial, other, point, cross_range):
-    chrom = initial[:point], initial[
-        point:point + cross_range], initial[point + cross_range:]
-    other_chrom = other[:point], other[
-        point:point + cross_range], other[point + cross_range:]
+    chrom = initial[:point], initial[point:point + cross_range],\
+        initial[point + cross_range:]
+    other_chrom = other[:point], other[point:point + cross_range], \
+        other[point + cross_range:]
     child = [[], chrom[1][:], []]
     values = chrom[1]
     arr = other_chrom[2] + other_chrom[0] + other_chrom[1]

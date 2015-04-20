@@ -265,7 +265,7 @@ class Genetic(TSPSolver):
                 try_to_visit_city(ant,
                                   ant.location,
                                   ant.random_remaining_city())
-            route = ant.route[:-1]
+            route = ant.route[:]
             solution = TSPSolver.nodes_to_solution(self, route)
             TSPSolver.set_solution(self, solution[0], solution[1])
             distance = self.graph.route_distance(solution[1])
