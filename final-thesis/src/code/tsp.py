@@ -227,7 +227,8 @@ class TSPSRunner(object):
             j += 0
         print '[' + '#' * 100 + ']\n\n'
 
-    def save_results(self, filename='data', output_folder='/', hide_all_distances=True):
+    def save_results(self, filename='data', output_folder='/',
+                     hide_all_distances=True):
         if output_folder != '/':
             output_folder = '/' + output_folder + '/'
         if (not os.path.exists('output' + output_folder)

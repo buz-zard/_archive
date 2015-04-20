@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from random import shuffle, randint, uniform
+import math
 
 from tsp import TSPSolver
 from utils import from_ordinal, to_ordinal, randint_exept
+from ant import AntGraph, Ant
 
 from . import selection, crossover, mutation
 
@@ -11,6 +13,7 @@ from . import selection, crossover, mutation
 # METHODS
 # ############################################################################
 INITIAL_POPULATION_RANDOM = "INITIAL_POPULATION_RANDOM"
+INITIAL_POPULATION_SEMIACS = "INITIAL_POPULATION_SEMIACS"
 SELECTION_ROULETE = "SELECTION_ROULETE"
 SELECTION_RANK = "SELECTION_RANK"
 CROSSOVER_ORDINAL_1P = "CROSSOVER_ORDINAL_1P"
@@ -23,6 +26,8 @@ MUTATION_SA_INSERT = "MUTATION_SA_INSERT"
 
 def _get_method(method_name):
     return {
+        INITIAL_POPULATION_RANDOM: INITIAL_POPULATION_RANDOM,
+        INITIAL_POPULATION_SEMIACS: INITIAL_POPULATION_SEMIACS,
         SELECTION_ROULETE: selection.roulete_wheel_select,
         SELECTION_RANK: selection.rank_select,
         CROSSOVER_ORDINAL_1P: crossover.crossover_ordinal_1p,
@@ -91,6 +96,18 @@ class GeneticArgs(object):
     def set_method_initial_population(self, value):
         self.args['method_initial_population'] = value
 
+    def get_initial_ants(self):
+        return self.get('initial_ants')
+
+    def set_initial_ants(self, value):
+        self.args['initial_ants'] = value
+
+    def get_initial_beta(self):
+        return self.get('initial_beta')
+
+    def set_initial_beta(self, value):
+        self.args['initial_beta'] = value
+
 
 # ############################################################################
 # GENETICS ALGORITHM IMPLEMENTATION
@@ -143,6 +160,11 @@ class Genetic(TSPSolver):
             'crossover_method': self._g_args.get_method_cross(),
             'mutation_method': self._g_args.get_method_mutate()
         }
+        if self._g_args.get_method_initial_population() == INITIAL_POPULATION_SEMIACS:
+            self.display_parameters['initial_ants'] = \
+                self._g_args.get_initial_ants()
+            self.display_parameters['initial_beta'] = \
+                self._g_args.get_initial_beta()
         return TSPSolver.get_solution(self)
 
     def solve(self, show_progress=False, absolute_mute=False):
@@ -163,8 +185,7 @@ class Genetic(TSPSolver):
                         chrom_a, chrom_b = self._mutate(chrom_a, chrom_b)
                 new_population.append(chrom_a)
                 new_population.append(chrom_b)
-            population = self._complete_generation_(population,
-                                                    new_population)
+            population = self._complete_generation(population, new_population)
         TSPSolver.end_solving(self)
 
     # SELECTION
@@ -177,8 +198,8 @@ class Genetic(TSPSolver):
 
     def _crossover(self, a, b):
         route_a, route_b = self._crossover_method(a[0], b[0])
-        chrom_a = self._route_to_chromosome_(route_a)
-        chrom_b = self._route_to_chromosome_(route_b)
+        chrom_a = self._route_to_chromosome(route_a)
+        chrom_b = self._route_to_chromosome(route_b)
         return chrom_a, chrom_b
 
     # MUTATION
@@ -186,8 +207,8 @@ class Genetic(TSPSolver):
         return uniform(0, 1) >= self._mr
 
     def _mutate(self, a, b):
-        chrom_a = self._route_to_chromosome_(self._mutation_method(a[0]))
-        chrom_b = self._route_to_chromosome_(self._mutation_method(b[0]))
+        chrom_a = self._route_to_chromosome(self._mutation_method(a[0]))
+        chrom_b = self._route_to_chromosome(self._mutation_method(b[0]))
         return chrom_a, chrom_b
 
     # POPULATION
@@ -195,15 +216,17 @@ class Genetic(TSPSolver):
         if self._initial_population_method == INITIAL_POPULATION_RANDOM:
             return self._initial_population_random()
         else:
-            return self._initial_population_from_acs()
+            return self._initial_population_using_ants(
+                self._g_args.get_initial_ants(),
+                self._g_args.get_initial_beta())
 
     def _initial_population_random(self):
         population = []
         for _ in xrange(0, self._chromosomes):
-            population.append(self._generate_random_chromosome_())
+            population.append(self._generate_random_chromosome())
         return population
 
-    def _generate_random_chromosome_(self):
+    def _generate_random_chromosome(self):
         route = self.graph.nodes()
         shuffle(route)
         solution = TSPSolver.nodes_to_solution(self, route)
@@ -211,21 +234,46 @@ class Genetic(TSPSolver):
         distance = self.graph.route_distance(solution[1])
         return solution[0][:-1], distance
 
-    def _initial_population_from_acs(self):
-        self._acs_.solve()
+    def _initial_population_using_ants(self, num_ants, beta):
+        def niu(u, v):
+            return float(1.0 / self.graph.route_distance(
+                self.graph.path_between(u, v)))
+
+        def niu_beta(u, v):
+            return math.pow(niu(u, v), beta)
+
+        def try_to_visit_city(ant_k, r, s):
+            if not ant_k.contains_city(s):
+                division = niu_beta(r, s)
+                divisor = 0.0
+                for u in ant_k.remaining_cities():
+                    divisor += niu_beta(r, u)
+                probability = division / divisor
+                # print 'probability', probability
+                if probability > uniform(0.0, 1.0):
+                    ant_k.visit_city(s)
+
         population = []
-        for ant in self._acs_.ants.values():
+        ants = {}
+        for a in xrange(0, num_ants):
+            ants[a] = Ant(self.graph, self.graph.nodes())
+        for _ in xrange(num_ants, self._chromosomes):
+            population.append(self._generate_random_chromosome())
+        for ant in ants.itervalues():
+            ant.start()
+            while len(ant.remaining_cities()) > 0:
+                try_to_visit_city(ant,
+                                  ant.location,
+                                  ant.random_remaining_city())
             route = ant.route[:-1]
             solution = TSPSolver.nodes_to_solution(self, route)
             TSPSolver.set_solution(self, solution[0], solution[1])
             distance = self.graph.route_distance(solution[1])
             population.append((solution[0][:-1], distance))
-        while len(population) < self._chromosomes:
-            population.append(self._generate_random_chromosome_())
         return population
 
     # OTHER
-    def _complete_generation_(self, population, new_population):
+    def _complete_generation(self, population, new_population):
         elite = sorted(population, key=lambda tup: tup[1])[0]
         solution = TSPSolver.nodes_to_solution(self, elite[0])
         TSPSolver.set_solution(self, solution[0], solution[1])
@@ -233,7 +281,7 @@ class Genetic(TSPSolver):
         new_population[new_population.index(s_population[0])] = elite
         return new_population
 
-    def _route_to_chromosome_(self, route):
+    def _route_to_chromosome(self, route):
         solution = TSPSolver.nodes_to_solution(self, route)
         TSPSolver.set_solution(self, solution[0], solution[1])
         return solution[0][:-1], self.graph.route_distance(solution[1])

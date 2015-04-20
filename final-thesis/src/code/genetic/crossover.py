@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from random import randint
 
-from ..utils import from_ordinal, to_ordinal
+from utils import from_ordinal, to_ordinal
 
 
 def crossover_ordinal_1p(parent_a, parent_b):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from random import randint, uniform
 
-from ..utils import randint_exept
+from utils import randint_exept
 
 
 def mutate_swap(parent):
