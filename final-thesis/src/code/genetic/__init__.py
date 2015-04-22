@@ -4,7 +4,7 @@ import math
 
 from tsp import TSPSolver
 from utils import from_ordinal, to_ordinal, randint_exept
-from ant import AntGraph, Ant
+from .ant import AntGraph, Ant
 
 from . import selection, crossover, mutation
 

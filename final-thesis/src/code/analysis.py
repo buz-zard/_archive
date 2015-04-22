@@ -83,7 +83,7 @@ def sh_to_contour_heatmap_scatter(values, resolution=100, return_maxs=False):
 
 class GenericFig():
 
-    def __init__(self, size=110, xlabel="Iteracijos", ylabel="Atstumas"):
+    def __init__(self, size=110, xlabel="Iteracijos", ylabel="Vidutinis atstumas"):
         self._fig_ = get_fig()
         self._size_ = size
         self._xlabel_ = xlabel

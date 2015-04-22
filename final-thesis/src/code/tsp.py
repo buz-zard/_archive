@@ -211,8 +211,8 @@ class TSPSRunner(object):
                 for i in xrange(tsps[3]):
                     bar.update(i)
                     solver = solver_class(self.graph,
-                                          params=tsps[1],
-                                          conditions=tsps[2],
+                                          tsps[1],
+                                          tsps[2],
                                           absolute_mute=True)
                     solver.solve()
                     results.append({
@@ -221,7 +221,7 @@ class TSPSRunner(object):
                     })
                 bar.finish()
                 print ''
-                self._handle_results_(results, tsps[4])
+                self._handle_results_(results, tsps[4], tsps[1].args)
             if j != len(self.solvers) - 1:
                 print '\n'
             j += 0
@@ -249,11 +249,12 @@ class TSPSRunner(object):
                 del rez['all_distances']
         print json.dumps(results, indent=4)
 
-    def _handle_results_(self, results, key):
+    def _handle_results_(self, results, key, params):
         data = {
             'distance': {},
             'time': {},
-            'generations': {}
+            'generations': {},
+            'params': params
         }
         distance_sum = 0
         distance_best = None
