@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from graph import Graph2D
+from graph import Graph2D, osm
 
 graph_5 = {
     'nodes': [(400, 100), (150, 220), (500, 350), (600, 950),
@@ -113,3 +113,17 @@ def g_23():
 
 def g_48():
     return make_graph_from_data(graph_48_us)
+
+
+def vilniaus_senamiestis():
+    g = osm.read_osm("graph/vilniaus_senamiestis.osm", True)
+    first_node = None
+    to_delete = []
+    for n in g.nodes_iter():
+        if first_node is None:
+            first_node = n
+            continue
+        if g.path_between(first_node, n) is None:
+            to_delete.append(n)
+    [g.remove_node(n) for n in to_delete]
+    return g

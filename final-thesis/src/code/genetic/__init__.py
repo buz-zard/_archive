@@ -249,7 +249,6 @@ class Genetic(TSPSolver):
                 for u in ant_k.remaining_cities():
                     divisor += niu_beta(r, u)
                 probability = division / divisor
-                # print 'probability', probability
                 if probability > uniform(0.0, 1.0):
                     ant_k.visit_city(s)
 

@@ -149,12 +149,14 @@ class TSPSolver(object):
         full_route += path
         return (actual_route, full_route)
 
-    def show_solution(self, filename="name", output_folder='/'):
-        self.save_solution(True, filename, output_folder)
+    def show_solution(self, filename="name", output_folder='/',
+                      edges_only=False):
+        self.save_solution(True, filename, output_folder, edges_only)
 
     def save_solution(self, show_solution=False,
                       filename="name",
-                      output_folder='/'):
+                      output_folder='/',
+                      edges_only=False):
         plt.clf()
         edgelist = []
         if self._solution_ is not None:
@@ -175,7 +177,8 @@ class TSPSolver(object):
         if (not os.path.exists('output' + output_folder)
                 and output_folder != '/'):
             os.makedirs('output' + output_folder)
-        nwx.draw(self.graph, self.graph.coords, width=1.0, alpha=0.5)
+        if not edges_only:
+            nwx.draw(self.graph, self.graph.coords, width=1.0, alpha=0.5)
         nwx.draw_networkx_edges(self.graph, self.graph.coords,
                                 edgelist=edgelist, width=1.2, alpha=0.9,
                                 edge_color='r')

@@ -48,11 +48,18 @@ class Graph2D(nwx.Graph):
     def save(self, filename="name"):
         plt.clf()
         nwx.draw(self, self.coords)
-        plt.savefig('output/tsp_graphs/' + filename + '.png')
+        plt.savefig('output/' + filename + '.png')
 
     def show(self, filename="name"):
         plt.clf()
         nwx.draw(self, self.coords)
+        plt.savefig('output/' + filename + '.png')
+        os.system('eog output/' + filename + '.png &')
+
+    def show_edges(self, filename="name"):
+        plt.clf()
+        nwx.draw_networkx_edges(self, self.coords)
+        print 'Number of nodes:', len(self.node)
         plt.savefig('output/' + filename + '.png')
         os.system('eog output/' + filename + '.png &')
 
@@ -74,7 +81,8 @@ class Graph2D(nwx.Graph):
                 path = [a, b]
             else:
                 path = shortest_path(self, a, b)
-            self._hash_path_between_(a, b, path)
+            if path is not None:
+                self._hash_path_between_(a, b, path)
         return path
 
     def route_distance(self, route):
@@ -123,13 +131,12 @@ class Graph2D(nwx.Graph):
             u = v
         return g
 
+
 # ############################################################################
 #
 # METHODS
 #
 # ############################################################################
-
-
 def route_to_distance(g, nodes):
     last_node, length = None, 0
     if len(nodes) > 1:
@@ -166,4 +173,7 @@ def shortest_path_brute_force(graph, a, b):
 
 
 def shortest_path(graph, a, b):
-    return nwx.shortest_path(graph, a, b)
+    try:
+        return nwx.shortest_path(graph, a, b)
+    except nwx.exception.NetworkXNoPath:
+        return None
