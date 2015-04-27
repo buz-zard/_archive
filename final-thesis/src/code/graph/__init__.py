@@ -24,26 +24,47 @@ class Graph2D(nwx.Graph):
         self.use_caching = use_caching
         self.shortest_paths = {}
         self.route_distances = {}
+        self._low_x = None
+        self._low_y = None
+        self._high_x = None
+        self._high_y = None
 
     def add_edge(self, u, v):
         if u == v:
             return
         super(Graph2D, self).add_edge(u, v)
-        self[u][v]['distance'] = distance_between(self.node[u], self.node[v])
+        self[u][v]['dist'] = distance_between(self.node[u], self.node[v])
 
     def add_double_edge(self, u, v):
         if u == v:
             return
-        distance = distance_between(self.node[u], self.node[v])
+        dist = distance_between(self.node[u], self.node[v])
         super(Graph2D, self).add_edge(u, v)
         super(Graph2D, self).add_edge(v, u)
-        self[u][v]['distance'] = distance
-        self[v][u]['distance'] = distance
+        self[u][v]['dist'] = dist
+        self[v][u]['dist'] = dist
 
     def add_coord_node(self, n, (x, y)):
+        if self._low_x is None or self._low_x > x:
+            self._low_x = x
+        if self._low_y is None or self._low_y > y:
+            self._low_y = y
+        if self._high_x is None or self._high_x < x:
+            self._high_x = x
+        if self._high_y is None or self._high_y < y:
+            self._high_y = y
         self.add_node(n)
         self.node[n]['pos'] = (x, y)
         self.coords[n] = (x, y)
+
+    @property
+    def max_straight_distance(self):
+        val1 = (self._low_x - self._high_x) ** 2
+        val2 = (self._low_y - self._high_y) ** 2
+        val = val1 - val2
+        if val < 0:
+            val = 0 - val
+        return math.sqrt(val)
 
     def save(self, filename="name"):
         plt.clf()
@@ -86,15 +107,15 @@ class Graph2D(nwx.Graph):
         return path
 
     def route_distance(self, route):
-        distance = 0
+        dist = 0
         if (route) in self.route_distances.keys():
-            distance = self.route_distances[tuple(route)]
+            dist = self.route_distances[tuple(route)]
         else:
-            distance = route_to_distance(self, route)
+            dist = route_to_distance(self, route)
             if self.use_caching:
-                self.route_distances[tuple(route)] = distance
-                self.route_distances[tuple(reversed(route))] = distance
-        return distance
+                self.route_distances[tuple(route)] = dist
+                self.route_distances[tuple(reversed(route))] = dist
+        return dist
 
     def _hash_path_between_(self, a, b, path):
         if self.use_caching and path is not None and len(path) != 0:
@@ -163,11 +184,11 @@ def shortest_path_brute_force(graph, a, b):
         for p in permutations_from_to(graph.nodes(), a, b):
             if not graph.is_valid_route(p):
                 continue
-            distance = route_to_distance(graph, p)
+            dist = route_to_distance(graph, p)
             if (shortest_distance is None
                     or shortest_distance is not None
-                    and distance < shortest_distance):
-                shortest_distance = distance
+                    and dist < shortest_distance):
+                shortest_distance = dist
                 shortest_path = p
         return shortest_path
 

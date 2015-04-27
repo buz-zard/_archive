@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from tsp import CONDITION_TIME, CONDITION_GENERATION
 from __builtin__ import file
+from genetic import Genetic
 
 
 def condition(generations):
-    return {CONDITION_GENERATION: generations, CONDITION_TIME: 600}
+    return {CONDITION_GENERATION: generations, CONDITION_TIME: 1800}
 
 
 class TestRunResult(object):
@@ -38,3 +39,11 @@ class TestRunResult(object):
         self.fig.add_averaged_x_plot_values(self.runner.results[run_name]
                                             ['all_distances'], line=line,
                                             label=label)
+
+
+def add_solver(runner, args, c, runs):
+    runner.add_tsps(Genetic, args, c, runs, args.key)
+
+
+def red_color(level):
+    return ['#4C0000', '#990000', '#FF0000', '#FF8080', '#FFE6E6'][level]

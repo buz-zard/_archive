@@ -49,7 +49,7 @@ class TSPSolver(object):
             return True
         if self._solution_ is not None:
             if self.condition_met(CONDITION_LENGTH,
-                                  self._solution_['distance'] - 1,
+                                  self._solution_['dist'] - 1,
                                   True):
                 return True
         if self.condition_met(CONDITION_GENERATION,
@@ -79,8 +79,8 @@ class TSPSolver(object):
         if self._solution_ is not None:
             self.solution_history.append(self._solution_)
             if self._last_solution_ is not None:
-                if (self._solution_['distance'] <
-                        self._last_solution_['distance']):
+                if (self._solution_['dist'] <
+                        self._last_solution_['dist']):
                     self._no_progress_counter_ = 0
                 else:
                     self._no_progress_counter_ += 1
@@ -107,14 +107,14 @@ class TSPSolver(object):
     def set_solution(self, route, full_route):
         if route is None or full_route is None:
             return
-        distance = self.graph.route_distance(full_route)
+        dist = self.graph.route_distance(full_route)
         if (self._solution_ is None
                 or self._solution_ is not None
-                and distance < self._solution_['distance']):
+                and dist < self._solution_['dist']):
             self._solution_ = {
                 'route': tuple(route),
                 'full_route': tuple(full_route),
-                'distance': distance
+                'dist': dist
             }
 
     def get_solution(self):
@@ -254,7 +254,7 @@ class TSPSRunner(object):
 
     def _handle_results_(self, results, key, params):
         data = {
-            'distance': {},
+            'dist': {},
             'time': {},
             'generations': {},
             'params': params
@@ -272,18 +272,18 @@ class TSPSRunner(object):
         for result in results:
             distances = []
             for history in result['solution_history']:
-                distances.append(history['distance'])
+                distances.append(history['dist'])
             all_distances.append(distances)
-            distance = result['solution']['distance']
+            dist = result['solution']['dist']
             time = result['solution']['time']
             generations = result['solution']['generations']
-            distance_sum += distance
+            distance_sum += dist
             time_sum += time
             generations_sum += generations
-            if distance_best is None or distance_best > distance:
-                distance_best = distance
-            if distance_worst is None or distance_worst < distance:
-                distance_worst = distance
+            if distance_best is None or distance_best > dist:
+                distance_best = dist
+            if distance_worst is None or distance_worst < dist:
+                distance_worst = dist
             if time_best is None or time_best > time:
                 time_best = time
             if time_worst is None or time_worst < time:
@@ -292,9 +292,9 @@ class TSPSRunner(object):
                 generations_best = generations
             if generations_worst is None or generations_worst < generations:
                 generations_worst = generations
-        data['distance']['average'] = int(distance_sum / len(results))
-        data['distance']['best'] = distance_best
-        data['distance']['worst'] = distance_worst
+        data['dist']['average'] = int(distance_sum / len(results))
+        data['dist']['best'] = distance_best
+        data['dist']['worst'] = distance_worst
         data['time']['average'] = round(time_sum / len(results), 5)
         data['time']['best'] = time_best
         data['time']['worst'] = time_worst

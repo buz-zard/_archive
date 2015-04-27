@@ -4,7 +4,7 @@ import math
 
 from tsp import TSPSolver
 from utils import from_ordinal, to_ordinal, randint_exept
-from .ant import AntGraph, Ant
+from .ant import Ant
 
 from . import selection, crossover, mutation
 
@@ -45,11 +45,17 @@ class GeneticArgs(object):
         self.args = {}
         if g_args:
             self.args = g_args.args.copy()
+        self.key = ""
 
     def get(self, key):
         if key in self.args:
             return self.args[key]
         return None
+
+    def set_key(self, value, fn=None):
+        self.key = value
+        if fn is not None:
+            self.key += str(fn())
 
     def set(self, key, value):
         self.args[key] = value
@@ -235,23 +241,6 @@ class Genetic(TSPSolver):
         return solution[0][:-1], distance
 
     def _initial_population_using_ants(self, num_ants, beta):
-        def niu(u, v):
-            return float(1.0 / self.graph.route_distance(
-                self.graph.path_between(u, v)))
-
-        def niu_beta(u, v):
-            return math.pow(niu(u, v), beta)
-
-        def try_to_visit_city(ant_k, r, s):
-            if not ant_k.contains_city(s):
-                division = niu_beta(r, s)
-                divisor = 0.0
-                for u in ant_k.remaining_cities():
-                    divisor += niu_beta(r, u)
-                probability = division / divisor
-                if probability > uniform(0.0, 1.0):
-                    ant_k.visit_city(s)
-
         population = []
         ants = {}
         for a in xrange(0, num_ants):
@@ -261,15 +250,30 @@ class Genetic(TSPSolver):
         for ant in ants.itervalues():
             ant.start()
             while len(ant.remaining_cities()) > 0:
-                try_to_visit_city(ant,
-                                  ant.location,
-                                  ant.random_remaining_city())
+                self._initial_population_try_to_visit_city(ant)
             route = ant.route[:]
             solution = TSPSolver.nodes_to_solution(self, route)
             TSPSolver.set_solution(self, solution[0], solution[1])
             distance = self.graph.route_distance(solution[1])
             population.append((solution[0][:-1], distance))
         return population
+
+    def _initial_population_try_to_visit_city(self, ant):
+        def dist(u, v):
+            return float(self.graph.max_straight_distance / self.graph.route_distance(
+                self.graph.path_between(u, v)))
+
+        ant_k, r, s = ant, ant.location, ant.random_remaining_city()
+        if not ant_k.contains_city(s):
+            division = dist(r, s)
+            divisor = 0.0
+            for u in ant_k.remaining_cities():
+                divisor += dist(r, u)
+            probability = division / divisor
+            # print 'probability', probability
+            if probability > uniform(0.0, 1.0):
+                # print ' ####### visit!'
+                ant_k.visit_city(s)
 
     # OTHER
     def _complete_generation(self, population, new_population):

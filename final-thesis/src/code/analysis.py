@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from utils import average_out_lists
 
-
 fig_hash = {
     1: True
 }

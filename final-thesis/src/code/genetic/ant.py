@@ -1,31 +1,7 @@
 # -*- coding: utf-8 -*-
 from random import randint
 
-from graph import Graph2D
 from utils import list_diff
-
-
-class AntGraph(Graph2D):
-
-    """
-    Graph used for ant colony system algorithm.
-    """
-
-    def __init__(self, graph, pheromone=1.0):
-        Graph2D.__init__(self)
-        for node in graph.nodes():
-            self.add_coord_node(node, graph.node[node]['pos'])
-        for edge in graph.edges():
-            self.add_edge(edge[0], edge[1], pheromone)
-
-    def add_edge(self, u, v, pheromone=1.0):
-        Graph2D.add_edge(self, u, v)
-        self[u][v]['pheromone'] = pheromone
-
-    def add_double_edge(self, u, v, pheromone=1.0):
-        Graph2D.add_double_edge(self, u, v)
-        self[u][v]['pheromone'] = pheromone
-        self[v][u]['pheromone'] = pheromone
 
 
 class Ant(object):

@@ -31,6 +31,9 @@ def read_osm(filename_or_stream, only_roads=True):
             continue
         G.add_path(w.nds, id=w.id, data=w)
         G.add_path(w.nds[::-1], id=w.id, data=w)
+
+    def simplify_coord(val):
+        return int(str(val)[4:])
     for n_id in G.nodes_iter():
         n = osm.nodes[n_id]
         G.node[n_id] = dict(data=n)
