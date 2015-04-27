@@ -12,9 +12,10 @@ base_folder = 'initial_population'
 
 
 def run_all():
-    # run_1() # -
+    run_0()  # -
+    # run_1()  # -
     # run_2()  # +
-    run_3()  # -
+    # run_3()  # -
     pass
 
 
@@ -77,6 +78,23 @@ def _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants):
     args7 = make_args(ants[6])
     _run_inner(prefix, test_name, runs, g, c, args1, args2, args3, args4,
                args5, args6, args7)
+
+
+def run_0():
+    prefix = '_80'
+    test_name = u"Atsitiktine ir generuota pradine populiacija"
+    runs = 1
+    g = vilniaus_senamiestis()
+    c = condition(60)
+    ants = [3, 7, 11, 22, 32, 44, 55]
+    args1 = base_args()
+    args1.set_chr(40)
+    args1.set_key('plain')
+    args2 = GeneticArgs(args1)
+    args2.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
+    args2.set_initial_ants(ants[0])
+    args2.set_key('initial-pop-', args2.get_initial_ants)
+    _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants)
 
 
 def run_1():

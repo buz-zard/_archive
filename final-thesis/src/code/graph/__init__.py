@@ -126,7 +126,7 @@ class Graph2D(nwx.Graph):
     def generate_random(node_count, edge_coeff):
         g = Graph2D()
         for n in xrange(0, node_count):
-            g.add_coord_node(n, (randint(0, 1000), randint(0, 1000)))
+            g.add_coord_node(n, (randint(0, 10000), randint(0, 10000)))
         for n in xrange(0, node_count):
             min_nodes = 0
             if n > 0:

@@ -8,20 +8,21 @@ from analysis import GenericFig
 from . import condition, TestRunResult, add_solver, green_color, red_color
 
 
-base_folder = 'ox_params'
+base_folder = 'mr_params'
 
 
 def run_all():
-    # run_1() # +
-    # run_2() # +
-    run_3()  # -
+    # run_0()  # -
+    run_1()  # -
+    # run_2()  # +
+    # run_3()  # -
     pass
 
 
 def base_args():
     args = GeneticArgs()
     args.set_chr(10)
-    args.set_cr(0.5)
+    args.set_cr(0.3)
     args.set_mr(0.5)
     args.set_method_initial_population(genetic.INITIAL_POPULATION_RANDOM)
     args.set_method_select(genetic.SELECTION_RANK)
@@ -71,7 +72,7 @@ def _pre_run_inner(prefix, test_name, runs, g, c, args1):
     def make_args(val):
         args = GeneticArgs(args1)
         args.set_mr(val)
-        args.set_key('ox_mr_', args.get_mr)
+        args.set_key('sa_mr_', args.get_mr)
         return args
 
     args2 = make_args(0.2)
@@ -88,51 +89,51 @@ def _pre_run_inner(prefix, test_name, runs, g, c, args1):
 
 def run_0():
     prefix = '_80'
-    test_name = u"OX rekombinacijos cr parametras"
+    test_name = u"SA mutacijos mr parametras"
     runs = 1
     g = g_100()
     c = condition(100)
     args1 = base_args()
     args1.set_chr(40)
-    args1.set_cr(0.1)
-    args1.set_key('ox_mr_', args1.get_mr)
+    args1.set_mr(0.1)
+    args1.set_key('sa_mr_', args1.get_mr)
     _pre_run_inner(prefix, test_name, runs, g, c, args1)
 
 
 def run_1():
     prefix = '_48'
-    test_name = u"OX rekombinacijos cr parametras"
+    test_name = u"SA mutacijos mr parametras"
     runs = 10
     g = g_48()
     c = condition(100)
     args1 = base_args()
     args1.set_chr(40)
     args1.set_mr(0.1)
-    args1.set_key('ox_mr_', args1.get_mr)
+    args1.set_key('sa_mr_', args1.get_mr)
     _pre_run_inner(prefix, test_name, runs, g, c, args1)
 
 
 def run_2():
     prefix = '_23'
-    test_name = u"OX rekombinacijos cr parametras"
+    test_name = u"SA mutacijos mr parametras"
     runs = 10
     g = g_23()
     c = condition(100)
     args1 = base_args()
     args1.set_chr(20)
     args1.set_mr(0.1)
-    args1.set_key('ox_mr_', args1.get_mr)
+    args1.set_key('sa_mr_', args1.get_mr)
     _pre_run_inner(prefix, test_name, runs, g, c, args1)
 
 
 def run_3():
     prefix = '_202'
-    test_name = u"OX rekombinacijos cr parametras"
+    test_name = u"SA mutacijos cr parametras"
     runs = 10
     g = vilniaus_senamiestis()
     c = condition(100)
     args1 = base_args()
     args1.set_chr(50)
     args1.set_mr(0.1)
-    args1.set_key('ox_mr_', args1.get_mr)
+    args1.set_key('sa_mr_', args1.get_mr)
     _pre_run_inner(prefix, test_name, runs, g, c, args1)
