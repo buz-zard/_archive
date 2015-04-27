@@ -263,17 +263,37 @@ class Genetic(TSPSolver):
             return float(self.graph.max_straight_distance / self.graph.route_distance(
                 self.graph.path_between(u, v)))
 
-        ant_k, r, s = ant, ant.location, ant.random_remaining_city()
-        if not ant_k.contains_city(s):
-            division = dist(r, s)
-            divisor = 0.0
-            for u in ant_k.remaining_cities():
-                divisor += dist(r, u)
-            probability = division / divisor
-            # print 'probability', probability
-            if probability > uniform(0.0, 1.0):
-                # print ' ####### visit!'
-                ant_k.visit_city(s)
+        def neighbors(values):
+            ns = {}
+            for val in values:
+                [ns.__setitem__(val, True)
+                 for val in self.graph.neighbors(val)]
+            return ns.keys()
+
+        def try_visit(s):
+            if not ant_k.contains_city(s):
+                division = dist(r, s)
+                divisor = 0.0
+                for u in ant_k.remaining_cities():
+                    divisor += dist(r, u)
+                probability = division / divisor
+                # print 'probability', probability
+                if probability > uniform(0.0, 1.0):
+                    print ' ####### visit!'
+                    ant_k.visit_city(s)
+                    return True
+            return False
+
+        ant_k, r, rand_city = ant, ant.location, ant.random_remaining_city()
+        visited = False
+        nearby = neighbors(neighbors([r]))
+        for near in nearby:
+            if near in ant.remaining_cities():
+                if try_visit(near):
+                    visited = True
+                    break
+        if not visited:
+            try_visit(rand_city)
 
     # OTHER
     def _complete_generation(self, population, new_population):

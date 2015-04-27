@@ -47,3 +47,7 @@ def add_solver(runner, args, c, runs):
 
 def red_color(level):
     return ['#4C0000', '#990000', '#FF0000', '#FF8080', '#FFE6E6'][level]
+
+
+def green_color(level):
+    return ['#002E0F', '#005C1F', '#009933', '#66C285', '#CCEBD6'][level]

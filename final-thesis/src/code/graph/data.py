@@ -115,8 +115,45 @@ def g_48():
     return make_graph_from_data(graph_48_us)
 
 
-def vilniaus_senamiestis():
-    g = osm.read_osm("graph/vilniaus_senamiestis.osm", True)
+def _simplify_graph(g):
+    removed = []
+    for n in g.nodes():
+        if n in removed:
+            continue
+        ns1 = g.neighbors(n)
+        if len(ns1) == 2:
+            for neighbor in ns1:
+                ns2 = g.neighbors(neighbor)
+                ns2.remove(n)
+                if len(ns2) == 1:
+                    removed.append(neighbor)
+                    g.remove_node(neighbor)
+                    g.add_double_edge(n, ns2[0])
+    ng = Graph2D()
+    for n in g.nodes():
+        ng.add_coord_node(n, g.node[n]['pos'])
+    for edge in g.edges():
+        ng.add_double_edge(edge[0], edge[1])
+    return ng
+
+'''
+graph_8 = {
+    'nodes': [(400, 100), (444, 544), (363, 320), (600, 950),
+              (770, 80), (500, 500), (200, 420)],
+    'edges': [[2, 4], [3, 5], [6], [5, 6], [5]],
+    'distance': 2555
+}
+gr = make_graph_from_data(graph_8)
+gr = _simplify_graph(gr)
+gr.show('test')
+'''
+
+
+def vilniaus_senamiestis(use_small=True):
+    if use_small:
+        g = osm.read_osm("graph/vilniaus_senamiestis (smaller).osm", True)
+    else:
+        g = osm.read_osm("graph/vilniaus_senamiestis (bigger).osm", True)
     first_node = None
     to_delete = []
     for n in g.nodes_iter():
@@ -126,4 +163,5 @@ def vilniaus_senamiestis():
         if g.path_between(first_node, n) is None:
             to_delete.append(n)
     [g.remove_node(n) for n in to_delete]
+    g = _simplify_graph(g)
     return g

@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 from genetic import GeneticArgs
 import genetic
-from graph.data import g_23, g_48
+from graph.data import g_23, g_48, vilniaus_senamiestis
 from tsp import TSPSRunner
 from analysis import GenericFig
 
-from . import condition, TestRunResult, add_solver, red_color
+from . import condition, TestRunResult, add_solver, red_color, green_color
 
 
 base_folder = 'initial_population'
 
 
 def run_all():
-    # run_1()
-    run_2()
+    # run_1() # -
+    # run_2()  # +
+    run_3()  # -
+    pass
 
 
 def base_args():
@@ -28,8 +30,8 @@ def base_args():
     return args
 
 
-def run_inner(prefix, test_name, runs, g, c, ants, args1, args2, args3, args4,
-              args5, args6):
+def _run_inner(prefix, test_name, runs, g, c, args1, args2, args3, args4,
+               args5, args6, args7):
     runner = TSPSRunner(g)
     add_solver(runner, args1, c, runs)
     add_solver(runner, args2, c, runs)
@@ -37,19 +39,20 @@ def run_inner(prefix, test_name, runs, g, c, ants, args1, args2, args3, args4,
     add_solver(runner, args4, c, runs)
     add_solver(runner, args5, c, runs)
     add_solver(runner, args6, c, runs)
-
+    add_solver(runner, args7, c, runs)
     runner.run()
 
     fig = GenericFig(size=120)
     result = TestRunResult(runner, fig, test_name + prefix, base_folder)
 
     def plot():
-        result.averaged_x_values(args1.key, '-g')
+        result.averaged_x_values(args1.key, '-b')
         result.averaged_x_values(args2.key, red_color(0))
-        result.averaged_x_values(args3.key, red_color(1))
-        result.averaged_x_values(args4.key, red_color(2))
-        result.averaged_x_values(args5.key, red_color(3))
-        result.averaged_x_values(args6.key, red_color(4))
+        result.averaged_x_values(args3.key, red_color(2))
+        result.averaged_x_values(args4.key, red_color(4))
+        result.averaged_x_values(args5.key, green_color(0))
+        result.averaged_x_values(args6.key, green_color(2))
+        result.averaged_x_values(args7.key, green_color(4))
 
     result.next_subplot(test_name)
     plot()
@@ -60,40 +63,37 @@ def run_inner(prefix, test_name, runs, g, c, ants, args1, args2, args3, args4,
     result.save()
 
 
+def _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants):
+    def make_args(val):
+        args = GeneticArgs(args2)
+        args.set_initial_ants(val)
+        args.set_key('initial-pop-', args.get_initial_ants)
+        return args
+
+    args3 = make_args(ants[2])
+    args4 = make_args(ants[3])
+    args5 = make_args(ants[4])
+    args6 = make_args(ants[5])
+    args7 = make_args(ants[6])
+    _run_inner(prefix, test_name, runs, g, c, args1, args2, args3, args4,
+               args5, args6, args7)
+
+
 def run_1():
     prefix = '_48'
     test_name = u"Atsitiktine ir generuota pradine populiacija"
     runs = 10
     g = g_48()
     c = condition(100)
-    ants = [5, 10, 15, 20, 25]
-
+    ants = [5, 11, 17, 22, 29, 35, 40]
     args1 = base_args()
     args1.set_chr(40)
     args1.set_key('plain')
-
     args2 = GeneticArgs(args1)
     args2.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
     args2.set_initial_ants(ants[0])
     args2.set_key('initial-pop-', args2.get_initial_ants)
-
-    args3 = GeneticArgs(args2)
-    args3.set_initial_ants(ants[1])
-    args3.set_key('initial-pop-', args3.get_initial_ants)
-
-    args4 = GeneticArgs(args2)
-    args4.set_initial_ants(ants[2])
-    args4.set_key('initial-pop-', args4.get_initial_ants)
-
-    args5 = GeneticArgs(args2)
-    args5.set_initial_ants(ants[3])
-    args5.set_key('initial-pop-', args5.get_initial_ants)
-
-    args6 = GeneticArgs(args2)
-    args6.set_initial_ants(ants[4])
-    args6.set_key('initial-pop-', args6.get_initial_ants)
-    run_inner(prefix, test_name, runs, g, c, ants, args1, args2, args3, args4,
-              args5, args6)
+    _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants)
 
 
 def run_2():
@@ -102,31 +102,29 @@ def run_2():
     runs = 10
     g = g_23()
     c = condition(100)
-    ants = [3, 9, 12, 15, 18]
-
+    ants = [2, 5, 8, 11, 14, 17, 20]
     args1 = base_args()
     args1.set_chr(20)
     args1.set_key('plain')
-
     args2 = GeneticArgs(args1)
     args2.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
     args2.set_initial_ants(ants[0])
     args2.set_key('initial-pop-', args2.get_initial_ants)
+    _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants)
 
-    args3 = GeneticArgs(args2)
-    args3.set_initial_ants(ants[1])
-    args3.set_key('initial-pop-', args3.get_initial_ants)
 
-    args4 = GeneticArgs(args2)
-    args4.set_initial_ants(ants[2])
-    args4.set_key('initial-pop-', args4.get_initial_ants)
-
-    args5 = GeneticArgs(args2)
-    args5.set_initial_ants(ants[3])
-    args5.set_key('initial-pop-', args5.get_initial_ants)
-
-    args6 = GeneticArgs(args2)
-    args6.set_initial_ants(ants[4])
-    args6.set_key('initial-pop-', args6.get_initial_ants)
-    run_inner(prefix, test_name, runs, g, c, ants, args1, args2, args3, args4,
-              args5, args6)
+def run_3():
+    prefix = '_202'
+    test_name = u"Atsitiktine ir generuota pradine populiacija"
+    runs = 1
+    g = vilniaus_senamiestis()
+    c = condition(60)
+    ants = [5, 11, 17, 22, 29, 35, 40]
+    args1 = base_args()
+    args1.set_chr(40)
+    args1.set_key('plain')
+    args2 = GeneticArgs(args1)
+    args2.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
+    args2.set_initial_ants(ants[0])
+    args2.set_key('initial-pop-', args2.get_initial_ants)
+    _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants)

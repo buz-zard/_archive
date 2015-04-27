@@ -1,0 +1,190 @@
+{
+    "plain": {
+        "dist": {
+            "average": 5429, 
+            "worst": 6314, 
+            "best": 5083
+        }, 
+        "time": {
+            "average": 0.85702, 
+            "worst": 0.94031, 
+            "best": 0.74532
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "initial-pop-20": {
+        "dist": {
+            "average": 5232, 
+            "worst": 5725, 
+            "best": 4818
+        }, 
+        "time": {
+            "average": 3.01486, 
+            "worst": 3.73245, 
+            "best": 2.74934
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "initial_ants": 20, 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "initial-pop-17": {
+        "dist": {
+            "average": 5227, 
+            "worst": 5698, 
+            "best": 4828
+        }, 
+        "time": {
+            "average": 2.86939, 
+            "worst": 3.11658, 
+            "best": 2.60683
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "initial_ants": 17, 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "initial-pop-14": {
+        "dist": {
+            "average": 5159, 
+            "worst": 5685, 
+            "best": 4828
+        }, 
+        "time": {
+            "average": 2.51395, 
+            "worst": 2.82471, 
+            "best": 2.30584
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "initial_ants": 14, 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "initial-pop-2": {
+        "dist": {
+            "average": 5256, 
+            "worst": 5866, 
+            "best": 4782
+        }, 
+        "time": {
+            "average": 1.17114, 
+            "worst": 1.31355, 
+            "best": 1.01912
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_cross": "CROSSOVER_OX", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 2, 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "initial-pop-11": {
+        "dist": {
+            "average": 5221, 
+            "worst": 5652, 
+            "best": 4782
+        }, 
+        "time": {
+            "average": 2.29168, 
+            "worst": 2.62927, 
+            "best": 1.9838
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "initial_ants": 11, 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "initial-pop-8": {
+        "dist": {
+            "average": 5298, 
+            "worst": 5704, 
+            "best": 5037
+        }, 
+        "time": {
+            "average": 1.89969, 
+            "worst": 2.02136, 
+            "best": 1.61187
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "initial_ants": 8, 
+            "mr": 0.5, 
+            "cr": 0.5
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}
