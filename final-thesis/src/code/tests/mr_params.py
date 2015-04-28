@@ -12,8 +12,8 @@ base_folder = 'mr_params'
 
 
 def run_all():
-    # run_0()  # -
-    run_1()  # -
+    run_0()  # -
+    # run_1()  # +
     # run_2()  # +
     # run_3()  # -
     pass

@@ -166,7 +166,8 @@ class Genetic(TSPSolver):
             'crossover_method': self._g_args.get_method_cross(),
             'mutation_method': self._g_args.get_method_mutate()
         }
-        if self._g_args.get_method_initial_population() == INITIAL_POPULATION_SEMIACS:
+        if (self._g_args.get_method_initial_population() ==
+                INITIAL_POPULATION_SEMIACS):
             self.display_parameters['initial_ants'] = \
                 self._g_args.get_initial_ants()
             self.display_parameters['initial_beta'] = \
@@ -260,8 +261,9 @@ class Genetic(TSPSolver):
 
     def _initial_population_try_to_visit_city(self, ant):
         def dist(u, v):
-            return float(self.graph.max_straight_distance / self.graph.route_distance(
-                self.graph.path_between(u, v)))
+            return float(self.graph.max_straight_distance /
+                         self.graph.route_distance(
+                             self.graph.path_between(u, v)))
 
         def neighbors(values):
             ns = {}

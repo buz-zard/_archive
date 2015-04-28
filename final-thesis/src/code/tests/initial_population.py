@@ -12,7 +12,7 @@ base_folder = 'initial_population'
 
 
 def run_all():
-    run_0()  # -
+    # run_0()  # -
     # run_1()  # -
     # run_2()  # +
     # run_3()  # -
@@ -22,8 +22,8 @@ def run_all():
 def base_args():
     args = GeneticArgs()
     args.set_chr(10)
-    args.set_cr(0.5)
-    args.set_mr(0.5)
+    args.set_cr(0.3)
+    args.set_mr(0.7)
     args.set_method_initial_population(genetic.INITIAL_POPULATION_RANDOM)
     args.set_method_select(genetic.SELECTION_RANK)
     args.set_method_cross(genetic.CROSSOVER_OX)

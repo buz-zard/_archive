@@ -12,9 +12,10 @@ base_folder = 'ox_params'
 
 
 def run_all():
+    # run_0()  # -
     # run_1() # +
     # run_2() # +
-    run_3()  # -
+    # run_3()  # -
     pass
 
 
@@ -94,7 +95,7 @@ def run_0():
     c = condition(100)
     args1 = base_args()
     args1.set_chr(40)
-    args1.set_cr(0.1)
+    args1.set_mr(0.1)
     args1.set_key('ox_mr_', args1.get_mr)
     _pre_run_inner(prefix, test_name, runs, g, c, args1)
 
