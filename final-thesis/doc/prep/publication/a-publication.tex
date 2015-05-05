@@ -48,7 +48,7 @@
 %
 \author{Karolis Šarapnickis}
 %
-\authorrunning{Lecture Notes in Computer Science: Authors' Instructions}
+\authorrunning{Optimalių maršrutų paieškos algoritmai}
 % (feature abused for this document to repeat the title also on left hand pages)
 
 % the affiliations are given next; don't give your e-mail address
@@ -63,14 +63,11 @@
 %
 
 \toctitle{Optimalių maršrutų paieškos algoritmai}
-\tocauthor{Autoriaus instrukcijos}
 \maketitle
 
 
 \begin{abstract}
-The abstract should summarize the contents of the paper and should
-contain at least 70 and at most 150 words. It should be written using the
-\emph{abstract} environment.
+Darbe analizuojamos genetinio algoritmo modifikacijos sprendžiant modifikuotą keliaujančio pirklio uždavinį.
 \keywords{Keliaujančio pirklio problema, Hamiltono ciklas, genetinis algoritmas, skruzdėlių kolonijos algoritmas, simuliuoto atkaitinimo algoritmas}
 \end{abstract}
 
@@ -81,12 +78,12 @@ Optimalių maršrutų paieškos aktualumas kiekvieno iš mūsų kasdieniniame gy
 
 Yra nemažai mokslinių darbų sprendžiančių keliaujančio pirklio problemas naudojant heuristinius algoritmus, juos modifikuojant ir parenkant įvairiausias sąlygas. Tačiau didžioji dali tokių darbų analizuoja pilnus grafus (kiekvienas miestas turi tiesioginį kelią su bet kuriuo kitu miestu), o realiame gyvenime praktiškai nėra didesnių sausumos žemėlapių, kuriuose kiekvienas miestas būtų tiesiogiai susietais keliais su likusiais miestais.
 
-Šio mokslinio tiriamojo darbo projekto tikslas yra naudojant heuristinius algoritmus ir jų modifikacijas ieškoti trumpiausio maršruto tarp miestų aplankant juos bent vieną kartą. Visi analizei naudojami grafai yra panašūs į sausumos miestų žemėlapius – juose įmanoma aplankyti visus miestus, o grafo kraštinės niekur nesusikerta.
+Šio mokslinio darbo tikslas yra naudojant heuristinius algoritmus ir jų modifikacijas ieškoti trumpiausio maršruto tarp miestų aplankant juos bent vieną kartą. Visi analizei naudojami grafai yra panašūs į sausumos miestų žemėlapius – juose įmanoma aplankyti visus miestus, o grafo kraštinės niekur nesusikerta.
 
 
 \subsection{Panašūs darbai}
 
-// TODO
+Genetiniai algoritmai pradėti naudoti sprendžiant keliaujančio pirklio uždavinį jau nuo 1990m. Genetinio algoritmo modifikacijos ir jo hibridai taip pat pradėti taikyti jau nuo 2005m. Didžioji dalis straipsnių sprendžiančių optimalaus maršruto problemą ieško pilno Hamiltono ciklo. Šiame moksliniame darbe miestą galima aplankyti daugiau negu vieną kartą. Todėl iš esmės taikomi metodai nėra nauji, tačiau jų pritaikymas pasirinktai problemai nėra niekur publikuotas.
 
 \section{Dėstymas}
 
@@ -126,277 +123,70 @@ Genetinis algoritmas iš esmės operuoja su baigtine chromosomų arba bitų sek�
 {\small Genetinio algoritmo pseudo-kodas \cite{genetictsp}.}
 
 
-\subsubsection{Skruzdėlių kolonijos algoritmas.}
-
-\subsubsection{Simuliuoto atkaitinimo algoritmas.}
-
-
 \subsection{Eksperimentinė dalis}
 
-E
+Hibridiniu genetiniu algoritmu buvo sprendžiama modifikuota keliaujančio pirklio problema grafuose, kurie neturi pilno Hamiltono ciklo. Dėl pastarosios sąlygos keliaujančio pirklio problemos taisyklė, kad kiekvienas miestas turi būti aplankytas tik vieną kartą, buvo pakeista leidžiant kiekvieną miestą aplankyti daugiau negu vieną kartą. Tokios analizės krypties išvados yra plačiau pritaikomos sprendžiant praktinius optimaliausių maršrutų uždavinius.
+
+Daugelis heuristinių algoritmų turėdami neribotą laiką galėtų rasti optimaliausią maršrutą. Tačiau skaičiavimo laikas yra ne ką mažiau svarbesnis matavimo vienetas už patį maršruto ilgį. Taip pat tokie algoritmai pasižymi įsisotinimu ties tam tikromis ribomis, ties kuriomis maršruto trumpėjimas labai sustoja. Todėl mokslinio darbo metu buvo ieškoma ne tik optimalių parametrų su kuriais būtų gaunamas geriausias vidutinis rezultatas, bet ir su kokiais parametrais kokiose algoritmo gyvavimo laikotarpiuose maršrutas trumpėja greičiausiai.
+
+Programinis kodas parašytas naudojant Python 2.7 programinę kalbą ir vykdytas Ubuntu operacinėje sistemoje.
+
+\begin{figure}
+\centering
+\includegraphics[height=8.2cm]{img/cros}
+\caption{Rekombinacijos koeficiento įtaka trumpiausio maršruto paieškai.}
+\label{fig:cros}
+\end{figure}
+
+~\ref{fig:cros} pav. matyti kad naudojant 0.7-0.8 rekombinacijos koeficientą su OX rekombinacija pasiekiami geriausi rezultatai analizuojant 80 miestų grafą. Tačiau analizuojant 44 miestų grafą geresni rezultatai pasiekti su 0.3-0.4 koeficientais.
+
+\begin{figure}
+\centering
+\includegraphics[height=8.2cm]{img/mut}
+\caption{Mutacijos koeficiento įtaka trumpiausio maršruto paieškai.}
+\label{fig:mut}
+\end{figure}
+
+Analizuojant mutacijos koeficientą (~\ref{fig:mut} pav.) taip pat pastebėta, kad su skirtingais grafais optimalus mutacijos koeficientas skiriasi, tačiau tas skirtumas yra kur kas mažesnis. Todėl pastebėta, kad optimalus mutacijos koeficientas yra nuo 0.5 iki 0.8.
+
+\begin{figure}
+\centering
+\includegraphics[height=8.2cm]{img/pop}
+\caption{Atsitiktinių ir su skruzdėlių kolonijos algoritmų generuotų pradinių populiacijų įtaka trumpiausio maršruto paieškai.}
+\label{fig:pop}
+\end{figure}
+
+Analizuojant pradinės populiacijos įtaka (~\ref{fig:pop} pav.) visais grafų atvejais pastebimas reultatų pagerėjimas kaip apie 60\% pradinės populiacijos generuojama hibridiniu skruzdėlių kolonijos algoritmu.
+
+\subsubsection{Praktinis uždavinys.}
+
+Kadangi iki šiol analizuoti grafai buvo praktiškai sintetiniai (atsitiktinai sugeneruoti ir modifikuoti ranka) ir gauti parametrų rezultatai yra pastebimai įtakojami grafų pavidalo, buvo nuspręsti išanalizuoti parametrų įtaką nagrinėjant praktinį uždavinį.
+
+Sukurtas genetinio algoritmo hibridas ir jo implementacija buvo pritaikyta ieškant trumpiausio maršruto siekiant apvaikščioti visas Vilniaus senamiesčio gatveles (~\ref{fig:vln} pav.).
+
+\begin{figure}
+\centering
+\includegraphics[height=8.2cm]{img/vln}
+\caption{Vilniaus senamiesčio žemėlapis (kairėje) ir jo pavidalas grafe (dešinėje).}
+\label{fig:vln}
+\end{figure}
+
 
 \section{Išvados}
 
-Springer provides you with a complete integrated \LaTeX{} document class
-(\texttt{llncs.cls}) for multi-author books such as those in the LNCS
-series. Papers not complying with the LNCS style will be reformatted.
-This can lead to an increase in the overall number of pages. We would
-therefore urge you not to squash your paper.
+Dalį pradinės genetinio algoritmo populiacijos pakeitus hibridiniu skruzdėlių kolonijos algoritmu generuotomis chromosomomis yra gerokai pagerinami algoritmo rezultatai.
 
-Please always cancel any superfluous definitions that are
-not actually used in your text. If you do not, these may conflict with
-the definitions of the macro package, causing changes in the structure
-of the text and leading to numerous mistakes in the proofs.
+Grafų struktūra geroaki įtakoja mutacijos ir rekombinacijos efektyiausius koeficientus, nors iš turimų rezultatų būtų galima teigti, kad optimaliausias mutacijos koeficients yra nuo 0.5 iki 0.8.
 
-If you wonder what \LaTeX{} is and where it can be obtained, see the
-``\textit{LaTeX project site}'' (\url{http://www.latex-project.org})
-and especially the webpage ``\textit{How to get it}''
-(\url{http://www.latex-project.org/ftp.html}) respectively.
 
-When you use \LaTeX\ together with our document class file,
-\texttt{llncs.cls},
-your text is typeset automatically in Computer Modern Roman (CM) fonts.
-Please do
-\emph{not} change the preset fonts. If you have to use fonts other
-than the preset fonts, kindly submit these with your files.
-
-Please use the commands \verb+\label+ and \verb+\ref+ for
-cross-references and the commands \verb+\bibitem+ and \verb+\cite+ for
-references to the bibliography, to enable us to create hyperlinks at
-these places.
-
-For preparing your figures electronically and integrating them into
-your source file we recommend using the standard \LaTeX{} \verb+graphics+ or
-\verb+graphicx+ package. These provide the \verb+\includegraphics+ command.
-In general, please refrain from using the \verb+\special+ command.
-
-Remember to submit any further style files and
-fonts you have used together with your source files.
-
-\subsubsection{Headings.}
-
-Headings should be capitalized
-(i.e., nouns, verbs, and all other words
-except articles, prepositions, and conjunctions should be set with an
-initial capital) and should,
-with the exception of the title, be aligned to the left.
-Words joined by a hyphen are subject to a special rule. If the first
-word can stand alone, the second word should be capitalized.
-
-Here are some examples of headings: ``Criteria to Disprove
-Context-Freeness of Collage Language", ``On Correcting the Intrusion of
-Tracing Non-deterministic Programs by Software", ``A User-Friendly and
-Extendable Data Distribution System", ``Multi-flip Networks:
-Parallelizing GenSAT", ``Self-determinations of Man".
-
-\subsubsection{Lemmas, Propositions, and Theorems.}
-
-The numbers accorded to lemmas, propositions, and theorems, etc. should
-appear in consecutive order, starting with Lemma 1, and not, for
-example, with Lemma 11.
-
-\subsection{Figures}
-
-For \LaTeX\ users, we recommend using the \emph{graphics} or \emph{graphicx}
-package and the \verb+\includegraphics+ command.
-
-Please check that the lines in line drawings are not
-interrupted and are of a constant width. Grids and details within the
-figures must be clearly legible and may not be written one on top of
-the other. Line drawings should have a resolution of at least 800 dpi
-(preferably 1200 dpi). The lettering in figures should have a height of
-2~mm (10-point type). Figures should be numbered and should have a
-caption which should always be positioned \emph{under} the figures, in
-contrast to the caption belonging to a table, which should always appear
-\emph{above} the table; this is simply achieved as matter of sequence in
-your source.
-
-Please center the figures or your tabular material by using the \verb+\centering+
-declaration. Short captions are centered by default between the margins
-and typeset in 9-point type (Fig.~\ref{fig:example} shows an example).
-The distance between text and figure is preset to be about 8~mm, the
-distance between figure and caption about 6~mm.
-
-To ensure that the reproduction of your illustrations is of a reasonable
-quality, we advise against the use of shading. The contrast should be as
-pronounced as possible.
-
-If screenshots are necessary, please make sure that you are happy with
-the print quality before you send the files.
-\begin{figure}
-\centering
-\includegraphics[height=6.2cm]{eijkel2}
-\caption{One kernel at $x_s$ (\emph{dotted kernel}) or two kernels at
-$x_i$ and $x_j$ (\textit{left and right}) lead to the same summed estimate
-at $x_s$. This shows a figure consisting of different types of
-lines. Elements of the figure described in the caption should be set in
-italics, in parentheses, as shown in this sample caption.}
-\label{fig:example}
-\end{figure}
-
-Please define figures (and tables) as floating objects. Please avoid
-using optional location parameters like ``\verb+[h]+" for ``here".
-
-\paragraph{Remark 1.}
-
-In the printed volumes, illustrations are generally black and white
-(halftones), and only in exceptional cases, and if the author is
-prepared to cover the extra cost for color reproduction, are colored
-pictures accepted. Colored pictures are welcome in the electronic
-version free of charge. If you send colored figures that are to be
-printed in black and white, please make sure that they really are
-legible in black and white. Some colors as well as the contrast of
-converted colors show up very poorly when printed in black and white.
-
-\subsection{Formulas}
-
-Displayed equations or formulas are centered and set on a separate
-line (with an extra line or halfline space above and below). Displayed
-expressions should be numbered for reference. The numbers should be
-consecutive within each section or within the contribution,
-with numbers enclosed in parentheses and set on the right margin --
-which is the default if you use the \emph{equation} environment, e.g.,
-\begin{equation}
-  \psi (u) = \int_{o}^{T} \left[\frac{1}{2}
-  \left(\Lambda_{o}^{-1} u,u\right) + N^{\ast} (-u)\right] dt \;  .
-\end{equation}
-
-Equations should be punctuated in the same way as ordinary
-text but with a small space before the end punctuation mark.
-
-\subsection{Footnotes}
-
-The superscript numeral used to refer to a footnote appears in the text
-either directly after the word to be discussed or -- in relation to a
-phrase or a sentence -- following the punctuation sign (comma,
-semicolon, or period). Footnotes should appear at the bottom of
-the
-normal text area, with a line of about 2~cm set
-immediately above them.\footnote{The footnote numeral is set flush left
-and the text follows with the usual word spacing.}
-
-\subsection{Program Code}
-
-Program listings or program commands in the text are normally set in
-typewriter font, e.g., CMTT10 or Courier.
-
-\medskip
-
-\noindent
-{\it Example of a Computer Program}
-\begin{verbatim}
-program Inflation (Output)
-  {Assuming annual inflation rates of 7%, 8%, and 10%,...
-   years};
-   const
-     MaxYears = 10;
-   var
-     Year: 0..MaxYears;
-     Factor1, Factor2, Factor3: Real;
-   begin
-     Year := 0;
-     Factor1 := 1.0; Factor2 := 1.0; Factor3 := 1.0;
-     WriteLn('Year  7% 8% 10%'); WriteLn;
-     repeat
-       Year := Year + 1;
-       Factor1 := Factor1 * 1.07;
-       Factor2 := Factor2 * 1.08;
-       Factor3 := Factor3 * 1.10;
-       WriteLn(Year:5,Factor1:7:3,Factor2:7:3,Factor3:7:3)
-     until Year = MaxYears
-end.
-\end{verbatim}
-%
-\noindent
-{\small (Example from Jensen K., Wirth N. (1991) Pascal user manual and
-report. Springer, New York)}
-
-\subsection{Citations}
-
-For citations in the text please use
-square brackets and consecutive numbers: \cite{jour}, \cite{lncschap},
-\cite{proceeding1} -- provided automatically
-by \LaTeX 's \verb|\cite| \dots\verb|\bibitem| mechanism.
-
-\subsection{Page Numbering and Running Heads}
-
-There is no need to include page numbers. If your paper title is too
-long to serve as a running head, it will be shortened. Your suggestion
-as to how to shorten it would be most welcome.
-
-\section{LNCS Online}
-
-The online version of the volume will be available in LNCS Online.
-Members of institutes subscribing to the Lecture Notes in Computer
-Science series have access to all the pdfs of all the online
-publications. Non-subscribers can only read as far as the abstracts. If
-they try to go beyond this point, they are automatically asked, whether
-they would like to order the pdf, and are given instructions as to how
-to do so.
-
-Please note that, if your email address is given in your paper,
-it will also be included in the meta data of the online version.
-
-\section{BibTeX Entries}
-
-The correct BibTeX entries for the Lecture Notes in Computer Science
-volumes can be found at the following Website shortly after the
-publication of the book:
-\url{http://www.informatik.uni-trier.de/~ley/db/journals/lncs.html}
-
-\subsubsection*{Acknowledgments.} The heading should be treated as a
-subsubsection heading and should not be assigned a number.
-
-\section{The References Section}\label{references}
-
-In order to permit cross referencing within LNCS-Online, and eventually
-between different publishers and their online databases, LNCS will,
-from now on, be standardizing the format of the references. This new
-feature will increase the visibility of publications and facilitate
-academic research considerably. Please base your references on the
-examples below. References that don't adhere to this style will be
-reformatted by Springer. You should therefore check your references
-thoroughly when you receive the final pdf of your paper.
-The reference section must be complete. You may not omit references.
-Instructions as to where to find a fuller version of the references are
-not permissible.
-
-We only accept references written using the latin alphabet. If the title
-of the book you are referring to is in Russian or Chinese, then please write
-(in Russian) or (in Chinese) at the end of the transcript or translation
-of the title.
-
-The following section shows a sample reference list with entries for
-journal articles \cite{mtd1}, an LNCS chapter \cite{lncschap}, a book
-\cite{book}, proceedings without editors \cite{proceeding1} and
-\cite{proceeding2}, as well as a URL \cite{url}.
-Please note that proceedings published in LNCS are not cited with their
-full titles, but with their acronyms!
 
 \begin{thebibliography}{4}
 
-\bibitem{mtd1} Karolis, Š.: Mokslo tiriamasis darbas I: optimalių maršrutų paieškos algoritmai (2014)
+\bibitem{mtd1} Šarapnickis, K.: Mokslo tiriamasis darbas II: optimalių maršrutų paieškos algoritmai, (2015)
 
-\bibitem{genetictsp} Jean-Yves, P.: Genetic algorithms for thetraveling salesman problem, (1996)
+\bibitem{genetictsp} Potvin, J. Y.: Genetic algorithms for thetraveling salesman problem, (1996)
 
-\bibitem{lncschap} May, P., Ehrlich, H.C., Steinke, T.: ZIB Structure Prediction Pipeline:
-Composing a Complex Biological Workflow through Web Services. In: Nagel,
-W.E., Walter, W.V., Lehner, W. (eds.) Euro-Par 2006. LNCS, vol. 4128,
-pp. 1148--1158. Springer, Heidelberg (2006)
-
-\bibitem{book} Foster, I., Kesselman, C.: The Grid: Blueprint for a New Computing
-Infrastructure. Morgan Kaufmann, San Francisco (1999)
-
-\bibitem{proceeding1} Czajkowski, K., Fitzgerald, S., Foster, I., Kesselman, C.: Grid
-Information Services for Distributed Resource Sharing. In: 10th IEEE
-International Symposium on High Performance Distributed Computing, pp.
-181--184. IEEE Press, New York (2001)
-
-\bibitem{proceeding2} Foster, I., Kesselman, C., Nick, J., Tuecke, S.: The Physiology of the
-Grid: an Open Grid Services Architecture for Distributed Systems
-Integration. Technical report, Global Grid Forum (2002)
-
-\bibitem{url} National Center for Biotechnology Information, \url{http://www.ncbi.nlm.nih.gov}
+\bibitem{genetic_hybrid} Shyi-Ming C., Chih-Yao C.: Solving the traveling salesman problem based on the genetic simulatedannealing ant colony system with particle swarm optimization techniques, (2011)
 
 \end{thebibliography}
 
