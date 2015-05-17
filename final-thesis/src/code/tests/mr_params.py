@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from genetic import GeneticArgs
 import genetic
-from graph.data import g_23, g_48, vilniaus_senamiestis, g_100
+from graph.data import g_23, g_48, g_100
 from tsp import TSPSRunner
 from analysis import GenericFig
 
@@ -12,10 +12,9 @@ base_folder = 'mr_params'
 
 
 def run_all():
-    run_0()  # -
+    # run_0()  # +
     # run_1()  # +
     # run_2()  # +
-    # run_3()  # -
     pass
 
 
@@ -88,9 +87,9 @@ def _pre_run_inner(prefix, test_name, runs, g, c, args1):
 
 
 def run_0():
-    prefix = '_80'
+    prefix = '_100'
     test_name = u"SA mutacijos mr parametras"
-    runs = 1
+    runs = 10
     g = g_100()
     c = condition(100)
     args1 = base_args()
@@ -121,19 +120,6 @@ def run_2():
     c = condition(100)
     args1 = base_args()
     args1.set_chr(20)
-    args1.set_mr(0.1)
-    args1.set_key('sa_mr_', args1.get_mr)
-    _pre_run_inner(prefix, test_name, runs, g, c, args1)
-
-
-def run_3():
-    prefix = '_202'
-    test_name = u"SA mutacijos cr parametras"
-    runs = 10
-    g = vilniaus_senamiestis()
-    c = condition(100)
-    args1 = base_args()
-    args1.set_chr(50)
     args1.set_mr(0.1)
     args1.set_key('sa_mr_', args1.get_mr)
     _pre_run_inner(prefix, test_name, runs, g, c, args1)

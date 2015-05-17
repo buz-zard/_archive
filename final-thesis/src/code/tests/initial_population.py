@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from genetic import GeneticArgs
 import genetic
-from graph.data import g_23, g_48, vilniaus_senamiestis
+from graph.data import g_23, g_48, g_100
 from tsp import TSPSRunner
 from analysis import GenericFig
 
@@ -12,10 +12,9 @@ base_folder = 'initial_population'
 
 
 def run_all():
-    # run_0()  # -
-    # run_1()  # -
+    # run_0()  # +
+    # run_1()  # +
     # run_2()  # +
-    # run_3()  # -
     pass
 
 
@@ -81,10 +80,10 @@ def _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants):
 
 
 def run_0():
-    prefix = '_80'
+    prefix = '_100'
     test_name = u"Atsitiktine ir generuota pradine populiacija"
-    runs = 1
-    g = vilniaus_senamiestis()
+    runs = 10
+    g = g_100()
     c = condition(60)
     ants = [3, 7, 11, 22, 32, 44, 55]
     args1 = base_args()
@@ -123,23 +122,6 @@ def run_2():
     ants = [2, 5, 8, 11, 14, 17, 20]
     args1 = base_args()
     args1.set_chr(20)
-    args1.set_key('plain')
-    args2 = GeneticArgs(args1)
-    args2.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
-    args2.set_initial_ants(ants[0])
-    args2.set_key('initial-pop-', args2.get_initial_ants)
-    _pre_run_inner(prefix, test_name, runs, g, c, args1, args2, ants)
-
-
-def run_3():
-    prefix = '_202'
-    test_name = u"Atsitiktine ir generuota pradine populiacija"
-    runs = 1
-    g = vilniaus_senamiestis()
-    c = condition(60)
-    ants = [5, 11, 17, 22, 29, 35, 40]
-    args1 = base_args()
-    args1.set_chr(40)
     args1.set_key('plain')
     args2 = GeneticArgs(args1)
     args2.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
