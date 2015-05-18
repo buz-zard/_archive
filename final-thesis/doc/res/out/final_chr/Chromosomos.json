@@ -1,0 +1,210 @@
+{
+    "chr_60": {
+        "dist": {
+            "average": 15729, 
+            "worst": 16676, 
+            "best": 15103
+        }, 
+        "time": {
+            "average": 140.32131, 
+            "worst": 148.09741, 
+            "best": 133.81387
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 60, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_80": {
+        "dist": {
+            "average": 15773, 
+            "worst": 17477, 
+            "best": 14081
+        }, 
+        "time": {
+            "average": 148.45952, 
+            "worst": 159.32249, 
+            "best": 142.60791
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 80, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_50": {
+        "dist": {
+            "average": 16009, 
+            "worst": 17314, 
+            "best": 15220
+        }, 
+        "time": {
+            "average": 102.65839, 
+            "worst": 109.82704, 
+            "best": 97.13704
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 50, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_40": {
+        "dist": {
+            "average": 16275, 
+            "worst": 16798, 
+            "best": 15415
+        }, 
+        "time": {
+            "average": 79.71677, 
+            "worst": 82.47185, 
+            "best": 75.62191
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 40, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_10": {
+        "dist": {
+            "average": 16874, 
+            "worst": 19878, 
+            "best": 15098
+        }, 
+        "time": {
+            "average": 13.40194, 
+            "worst": 16.09044, 
+            "best": 10.02325
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 10, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_70": {
+        "dist": {
+            "average": 15595, 
+            "worst": 16631, 
+            "best": 14770
+        }, 
+        "time": {
+            "average": 144.46641, 
+            "worst": 170.9319, 
+            "best": 124.84802
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 70, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_30": {
+        "dist": {
+            "average": 16039, 
+            "worst": 17052, 
+            "best": 15199
+        }, 
+        "time": {
+            "average": 58.45072, 
+            "worst": 67.84097, 
+            "best": 51.52378
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 30, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "chr_20": {
+        "dist": {
+            "average": 16796, 
+            "worst": 18039, 
+            "best": 15174
+        }, 
+        "time": {
+            "average": 40.35826, 
+            "worst": 43.45094, 
+            "best": 33.22649
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}
