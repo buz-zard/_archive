@@ -170,8 +170,6 @@ class Genetic(TSPSolver):
                 INITIAL_POPULATION_SEMIACS):
             self.display_parameters['initial_ants'] = \
                 self._g_args.get_initial_ants()
-            self.display_parameters['initial_beta'] = \
-                self._g_args.get_initial_beta()
         return TSPSolver.get_solution(self)
 
     def solve(self, show_progress=False, absolute_mute=False):
