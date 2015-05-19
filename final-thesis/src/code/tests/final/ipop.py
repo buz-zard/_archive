@@ -22,9 +22,9 @@ def runner():
 
 def base_args(ipop):
     args = GeneticArgs()
-    args.set_chr(66)
+    args.set_chr(60)
     args.set_cr(0.3)
-    args.set_mr(0.1)
+    args.set_mr(0.3)
     if ipop > 0:
         args.set_method_initial_population(genetic.INITIAL_POPULATION_SEMIACS)
         args.set_initial_ants(ipop)

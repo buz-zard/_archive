@@ -7,20 +7,19 @@ from analysis import GenericFig
 
 from .. import condition, TestRunResult, add_solver, green_color, red_color
 
-base_folder = 'final_mr_cr'
+base_folder = 'final_chr_mr'
 c = condition(100)
 
 
 def run_all():
-    run_base(0.1)  # -
-    run_base(0.2)  # -
-    run_base(0.3)  # -
-    run_base(0.4)  # -
-    run_base(0.5)  # -
-    run_base(0.6)  # -
-    run_base(0.7)  # -
-    run_base(0.8)  # -
-    run_base(0.9)  # -
+    run_base(10)  # -
+    run_base(20)  # -
+    run_base(30)  # -
+    run_base(40)  # -
+    run_base(50)  # -
+    # run_base(60)  # +
+    # run_base(70)  # +
+    run_base(80)  # -
     pass
 
 
@@ -28,12 +27,12 @@ def runner():
     return TSPSRunner(g_vln())
 
 
-def base_args(mr, cr):
+def base_args(chrom, mr):
     args = GeneticArgs()
-    args.set_chr(66)
-    args.set_cr(cr)
+    args.set_chr(chrom)
+    args.set_cr(0.3)
     args.set_mr(mr)
-    args.set_key("cr_{}".format(cr))
+    args.set_key("mr_{}".format(mr))
     args.set_method_initial_population(genetic.INITIAL_POPULATION_RANDOM)
     args.set_method_select(genetic.SELECTION_RANK)
     args.set_method_cross(genetic.CROSSOVER_OX)
@@ -41,19 +40,19 @@ def base_args(mr, cr):
     return args
 
 
-def run_base(mr):
-    prefix = " mr = {}".format(mr)
-    test_name = u"Rekombinacijos, mutacijos koef."
+def run_base(chrom):
+    prefix = " chrom = {}".format(chrom)
+    test_name = u"Mutacijos koef."
     runs = 10
-    args1 = base_args(mr, 0.1)
-    args2 = base_args(mr, 0.2)
-    args3 = base_args(mr, 0.3)
-    args4 = base_args(mr, 0.4)
-    args5 = base_args(mr, 0.5)
-    args6 = base_args(mr, 0.6)
-    args7 = base_args(mr, 0.7)
-    args8 = base_args(mr, 0.8)
-    args9 = base_args(mr, 0.9)
+    args1 = base_args(chrom, 0.1)
+    args2 = base_args(chrom, 0.2)
+    args3 = base_args(chrom, 0.3)
+    args4 = base_args(chrom, 0.4)
+    args5 = base_args(chrom, 0.5)
+    args6 = base_args(chrom, 0.6)
+    args7 = base_args(chrom, 0.7)
+    args8 = base_args(chrom, 0.8)
+    args9 = base_args(chrom, 0.9)
 
     r = runner()
     add_solver(r, args1, c, runs)

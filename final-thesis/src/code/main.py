@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 from tests import initial_population, ox_params, mr_params
-from tests.final import chrom, cr, mr, ipop, cr_mr, mr_cr
+from tests.final import chrom, cr, mr, ipop, cr_mr, chr_cr, chr_mr
 
 
 if __name__ == '__main__':
@@ -12,7 +12,9 @@ if __name__ == '__main__':
     chrom.run_all()
     mr.run_all()
     cr.run_all()
+
+    chr_cr.run_all()
+    chr_mr.run_all()
     cr_mr.run_all()
     ipop.run_all()
-    mr_cr.run_all()
     print '\ndone.\n'

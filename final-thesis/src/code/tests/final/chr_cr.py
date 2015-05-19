@@ -7,12 +7,19 @@ from analysis import GenericFig
 
 from .. import condition, TestRunResult, add_solver, green_color, red_color
 
-base_folder = 'final_mr'
+base_folder = 'final_chr_cr'
 c = condition(100)
 
 
 def run_all():
-    # run_0()  # +
+    run_base(10)  # -
+    run_base(20)  # -
+    run_base(30)  # -
+    run_base(40)  # -
+    run_base(50)  # -
+    # run_base(60)  # +
+    # run_base(70)  # +
+    run_base(80)  # -
     pass
 
 
@@ -20,12 +27,12 @@ def runner():
     return TSPSRunner(g_vln())
 
 
-def base_args(mr):
+def base_args(chrom, mr):
     args = GeneticArgs()
-    args.set_chr(66)
-    args.set_cr(0.3)
-    args.set_mr(mr)
-    args.set_key('mr_', args.get_mr)
+    args.set_chr(chrom)
+    args.set_cr(mr)
+    args.set_mr(0.3)
+    args.set_key("cr_{}".format(mr))
     args.set_method_initial_population(genetic.INITIAL_POPULATION_RANDOM)
     args.set_method_select(genetic.SELECTION_RANK)
     args.set_method_cross(genetic.CROSSOVER_OX)
@@ -33,19 +40,19 @@ def base_args(mr):
     return args
 
 
-def run_0():
-    prefix = ""
-    test_name = u"Mutacijos koef."
+def run_base(chrom):
+    prefix = " chrom = {}".format(chrom)
+    test_name = u"Rekombinacijos koef."
     runs = 10
-    args1 = base_args(0.1)
-    args2 = base_args(0.2)
-    args3 = base_args(0.3)
-    args4 = base_args(0.4)
-    args5 = base_args(0.5)
-    args6 = base_args(0.6)
-    args7 = base_args(0.7)
-    args8 = base_args(0.8)
-    args9 = base_args(0.9)
+    args1 = base_args(chrom, 0.1)
+    args2 = base_args(chrom, 0.2)
+    args3 = base_args(chrom, 0.3)
+    args4 = base_args(chrom, 0.4)
+    args5 = base_args(chrom, 0.5)
+    args6 = base_args(chrom, 0.6)
+    args7 = base_args(chrom, 0.7)
+    args8 = base_args(chrom, 0.8)
+    args9 = base_args(chrom, 0.9)
 
     r = runner()
     add_solver(r, args1, c, runs)

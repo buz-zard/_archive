@@ -12,7 +12,7 @@ c = condition(100)
 
 
 def run_all():
-    run_0()  # -
+    # run_0()  # +
     pass
 
 
@@ -20,10 +20,10 @@ def runner():
     return TSPSRunner(g_vln())
 
 
-def base_args(cr):
+def base_args(mr):
     args = GeneticArgs()
     args.set_chr(66)
-    args.set_cr(cr)
+    args.set_cr(mr)
     args.set_mr(0.1)
     args.set_key('cr_', args.get_cr)
     args.set_method_initial_population(genetic.INITIAL_POPULATION_RANDOM)
