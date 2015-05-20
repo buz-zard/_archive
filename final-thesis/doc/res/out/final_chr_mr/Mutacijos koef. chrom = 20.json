@@ -1,0 +1,236 @@
+{
+    "mr_0.8": {
+        "dist": {
+            "average": 17383, 
+            "worst": 19055, 
+            "best": 15695
+        }, 
+        "time": {
+            "average": 12.59503, 
+            "worst": 13.36276, 
+            "best": 11.72222
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.8, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.9": {
+        "dist": {
+            "average": 18102, 
+            "worst": 19886, 
+            "best": 16008
+        }, 
+        "time": {
+            "average": 11.32533, 
+            "worst": 12.24997, 
+            "best": 10.45967
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.9, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.4": {
+        "dist": {
+            "average": 16876, 
+            "worst": 17836, 
+            "best": 16203
+        }, 
+        "time": {
+            "average": 19.52996, 
+            "worst": 20.53084, 
+            "best": 18.21351
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.4, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.5": {
+        "dist": {
+            "average": 17028, 
+            "worst": 18311, 
+            "best": 15479
+        }, 
+        "time": {
+            "average": 17.69621, 
+            "worst": 19.74401, 
+            "best": 16.16008
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.5, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.6": {
+        "dist": {
+            "average": 16638, 
+            "worst": 17606, 
+            "best": 15775
+        }, 
+        "time": {
+            "average": 15.4789, 
+            "worst": 16.89226, 
+            "best": 13.96357
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.6, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.7": {
+        "dist": {
+            "average": 16767, 
+            "worst": 18315, 
+            "best": 14985
+        }, 
+        "time": {
+            "average": 14.02069, 
+            "worst": 15.37757, 
+            "best": 13.5061
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.7, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.1": {
+        "dist": {
+            "average": 16766, 
+            "worst": 18628, 
+            "best": 15432
+        }, 
+        "time": {
+            "average": 24.71046, 
+            "worst": 27.07229, 
+            "best": 23.25753
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.1, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.2": {
+        "dist": {
+            "average": 16047, 
+            "worst": 17436, 
+            "best": 15132
+        }, 
+        "time": {
+            "average": 22.539, 
+            "worst": 24.34835, 
+            "best": 20.04255
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.2, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "mr_0.3": {
+        "dist": {
+            "average": 16327, 
+            "worst": 17467, 
+            "best": 14235
+        }, 
+        "time": {
+            "average": 21.2032, 
+            "worst": 22.10977, 
+            "best": 20.28488
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_RANDOM", 
+            "chr": 20, 
+            "method_cross": "CROSSOVER_OX", 
+            "mr": 0.3, 
+            "cr": 0.3
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}
