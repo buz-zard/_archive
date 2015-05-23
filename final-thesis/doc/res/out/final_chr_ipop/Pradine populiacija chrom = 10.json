@@ -1,0 +1,218 @@
+{
+    "ipop_5": {
+        "dist": {
+            "average": 16151, 
+            "worst": 17225, 
+            "best": 14644
+        }, 
+        "time": {
+            "average": 106.10523, 
+            "worst": 126.70357, 
+            "best": 84.62829
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 5, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_7": {
+        "dist": {
+            "average": 16004, 
+            "worst": 17098, 
+            "best": 14716
+        }, 
+        "time": {
+            "average": 159.12403, 
+            "worst": 186.16657, 
+            "best": 138.18953
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 7, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_6": {
+        "dist": {
+            "average": 15715, 
+            "worst": 16318, 
+            "best": 14995
+        }, 
+        "time": {
+            "average": 126.53679, 
+            "worst": 143.82154, 
+            "best": 107.26659
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 6, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_1": {
+        "dist": {
+            "average": 16169, 
+            "worst": 17711, 
+            "best": 14599
+        }, 
+        "time": {
+            "average": 20.21842, 
+            "worst": 24.48084, 
+            "best": 16.55552
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 1, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_3": {
+        "dist": {
+            "average": 15855, 
+            "worst": 17022, 
+            "best": 14437
+        }, 
+        "time": {
+            "average": 54.52954, 
+            "worst": 63.02259, 
+            "best": 45.98641
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 3, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_2": {
+        "dist": {
+            "average": 15719, 
+            "worst": 16869, 
+            "best": 14123
+        }, 
+        "time": {
+            "average": 40.37836, 
+            "worst": 48.38604, 
+            "best": 33.25963
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 2, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_8": {
+        "dist": {
+            "average": 15782, 
+            "worst": 18013, 
+            "best": 14689
+        }, 
+        "time": {
+            "average": 190.85187, 
+            "worst": 247.31352, 
+            "best": 152.55569
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 8, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_10": {
+        "dist": {
+            "average": 16020, 
+            "worst": 16630, 
+            "best": 15279
+        }, 
+        "time": {
+            "average": 214.69371, 
+            "worst": 250.6414, 
+            "best": 194.28646
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 10, 
+            "initial_ants": 10, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}

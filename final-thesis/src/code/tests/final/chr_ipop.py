@@ -12,14 +12,14 @@ c = condition(100)
 
 
 def run_all():
-    run_base(10)  # -
-    run_base(20)  # -
-    run_base(30)  # -
-    run_base(40)  # -
-    run_base(50)  # -
-    run_base(60)  # -
-    run_base(70)  # -
-    run_base(80)  # -
+    # run_base(10)  # +
+    # run_base(20)  # +
+    # run_base(30)  # +
+    # run_base(40)  # +
+    # run_base(50)  # -
+    # run_base(60)  # -
+    # run_base(70)  # -
+    # run_base(80)  # -
     pass
 
 

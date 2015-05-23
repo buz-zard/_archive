@@ -1,0 +1,218 @@
+{
+    "ipop_7": {
+        "dist": {
+            "average": 15648, 
+            "worst": 16921, 
+            "best": 14444
+        }, 
+        "time": {
+            "average": 170.88452, 
+            "worst": 185.68911, 
+            "best": 149.99191
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 7, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_3": {
+        "dist": {
+            "average": 15058, 
+            "worst": 16535, 
+            "best": 13963
+        }, 
+        "time": {
+            "average": 85.07916, 
+            "worst": 93.34121, 
+            "best": 77.9042
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 3, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_11": {
+        "dist": {
+            "average": 15291, 
+            "worst": 16774, 
+            "best": 14671
+        }, 
+        "time": {
+            "average": 247.86563, 
+            "worst": 274.74179, 
+            "best": 214.41106
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 11, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_26": {
+        "dist": {
+            "average": 15017, 
+            "worst": 16521, 
+            "best": 14246
+        }, 
+        "time": {
+            "average": 590.65101, 
+            "worst": 633.78906, 
+            "best": 552.66815
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 26, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_15": {
+        "dist": {
+            "average": 15069, 
+            "worst": 16562, 
+            "best": 14137
+        }, 
+        "time": {
+            "average": 333.45389, 
+            "worst": 346.47989, 
+            "best": 308.48063
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 15, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_22": {
+        "dist": {
+            "average": 14912, 
+            "worst": 15418, 
+            "best": 14112
+        }, 
+        "time": {
+            "average": 503.55873, 
+            "worst": 554.35299, 
+            "best": 465.24332
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 22, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_30": {
+        "dist": {
+            "average": 15179, 
+            "worst": 16209, 
+            "best": 14207
+        }, 
+        "time": {
+            "average": 675.33277, 
+            "worst": 722.43827, 
+            "best": 647.55227
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 30, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_18": {
+        "dist": {
+            "average": 15111, 
+            "worst": 16108, 
+            "best": 14077
+        }, 
+        "time": {
+            "average": 420.87264, 
+            "worst": 449.65354, 
+            "best": 369.86019
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 30, 
+            "initial_ants": 18, 
+            "mr": 0.3, 
+            "cr": 0.3, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}
