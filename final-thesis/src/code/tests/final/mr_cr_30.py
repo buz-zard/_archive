@@ -7,7 +7,7 @@ from analysis import GenericFig
 
 from .. import condition, TestRunResult, add_solver, green_color, red_color
 
-base_folder = 'final_cr_mr_30chr'
+base_folder = 'final_mr_cr_30chr'
 c = condition(100)
 
 
@@ -16,12 +16,12 @@ def run_all():
     # run_base(0.1)  # +
     # run_base(0.2)  # +
     # run_base(0.3)  # +
-    # run_base(0.4)  # +
-    # run_base(0.5)  # +
-    # run_base(0.6)  # +
-    # run_base(0.7)  # +
-    # run_base(0.8)  # +
-    # run_base(0.9)  # +
+    run_base(0.4)  # -
+    run_base(0.5)  # -
+    run_base(0.6)  # -
+    run_base(0.7)  # -
+    run_base(0.8)  # -
+    run_base(0.9)  # -
     pass
 
 
@@ -29,12 +29,12 @@ def runner():
     return TSPSRunner(g_vln())
 
 
-def base_args(cr, mr):
+def base_args(mr, cr):
     args = GeneticArgs()
     args.set_chr(30)
     args.set_cr(cr)
     args.set_mr(mr)
-    args.set_key("mr_{}".format(mr))
+    args.set_key("cr_{}".format(cr))
     args.set_method_initial_population(genetic.INITIAL_POPULATION_RANDOM)
     args.set_method_select(genetic.SELECTION_RANK)
     args.set_method_cross(genetic.CROSSOVER_OX)
@@ -43,7 +43,7 @@ def base_args(cr, mr):
 
 
 def run_base(cr):
-    prefix = " cr = {}".format(cr)
+    prefix = " mr = {}".format(cr)
     test_name = u"Rekombinacijos, mutacijos koef."
     runs = 10
     args1 = base_args(cr, 0.1)

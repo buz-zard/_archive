@@ -13,15 +13,15 @@ c = condition(100)
 
 def run_all():
     print base_folder
-    run_base(0.1)  # -
-    run_base(0.2)  # -
-    run_base(0.3)  # -
-    run_base(0.4)  # -
-    run_base(0.5)  # -
-    run_base(0.6)  # -
-    run_base(0.7)  # -
-    run_base(0.8)  # -
-    run_base(0.9)  # -
+    # run_base(0.1)  # +
+    # run_base(0.2)  # +
+    # run_base(0.3)  # +
+    # run_base(0.4)  # +
+    # run_base(0.5)  # +
+    # run_base(0.6)  # +
+    # run_base(0.7)  # +
+    # run_base(0.8)  # +
+    # run_base(0.9)  # +
     pass
 
 

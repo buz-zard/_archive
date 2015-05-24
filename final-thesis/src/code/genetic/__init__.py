@@ -277,9 +277,7 @@ class Genetic(TSPSolver):
                 for u in ant_k.remaining_cities():
                     divisor += dist(r, u)
                 probability = division / divisor
-                # print 'probability', probability
                 if probability > uniform(0.0, 1.0):
-                    # print ' ####### visit!'
                     ant_k.visit_city(s)
                     return True
             return False
