@@ -1,0 +1,164 @@
+{
+    "ipop_6": {
+        "dist": {
+            "average": 16308, 
+            "worst": 17867, 
+            "best": 15072
+        }, 
+        "time": {
+            "average": 147.41477, 
+            "worst": 155.30781, 
+            "best": 129.11486
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 6, 
+            "mr": 0.15, 
+            "cr": 0.1, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_8": {
+        "dist": {
+            "average": 16097, 
+            "worst": 17218, 
+            "best": 15143
+        }, 
+        "time": {
+            "average": 181.70022, 
+            "worst": 200.01705, 
+            "best": 170.06716
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 8, 
+            "mr": 0.15, 
+            "cr": 0.1, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_10": {
+        "dist": {
+            "average": 16481, 
+            "worst": 17568, 
+            "best": 15138
+        }, 
+        "time": {
+            "average": 229.83812, 
+            "worst": 259.5252, 
+            "best": 212.39725
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 10, 
+            "mr": 0.15, 
+            "cr": 0.1, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_12": {
+        "dist": {
+            "average": 15630, 
+            "worst": 16974, 
+            "best": 14827
+        }, 
+        "time": {
+            "average": 274.3978, 
+            "worst": 298.07824, 
+            "best": 248.35644
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 12, 
+            "mr": 0.15, 
+            "cr": 0.1, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_14": {
+        "dist": {
+            "average": 16005, 
+            "worst": 17621, 
+            "best": 14278
+        }, 
+        "time": {
+            "average": 322.3463, 
+            "worst": 347.72989, 
+            "best": 300.28508
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 14, 
+            "mr": 0.15, 
+            "cr": 0.1, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }, 
+    "ipop_16": {
+        "dist": {
+            "average": 15931, 
+            "worst": 17101, 
+            "best": 13926
+        }, 
+        "time": {
+            "average": 361.94224, 
+            "worst": 389.45661, 
+            "best": 338.18125
+        }, 
+        "params": {
+            "method_mutate": "MUTATION_SA", 
+            "method_select": "SELECTION_RANK", 
+            "method_initial_population": "INITIAL_POPULATION_SEMIACS", 
+            "chr": 20, 
+            "initial_ants": 16, 
+            "mr": 0.15, 
+            "cr": 0.1, 
+            "method_cross": "CROSSOVER_OX"
+        }, 
+        "generations": {
+            "average": 101, 
+            "worst": 101, 
+            "best": 101
+        }
+    }
+}
