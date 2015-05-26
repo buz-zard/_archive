@@ -20,7 +20,7 @@ def run_all():
     run_base(0.6)  # -
     run_base(0.7)  # -
     run_base(0.8)  # -
-    run_base(0.9)  # -
+    # run_base(0.9)  # +
     pass
 
 

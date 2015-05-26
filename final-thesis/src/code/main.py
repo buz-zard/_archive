@@ -5,26 +5,26 @@ from tests.final import chrom, cr, mr, cr_mr, chr_cr, chr_mr, chr_ipop, cr_mr_10
 
 if __name__ == '__main__':
     print 'Starting...'
-    # ox_params.run_all()
-    # mr_params.run_all()
-    # initial_population.run_all()
+    ox_params.run_all()
+    mr_params.run_all()
+    initial_population.run_all()
 
-    # chrom.run_all()
-    # mr.run_all()
-    # cr.run_all()
+    chrom.run_all()
+    mr.run_all()
+    cr.run_all()
 
-    # cr_mr_10.run_all()
-    # cr_mr_20.run_all()
-    # mr_cr_10.run_all()
-    # mr_cr_20.run_all()
-    # mr_cr_30.run_all()
-    # cr_mr_30.run_all()
-    # cr_mr_40.run_all()
+    cr_mr_10.run_all()
+    cr_mr_20.run_all()
+    mr_cr_10.run_all()
+    mr_cr_20.run_all()
+    mr_cr_30.run_all()
+    cr_mr_30.run_all()
+    cr_mr_40.run_all()
 
-    # chr_ipop.run_all()
+    chr_ipop.run_all()
     cr_ipop.run_all()
 
-    # chr_mr.run_all()
-    # chr_cr.run_all()
-    # cr_mr.run_all()
+    chr_mr.run_all()
+    chr_cr.run_all()
+    cr_mr.run_all()
     print '\ndone.\n'
