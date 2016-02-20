@@ -27,7 +27,7 @@
 ---
 #### Side jobs/personal projects:
 
-+ Presentational website for a construction company [[`statrem-web`][statrem].
++ Presentational website for a construction company ([`statrem.eu`][statrem]) [[`statrem-repository`][statrem-repo]].
   * __Requirements__:
     * Manage projects and project categories.
     * Ability to upload and preview construction project's pictures.
@@ -40,4 +40,5 @@
 [problem-v]: /problem-v
 [problem-i]: /problem-i
 
-[statrem]: https://github.com/buz-zard/statrem-web
+[statrem]: http://statrem.eu/
+[statrem-repo]: https://github.com/buz-zard/statrem-web
