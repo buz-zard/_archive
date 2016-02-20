@@ -25,8 +25,15 @@
   * __Language__ - `Java`
 
 ---
+#### Side jobs/personal projects:
 
++ Presentational website for a construction company [[`statrem-web`][statrem].
+  * __Languages__ - `Python`, `JavaScript`
+
+---
 [cloud-news]: /cloud-paper-news
 [quadoctree]: /quadoctree
 [problem-v]: /problem-v
 [problem-i]: /problem-i
+
+[statrem]: https://github.com/buz-zard/statrem-web
