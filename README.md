@@ -27,7 +27,7 @@
 ---
 #### Side jobs/personal projects:
 
-+ Presentational website for a construction company [[`statrem-web`][statrem].
++ Presentational website for a construction company [[`statrem-web`][statrem]].
   * __Languages__ - `Python`, `JavaScript`
 
 ---
