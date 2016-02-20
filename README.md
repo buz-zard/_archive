@@ -27,7 +27,11 @@
 ---
 #### Side jobs/personal projects:
 
-+ Presentational website for a construction company [[`statrem-web`][statrem]].
++ Presentational website for a construction company [[`statrem-web`][statrem].
+  * __Requirements__:
+    * Manage projects and project categories.
+    * Ability to upload and preview construction project's pictures.
+    * Manage contact information.
   * __Languages__ - `Python`, `JavaScript`
 
 ---
