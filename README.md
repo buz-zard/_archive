@@ -21,8 +21,8 @@
 
 + Console tool to solve graph path problem [[`problem-v`][problem-v]].
   * __Language__ - `Python`
-+ Web interface to solve people relationship problem [[`problem-i`][problem-i]].
-  * __Language__ - `Java`
++ Web app to solve people relationship problem [[`problem-i`][problem-i]].
+  * __Language__ - `Java, JavaScript`
 
 ---
 #### Side jobs/personal projects:
