@@ -33,6 +33,14 @@
     * Ability to upload and preview construction project's pictures.
     * Manage contact information.
   * __Languages__ - `Python`, `JavaScript`
+  * __Frameworks__ - `Django`, `RactJS`
++ Web and mobile ridesharing search app, that displays information from Facebook group posts ([`shioferis.lt`][shioferis-web], [`shioferis-android`][shioferis-android]).
+  * __Requirements__:
+    * Periodically scrape information from over 130+ Facebook groups/pages.
+    * Analyze people posts to identify trip route, day, time and contact information.
+    * Provide usefull statistics.
+  * __Languages__ - `Python`, `JavaScript`
+  * __Frameworks__ - `Django`, `RactJS`
 
 ---
 [cloud-news]: /cloud-paper-news
@@ -42,3 +50,6 @@
 
 [statrem]: http://statrem.eu/
 [statrem-repo]: https://github.com/buz-zard/statrem-web
+
+[shioferis-web]: http://shioferis.lt/
+[shioferis-android]: https://play.google.com/store/apps/details?id=lt.shioferis.android&hl=lt
