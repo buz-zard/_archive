@@ -10,6 +10,7 @@
   * __Lecture__ - Programming in Cloud Computing.
   * __Task__ - to create a project where 1 or more cloud services would be used togerther.
   * __Language__ - `Python`
+  * __Frameworks__ - `Django`
 + Interactive Q-Tree data structure algorithm implementation [[`quadoctree`][quadoctree]]:
   * __Lecture__ - Data Structure Algorithms.
   * __Task__ - to implement a data structure algorithm from a given scientific publication.
@@ -23,6 +24,7 @@
   * __Language__ - `Python`
 + Web app to solve people relationship problem [[`problem-i`][problem-i]].
   * __Language__ - `Java, JavaScript`
+  * __Frameworks__ - `Spring, AngularJS`
 
 ---
 #### Side jobs/personal projects:
