@@ -1,8 +1,18 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {ThemeProvider} from 'styled-components';
 
-import App from './App';
-import './index.css';
+import {init} from './config';
+import {App} from './components';
+import {theme} from './styles';
 
 
-render(<App />, document.getElementById('root'));
+init();
+
+
+render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root'),
+);

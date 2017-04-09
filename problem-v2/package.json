@@ -18,8 +18,11 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "normalize.css": "^6.0.0",
+    "prop-types": "^15.5.4",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "react-dom": "^15.5.3",
+    "styled-components": "^1.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +31,6 @@
     "test": "react-scripts test --env=jsdom",
     "ci:test": "cross-env CI=true npm t",
     "lint": "eslint src"
-  }
+  },
+  "proxy": "http://api.dribbble.com"
 }
