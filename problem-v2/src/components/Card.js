@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
+
+import {addToFavourites, removeFromFavourites} from '../state/actions/shots';
+import Icon from './Icon';
 
 
 const Container = styled.div`
   width: 200px;
   height: 150px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
   margin: .5rem;
   position: relative;
 
-  a {
-    width: inherit;
-    height: inherit;
-    border-radius: 4px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
-    position: absolute;
-  }
-
-  a:hover, a:active, a:focus {
-    outline: 0;
-    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.75);
+  &:hover {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
 
     &:before {
       content: '';
@@ -28,7 +25,6 @@ const Container = styled.div`
       height: inherit;
       border-radius: inherit;
       background-color: rgba(256, 256, 256, .2);
-      cursor: pointer;
     }
   }
 
@@ -38,18 +34,56 @@ const Container = styled.div`
   }
 `;
 
+const CardIcon = styled(Icon)`
+  position: absolute;
+  padding: 10px;
+  cursor: pointer;
+  mix-blend-mode: exclusion;
+`;
 
-const Card = ({image, title, url}) =>
+const StarIcon = styled(CardIcon)`
+  right: 0;
+  color: #f1c40f;
+`;
+
+const LinkIcon = styled(CardIcon)`
+  bottom: 0;
+  color: #2980b9;
+`;
+
+
+const Card = ({image, title, url, isFavourited, handleFavourite, handleUnFavourite}) =>
   <Container>
-    <a onClick={() => window.open(url, '_blank')} tabIndex='0'>
-      <img src={image} alt={title} />
-    </a>
+    <StarIcon
+      className={isFavourited ? 'fa-star' : 'fa-star-o'}
+      onClick={isFavourited ? handleUnFavourite : handleFavourite}
+    />
+    <LinkIcon className='fa-link' onClick={() => window.open(url, '_blank')} />
+    <img src={image} alt={title} />
   </Container>;
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired, // eslint-disable-line
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  isFavourited: PropTypes.bool.isRequired,
+  handleFavourite: PropTypes.func.isRequired,
+  handleUnFavourite: PropTypes.func.isRequired,
 };
 
-export default Card;
+const enhance = connect(
+  (state, {id}) => ({
+    isFavourited: state.shots.favourites.indexOf(id) >= 0,
+  }),
+  (dispatch, {id}) => ({
+    handleFavourite() {
+      dispatch(addToFavourites(id));
+    },
+    handleUnFavourite() {
+      dispatch(removeFromFavourites(id));
+    },
+  }),
+);
+
+export default enhance(Card);
