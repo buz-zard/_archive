@@ -1,0 +1,32 @@
+{
+  "name": "to-infinity-and-beyond",
+  "version": "0.0.1",
+  "description": "Infinite scroller implementation example",
+  "repository": "git@github.com:buz-zard/_archive.git",
+  "author": "Karolis <pastas.k@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "husky": "^0.13.3",
+    "npm-run-all": "^4.0.2",
+    "react-scripts": "0.9.5"
+  },
+  "dependencies": {
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "prepush": "run-p ci:test lint",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "ci:test": "cross-env CI=true npm t",
+    "lint": "eslint src"
+  }
+}
