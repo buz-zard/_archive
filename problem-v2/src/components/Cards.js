@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  margin: 1.5rem auto;
+  margin: 0 auto;
 
   @media(${props => props.theme.breakpoints.tablet}) {
     width: 85%;

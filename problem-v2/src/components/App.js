@@ -1,43 +1,59 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 
-import api from '../api';
-import Cards from './Cards';
+import {initializeItems, loadItems} from '../state/actions/shots';
+import {InfiniteList, Cards} from './';
 
 
 const Container = styled.div`
   background-color: #e8e8e8;
   height: 100%;
-  overflow-y: auto;
 `;
 
 
 class App extends React.Component {
 
-  state = {items: null}
-
-  componentDidMount() {
-    api.getShots().then((data = []) => {
-      this.setState({items: data.map(item => ({
-        id: item.id,
-        url: item.html_url,
-        image: item.images.teaser,
-        title: item.title,
-      }))});
-    });
+  componentWillMount() {
+    this.props.initializeList({pageSize: 30});
   }
 
   render() {
-    const {items} = this.state;
-    if (items && items.length) {
-      return (
-        <Container>
-          <Cards items={items} />
-        </Container>
-      );
-    }
-    return null;
+    const {items, onItemsRequest, itemsLoading} = this.props;
+    return (
+      <Container>
+        <InfiniteList items={items} listComponent={Cards} onItemsRequest={onItemsRequest} loading={itemsLoading} />
+      </Container>
+    );
   }
 }
 
-export default App;
+App.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({})),
+  initializeList: PropTypes.func.isRequired,
+  onItemsRequest: PropTypes.func.isRequired,
+  itemsLoading: PropTypes.bool.isRequired,
+};
+
+App.defaultProps = {
+  items: null,
+};
+
+
+const enhance = connect(
+  state => ({
+    items: state.shots.list.data,
+    itemsLoading: state.shots.list.loading,
+  }),
+  dispatch => ({
+    initializeList(pageSize) {
+      dispatch(initializeItems(pageSize));
+    },
+    onItemsRequest() {
+      dispatch(loadItems());
+    },
+  }),
+);
+
+export default enhance(App);
