@@ -12,7 +12,7 @@ describe('shots list', () => {
       payload: {pageSize: 10},
     }).list).toEqual({
       loading: false,
-      page: 1,
+      page: 0,
       pageSize: 10,
       data: [],
     });

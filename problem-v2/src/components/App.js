@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 
-class App extends React.Component {
+export class App extends React.Component {
 
   componentWillMount() {
     this.props.initializeList({pageSize: 30});
