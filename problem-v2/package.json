@@ -1,6 +1,6 @@
 {
   "name": "to-infinity-and-beyond",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Infinite scroller implementation example",
   "repository": "git@github.com:buz-zard/_archive.git",
   "author": "Karolis <pastas.k@gmail.com>",
@@ -45,5 +45,6 @@
     "ci:test": "cross-env CI=true npm t",
     "lint": "eslint src"
   },
-  "proxy": "http://api.dribbble.com"
+  "proxy": "http://api.dribbble.com",
+  "homepage": "http://buz-zard.github.io/_archive/problem-v2"
 }
