@@ -3,7 +3,7 @@ import _ from 'lodash';
 import cfg from './config';
 
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV !== 'development';
 const baseUrl = isDevelopment ? '' : 'http://api.dribbble.com/';
 
 
@@ -26,6 +26,7 @@ const call = (method, url, options = {}) => {
 
   if (!isDevelopment) {
     params.mode = 'cors';
+    params.headers['Access-Control-Allow-Origin'] = '';
     params.headers['Access-Control-Request-Method'] = 'GET';
   }
 
