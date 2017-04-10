@@ -4,7 +4,7 @@ import cfg from './config';
 
 
 const isDevelopment = process.env.NODE_ENV === 'development';
-const baseUrl = isDevelopment ? '' : 'http://api.dribbble.com/';
+const baseUrl = isDevelopment ? '' : 'http://api.dribbble.com';
 
 
 const query = (params = {}) => {
@@ -26,7 +26,7 @@ const call = (method, url, options = {}) => {
 
   if (!isDevelopment) {
     params.mode = 'cors';
-    params.headers['Access-Control-Allow-Origin'] = '';
+    params.headers['Access-Control-Allow-Origin'] = 'http://buz-zard.github.io';
     params.headers['Access-Control-Request-Method'] = 'GET';
   }
 
