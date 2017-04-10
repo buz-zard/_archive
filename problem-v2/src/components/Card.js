@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
+import LazyLoad from 'react-lazy-load';
 
 import {addToFavourites, removeFromFavourites} from '../state/actions/shots';
 import Icon from './Icon';
@@ -32,6 +33,10 @@ const Container = styled.div`
       border-radius: inherit;
       background-color: rgba(256, 256, 256, .2);
     }
+  }
+
+  .LazyLoad {
+    border-radius: inherit;
   }
 
   img {
@@ -65,7 +70,9 @@ const Card = ({image, title, url, isFavourited, handleFavourite, handleUnFavouri
       onClick={isFavourited ? handleUnFavourite : handleFavourite}
     />
     <LinkIcon className='fa-link' onClick={() => window.open(url, '_blank')} />
-    <img src={image} alt={title} />
+    <LazyLoad threshold={dimensions.height * 1.5}>
+      <img src={image} alt={title} />
+    </LazyLoad>
   </Container>;
 
 Card.propTypes = {
