@@ -22,10 +22,12 @@ const call = (method, url, options = {}) => {
       Accept: 'application/json',
     },
   };
+  const $query = _.get(options, 'query', {});
+
   if (!isDevelopment) {
     params.mode = 'cors';
+    params.headers['Access-Control-Request-Method'] = 'GET';
   }
-  const $query = _.get(options, 'query', {});
 
   return new Promise((resolve, reject) => {
     fetch(`${baseUrl}/v1${url}${query({access_token: cfg.ACCESS_TOKEN, ...$query})}`, params)
