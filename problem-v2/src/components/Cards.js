@@ -2,7 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Card from './Card';
+import Card, {dimensions} from './Card';
+
+
+export const getGridSizeMetrics = (width, height) => {
+  const rowHeight = dimensions.height + 20;
+  const rowCount = Math.ceil(height / (dimensions.height + 20));
+  let cardsPerRow;
+  let deviceType;
+  if (width >= 1200) { // desktop
+    cardsPerRow = Math.floor((width * 0.7) / (dimensions.width + 20));
+    deviceType = 'desktop';
+  } else if (width >= 600) { // tablet
+    cardsPerRow = Math.floor((width * 0.85) / (dimensions.width + 20));
+    deviceType = 'tablet';
+  } else { // phone
+    cardsPerRow = Math.floor(width / (dimensions.width + 20));
+    deviceType = 'phone';
+  }
+  if (cardsPerRow < 1) cardsPerRow = 1;
+  return {deviceType, rowHeight, rowCount, cardsPerRow, cardCount: rowCount * cardsPerRow};
+};
 
 
 const Container = styled.div`

@@ -28,24 +28,30 @@ const ItemList = branch(
 class InfiniteList extends React.Component {
 
   componentDidMount() {
-    this.props.onItemsRequest();
-    this.refContainer.addEventListener('scroll', this.onScroll);
+    this.refContainer.addEventListener('scroll', this.loadIfNeeded);
+    this.loadIfNeeded();
+  }
+
+  componentDidUpdate() {
+    this.loadIfNeeded();
   }
 
   componentWillUnmount() {
-    this.refContainer.removeEventListener('scroll', this.onScroll);
+    this.refContainer.removeEventListener('scroll', this.loadIfNeeded);
   }
 
-  onScroll = () => {
-    if (this.shouldLoad()) {
-      this.props.onItemsRequest();
+  loadIfNeeded = () => {
+    const {loading, items, loadingThresholdInPX, onItemsRequest} = this.props;
+    if (loading) return;
+    if (!(items && items.length)) {
+      onItemsRequest();
+    } else {
+      const container = this.refContainer.getBoundingClientRect();
+      const bottom = this.refBottom.getBoundingClientRect();
+      if (bottom.bottom - container.bottom < loadingThresholdInPX) {
+        onItemsRequest();
+      }
     }
-  }
-
-  shouldLoad = () => {
-    const container = this.refContainer.getBoundingClientRect();
-    const bottom = this.refBottom.getBoundingClientRect();
-    return bottom.bottom - container.bottom < this.props.loadingThresholdInPX;
   }
 
   render() {

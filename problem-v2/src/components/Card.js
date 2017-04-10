@@ -7,9 +7,15 @@ import {addToFavourites, removeFromFavourites} from '../state/actions/shots';
 import Icon from './Icon';
 
 
+export const dimensions = {
+  width: 200,
+  height: 150,
+};
+
+
 const Container = styled.div`
-  width: 200px;
-  height: 150px;
+  width: ${dimensions.width}px;
+  height: ${dimensions.height}px;
   border-radius: 4px;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
   margin: .5rem;
