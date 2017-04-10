@@ -3,7 +3,7 @@ import _ from 'lodash';
 import cfg from './config';
 
 
-const isDevelopment = process.env.NODE_ENV !== 'development';
+const isDevelopment = process.env.NODE_ENV === 'development';
 const baseUrl = isDevelopment ? '' : 'http://api.dribbble.com/';
 
 
