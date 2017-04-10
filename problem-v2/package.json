@@ -14,6 +14,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "gh-pages": "^0.12.0",
     "husky": "^0.13.3",
     "npm-run-all": "^4.0.2",
     "react-addons-test-utils": "^15.5.1",
@@ -38,6 +39,8 @@
     "styled-components": "^1.4.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "cross-env NODE_ENV=development react-scripts start",
     "prepush": "run-p ci:test lint",
     "build": "react-scripts build",
@@ -45,6 +48,6 @@
     "ci:test": "cross-env CI=true npm t",
     "lint": "eslint src"
   },
-  "proxy": "http://api.dribbble.com",
+  "proxy": "https://api.dribbble.com",
   "homepage": "http://buz-zard.github.io/_archive/problem-v2"
 }

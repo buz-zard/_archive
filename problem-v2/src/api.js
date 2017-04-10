@@ -4,7 +4,7 @@ import cfg from './config';
 
 
 const isDevelopment = process.env.NODE_ENV === 'development';
-const baseUrl = isDevelopment ? '' : 'http://api.dribbble.com';
+const baseUrl = isDevelopment ? '' : 'https://api.dribbble.com';
 
 
 const query = (params = {}) => {
