@@ -25,7 +25,6 @@ const call = (method, url, options = {}) => {
   const $query = _.get(options, 'query', {});
 
   if (!isDevelopment) {
-    params.mode = 'cors';
     params.headers['Access-Control-Allow-Origin'] = 'http://buz-zard.github.io';
     params.headers['Access-Control-Request-Method'] = 'GET';
   }
