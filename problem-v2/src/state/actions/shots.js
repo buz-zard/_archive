@@ -41,6 +41,7 @@ export const loadItems = () => (dispatch, getState) => new Promise((resolve, rej
     resolve();
     return;
   }
+
   dispatch(startItemsLoading({page: page + 1}));
   api.getShots(page + 1, pageSize).then((data) => {
     const result = data.map(item => ({
@@ -50,5 +51,6 @@ export const loadItems = () => (dispatch, getState) => new Promise((resolve, rej
       title: item.title,
     }));
     dispatch(finishItemsLoading({page: page + 1, data: result}));
+    resolve();
   }).catch(reject);
 });

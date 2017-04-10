@@ -17,12 +17,12 @@ const Container = styled.div`
   width: ${dimensions.width}px;
   height: ${dimensions.height}px;
   border-radius: 4px;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
   margin: .5rem;
   position: relative;
 
   &:hover {
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
     &:before {
       content: '';

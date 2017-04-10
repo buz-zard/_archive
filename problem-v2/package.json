@@ -17,7 +17,8 @@
     "husky": "^0.13.3",
     "npm-run-all": "^4.0.2",
     "react-addons-test-utils": "^15.5.1",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "redux-mock-store": "^1.2.3"
   },
   "dependencies": {
     "classnames": "^2.2.5",
