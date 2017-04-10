@@ -1,8 +1,5 @@
 ## Front-end Homework Assignment
 
-# Preface
-At Vinted, front-end developers take part in the design process, so knowing not only latest HTML, CSS or Javascript things, but also tools used in web-design is the key to success.
-
 # Assignment
 ![example](https://5a2583d7dd16c25cb2e8-358d15e499fca729302e63598be13736.ssl.cf3.rackcdn.com/frontend/hw-example.png)
 
