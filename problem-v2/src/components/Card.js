@@ -84,6 +84,7 @@ Card.propTypes = {
   handleUnFavourite: PropTypes.func.isRequired,
 };
 
+
 const enhance = connect(
   (state, {id}) => ({
     isFavourited: state.shots.favourites.indexOf(id) >= 0,
