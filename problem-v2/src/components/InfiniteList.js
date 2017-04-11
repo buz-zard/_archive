@@ -29,6 +29,7 @@ class InfiniteList extends React.Component {
 
   componentDidMount() {
     this.refContainer.addEventListener('scroll', this.loadIfNeeded);
+    window.addEventListener('resize', this.loadIfNeeded);
     this.loadIfNeeded();
   }
 
@@ -38,6 +39,7 @@ class InfiniteList extends React.Component {
 
   componentWillUnmount() {
     this.refContainer.removeEventListener('scroll', this.loadIfNeeded);
+    window.removeEventListener('resize', this.loadIfNeeded);
   }
 
   loadIfNeeded = () => {

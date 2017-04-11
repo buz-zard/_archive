@@ -5,6 +5,34 @@
   "repository": "git@github.com:buz-zard/_archive.git",
   "author": "Karolis <pastas.k@gmail.com>",
   "license": "MIT",
+  "proxy": "http://api.dribbble.com",
+  "homepage": "http://buz-zard.github.io/_archive/problem-v2",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development react-scripts start",
+    "prepush": "run-p ci:test lint",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "ci:test": "cross-env CI=true npm t",
+    "help": "gh-pages --help",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
+    "immutability-helper": "^2.1.2",
+    "lodash": "^4.17.4",
+    "normalize.css": "^6.0.0",
+    "prop-types": "^15.5.6",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3",
+    "react-lazy-load": "^3.0.11",
+    "react-redux": "^5.0.4",
+    "recompose": "^0.23.1",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.0",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^1.4.4"
+  },
   "devDependencies": {
     "cross-env": "^4.0.0",
     "enzyme": "^2.8.0",
@@ -19,33 +47,5 @@
     "react-addons-test-utils": "^15.5.1",
     "react-scripts": "0.9.5",
     "redux-mock-store": "^1.2.3"
-  },
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "font-awesome": "^4.7.0",
-    "immutability-helper": "^2.1.2",
-    "lodash": "^4.17.4",
-    "normalize.css": "^6.0.0",
-    "prop-types": "^15.5.4",
-    "react": "^15.5.3",
-    "react-dom": "^15.5.3",
-    "react-lazy-load": "^3.0.11",
-    "react-redux": "^5.0.4",
-    "recompose": "^0.23.0",
-    "redux": "^3.6.0",
-    "redux-devtools-extension": "^2.13.0",
-    "redux-thunk": "^2.2.0",
-    "styled-components": "^1.4.4"
-  },
-  "scripts": {
-    "start": "cross-env NODE_ENV=development react-scripts start",
-    "prepush": "run-p ci:test lint",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "ci:test": "cross-env CI=true npm t",
-    "help": "gh-pages --help",
-    "lint": "eslint src"
-  },
-  "proxy": "https://api.dribbble.com",
-  "homepage": "http://buz-zard.github.io/_archive/problem-v2"
+  }
 }
