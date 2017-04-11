@@ -41,7 +41,6 @@ const Container = styled.div`
 
   img {
     border-radius: inherit;
-    flex-basis: 1rem;
   }
 `;
 
