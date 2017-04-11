@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import cfg from '../config';
 import Card, {dimensions} from './Card';
 
 
@@ -10,10 +11,10 @@ export const getGridSizeMetrics = (width, height) => {
   const rowCount = Math.ceil(height / (dimensions.height + 20));
   let cardsPerRow;
   let deviceType;
-  if (width >= 1200) { // desktop
+  if (width >= cfg.breakpoints.desktop) { // desktop
     cardsPerRow = Math.floor((width * 0.7) / (dimensions.width + 20));
     deviceType = 'desktop';
-  } else if (width >= 600) { // tablet
+  } else if (width >= cfg.breakpoints.tablet) { // tablet
     cardsPerRow = Math.floor((width * 0.85) / (dimensions.width + 20));
     deviceType = 'tablet';
   } else { // phone

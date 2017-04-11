@@ -5,7 +5,7 @@ import {ThemeProvider} from 'styled-components';
 
 import {init, store} from './config';
 import {App} from './components';
-import {theme} from './styles';
+import {getTheme} from './styles';
 
 
 init();
@@ -13,7 +13,7 @@ init();
 
 render(
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={getTheme()}>
       <App />
     </ThemeProvider>
   </Provider>,

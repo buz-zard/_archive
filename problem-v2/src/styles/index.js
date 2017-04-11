@@ -1,12 +1,13 @@
 import 'normalize.css/normalize.css';
 import 'font-awesome/css/font-awesome.css';
 
+import cfg from '../config';
 import './index.css';
 
 
-export const theme = {
+export const getTheme = () => ({
   breakpoints: {
-    tablet: 'min-width: 600px',
-    desktop: 'min-width: 1200px',
+    tablet: `min-width: ${cfg.breakpoints.tablet}px`,
+    desktop: `min-width: ${cfg.breakpoints.desktop}px`,
   },
-};
+});

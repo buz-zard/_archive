@@ -8,6 +8,10 @@ export {store};
 
 export default {
   ACCESS_TOKEN: '0059fb27e12aeb7704b1f0c53daeb7d277f1912b2d58af1afed61f9d04bd98a5',
+  breakpoints: {
+    tablet: 600,
+    desktop: 1200,
+  },
   infinityList: {
     updateThreshold: { // Request update when x rows left to bottom
       phone: 2.2,
