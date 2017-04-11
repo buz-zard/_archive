@@ -1,6 +1,6 @@
 ---
 
-List of completed code challanges, university tasks and side projects (ordered by completion date).
+#### List of some completed code challanges, university tasks and side projects (ordered by completion date):
 
 + [challange] Infinite scroll list - [problem-v2](https://github.com/buz-zard/_archive/tree/master/problem-v2) (2017-04)
   * __Keywords__ - `JS` `React` `Redux`
@@ -19,3 +19,5 @@ List of completed code challanges, university tasks and side projects (ordered b
 
 + [university] Interactive Q-Tree data structure algorithm implementation - [quadoctree](https://github.com/buz-zard/_archive/tree/master/quadoctree) (2014-03)
   * __Keywords__ - `Python`
+
+---
