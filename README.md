@@ -2,6 +2,9 @@
 
 #### List of some completed code challanges, university tasks and side projects:
 
++ [sideproject] Personal website - [kode.lt](https://github.com/buz-zard/kode.lt) (2017)
+  * __Keywords__ - `AWS (S3, CloudFront, Route 53)` `JS` `React`
+
 + [challange] Infinite scroll list - [problem-v2](https://github.com/buz-zard/_archive/tree/master/problem-v2) (2017-04)
   * __Keywords__ - `JS` `React` `Redux`
 
