@@ -9,7 +9,7 @@
   "homepage": "http://buz-zard.github.io/_archive/problem-v2",
   "scripts": {
     "start": "cross-env NODE_ENV=development react-scripts start",
-    "prepush": "run-p ci:test lint",
+    "validate": "run-p ci:test lint",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "ci:test": "cross-env CI=true npm t",
@@ -41,7 +41,6 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "husky": "^0.13.3",
     "npm-run-all": "^4.0.2",
     "react-addons-test-utils": "^15.5.1",
     "react-scripts": "0.9.5",

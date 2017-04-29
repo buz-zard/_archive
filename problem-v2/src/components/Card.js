@@ -13,6 +13,8 @@ export const dimensions = {
   height: 150,
 };
 
+const LAZYLOAD_ROWS_THRESHOLD = 1.5;
+
 
 const Container = styled.div`
   width: ${dimensions.width}px;
@@ -31,7 +33,7 @@ const Container = styled.div`
       width: inherit;
       height: inherit;
       border-radius: inherit;
-      background-color: rgba(256, 256, 256, .2);
+      background-color: rgba(255, 255, 255, .2);
     }
   }
 
@@ -69,7 +71,7 @@ const Card = ({image, title, url, isFavourited, handleFavourite, handleUnFavouri
       onClick={isFavourited ? handleUnFavourite : handleFavourite}
     />
     <LinkIcon className='fa-link' onClick={() => window.open(url, '_blank')} />
-    <LazyLoad threshold={dimensions.height * 1.5}>
+    <LazyLoad threshold={dimensions.height * LAZYLOAD_ROWS_THRESHOLD}>
       <img src={image} alt={title} />
     </LazyLoad>
   </Container>;

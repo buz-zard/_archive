@@ -7,7 +7,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const baseUrl = isDevelopment ? '' : 'https://api.dribbble.com';
 
 
-const query = (params = {}) => {
+const makeQuery = (params = {}) => {
   const result = Object.keys(params)
     .filter(key => params[key] != null && params[key] !== '')
     .map(key => `${key}=${String(params[key])}`);
@@ -22,14 +22,14 @@ const call = (method, url, options = {}) => {
       Accept: 'application/json',
     },
   };
-  const $query = _.get(options, 'query', {});
+  const queryArgs = _.get(options, 'query', {});
 
   if (!isDevelopment) {
     params.mode = 'cors';
   }
 
   return new Promise((resolve, reject) => {
-    fetch(`${baseUrl}/v1${url}${query({access_token: cfg.ACCESS_TOKEN, ...$query})}`, params)
+    fetch(`${baseUrl}/v1${url}${makeQuery({access_token: cfg.ACCESS_TOKEN, ...queryArgs})}`, params)
       .then((res) => {
         if (res.ok) {
           res.json().then(resolve).catch(reject);

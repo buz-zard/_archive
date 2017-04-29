@@ -31,8 +31,10 @@ export class App extends React.Component {
     return (
       <Container>
         <InfiniteList
-          items={items} listComponent={Cards}
-          onItemsRequest={onItemsRequest} loading={itemsLoading}
+          items={items}
+          listComponent={Cards}
+          onItemsRequest={onItemsRequest}
+          loading={itemsLoading}
           loadingThresholdInPX={updateThreshold}
         />
       </Container>
