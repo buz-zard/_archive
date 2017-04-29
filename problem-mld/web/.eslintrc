@@ -9,12 +9,20 @@
     "browser": true,
     "jest": true
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "./"]
+      }
+    }
+  },
   "rules": {
     "object-curly-spacing": [0],
     "import/prefer-default-export": [0],
     "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "max-len": ["error", 120]
+    "max-len": ["error", 120],
+    "no-underscore-dangle": 0
   }
 }
