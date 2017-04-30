@@ -1,0 +1,17 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb/base",
+  "plugins": [
+    "babel"
+  ],
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "object-curly-spacing": [0],
+    "import/prefer-default-export": [0],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "max-len": ["error", 120],
+    "no-underscore-dangle": 0
+  }
+}

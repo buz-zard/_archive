@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 
 app.listen(3001, () => {
-  console.log('Api server started on port 3001!')
+  console.log('Api server started on port 3001!');
 });
 
 

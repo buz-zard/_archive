@@ -1,8 +1,9 @@
 {
   "name": "quiz-app-web",
   "version": "0.1.0",
-  "description": "Quiz application's front-end",
+  "description": "Quiz app front-end",
   "repository": "git@github.com:buz-zard/_archive.git",
+  "author": "Karolis <pastas.k@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_PATH=./ NODE_ENV=development react-scripts start",
