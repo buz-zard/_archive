@@ -1,0 +1,23 @@
+{
+  "name": "quiz-app-api",
+  "version": "0.0.1",
+  "description": "Quiz app api",
+  "main": "build/index.js",
+  "repository": "https://github.com/buz-zard/_archive",
+  "author": "Karolis <pastas.k@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d build",
+    "serve": "node build/index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.11.0"
+  }
+}
