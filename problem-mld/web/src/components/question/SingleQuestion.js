@@ -11,12 +11,16 @@ class SingleQuestion extends React.Component {
     this.setState({answer: value});
   }
 
+  onSubmit = () => {
+    this.props.onSubmit(this.state.answer);
+  }
+
   render() {
-    const {index, label, options, ...props} = this.props;
+    const {number, label, options, last, ...props} = this.props;
     const {answer} = this.state;
     return (
       <div {...props}>
-        <div className='mb2'>{index}. {label}</div>
+        <div className='mb2'>{number}. {label}</div>
         <div>
           {options.map((item) => {
             const _id = uuid();
@@ -25,7 +29,7 @@ class SingleQuestion extends React.Component {
                 <input
                   id={_id}
                   type='radio'
-                  name={`question_${index}`}
+                  name={`question_${number}`}
                   checked={answer === item.value}
                   onChange={() => this.onSelect(item.value)}
                 />
@@ -35,7 +39,9 @@ class SingleQuestion extends React.Component {
           })}
         </div>
         <div>
-          <button type='button' className='mt2' disabled={answer == null}>Next</button>
+          <button type='button' className='mt2' disabled={answer == null} onClick={this.onSubmit}>
+            {last ? 'Submit' : 'Next'}
+          </button>
         </div>
       </div>
     );
@@ -43,12 +49,14 @@ class SingleQuestion extends React.Component {
 }
 
 SingleQuestion.propTypes = {
-  index: PropTypes.number.isRequired,
+  number: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  last: PropTypes.bool.isRequired,
 };
 
 export default SingleQuestion;

@@ -9,21 +9,25 @@ class MultiQuestion extends React.Component {
 
   onSelect = (value) => {
     const answers = this.state.answers.slice();
-    const index = answers.indexOf(value);
-    if (index === -1) {
+    const number = answers.indexOf(value);
+    if (number === -1) {
       this.setState({answers: [value, ...answers]});
     } else {
-      answers.splice(index, 1);
+      answers.splice(number, 1);
       this.setState({answers});
     }
   }
 
+  onSubmit = () => {
+    this.props.onSubmit(this.state.answers);
+  }
+
   render() {
-    const {index, label, options, ...props} = this.props;
+    const {number, label, options, last, ...props} = this.props;
     const {answers} = this.state;
     return (
       <div {...props}>
-        <div className='mb2'>{index}. {label}</div>
+        <div className='mb2'>{number}. {label}</div>
         <div>
           {options.map((item) => {
             const _id = uuid();
@@ -32,7 +36,7 @@ class MultiQuestion extends React.Component {
                 <input
                   id={_id}
                   type='checkbox'
-                  name={`question_${index}`}
+                  name={`question_${number}`}
                   checked={answers.indexOf(item.value) >= 0}
                   onChange={() => this.onSelect(item.value)}
                 />
@@ -42,7 +46,9 @@ class MultiQuestion extends React.Component {
           })}
         </div>
         <div>
-          <button type='button' className='mt2' disabled={answers.length === 0}>Next</button>
+          <button type='button' className='mt2' disabled={answers.length === 0} onClick={this.onSubmit}>
+            {last ? 'Submit' : 'Next'}
+          </button>
         </div>
       </div>
     );
@@ -50,12 +56,14 @@ class MultiQuestion extends React.Component {
 }
 
 MultiQuestion.propTypes = {
-  index: PropTypes.number.isRequired,
+  number: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
   })).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  last: PropTypes.bool.isRequired,
 };
 
 export default MultiQuestion;

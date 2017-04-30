@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-import Questionaire from './Questionaire';
+import Questionaire from './questionaire';
 
 
 const Container = styled.div`

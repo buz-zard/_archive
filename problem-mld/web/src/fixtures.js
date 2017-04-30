@@ -35,7 +35,7 @@ export default {
     }],
   }, {
     id: 3,
-    type: 'sinle',
+    type: 'single',
     label: 'Which built-in method reverses the order of the elements of an array?',
     options: [{
       value: 1,

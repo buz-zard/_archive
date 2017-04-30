@@ -31,7 +31,11 @@ const call = (method, url, options = {}) => {
 
 export default {
   getQuestions() {
-    // return call('get', '/questions');
-    return new Promise(resolve => resolve(fixtures.questions));
+    // return call('get', 'questions');
+    return new Promise(resolve => setTimeout(() => resolve(fixtures.questions), 500));
+  },
+  submitQuestionaire(answers) {
+    return call('post', 'questionaires/answers', {body: answers});
+    // return new Promise(resolve => setTimeout(() => resolve(), 500));
   },
 };
