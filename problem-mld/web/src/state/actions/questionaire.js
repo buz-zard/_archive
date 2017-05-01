@@ -1,6 +1,8 @@
 import api from '../../api';
 
 
+export const INITIALIZED = 'questionaire/INITIALIZED';
+export const METADATA_LOADING_FINISHED = 'questionaire/METADATA_LOADING_FINISHED';
 export const QUESTIONS_LOADING_STARTED = 'questionaire/QUESTIONS_LOADING_STARTED';
 export const QUESTIONS_LOADING_FINISHED = 'questionaire/QUESTIONS_LOADING_FINISHED';
 export const QUESTION_ANSWERED = 'questionaire/QUESTION_ANSWERED';
@@ -8,13 +10,24 @@ export const COMPLETED = 'questionaire/COMPLETED';
 export const SUBMITTED = 'questionaire/SUBMITTED';
 
 
-export const startQuestionsLoading = () => ({
-  type: QUESTIONS_LOADING_STARTED,
+export const initialize = id => ({
+  type: INITIALIZED,
+  payload: id,
 });
 
-export const finishQuestionsLoading = data => ({
+export const finishMetadataLoading = ({id, data}) => ({
+  type: METADATA_LOADING_FINISHED,
+  payload: {id, data},
+});
+
+export const startQuestionsLoading = id => ({
+  type: QUESTIONS_LOADING_STARTED,
+  payload: id,
+});
+
+export const finishQuestionsLoading = ({id, questions}) => ({
   type: QUESTIONS_LOADING_FINISHED,
-  payload: data,
+  payload: {id, questions},
 });
 
 export const answerQuestion = answer => ({
@@ -32,26 +45,40 @@ export const finishSubmit = () => ({
 
 
 // async
+export const loadMetadata = () => (dispatch, getState) => new Promise((resolve, reject) => {
+  const {questionaire: {id}} = getState();
+  if (id == null) {
+    reject();
+    return;
+  }
+
+  api.getQuestionaire(id).then((response) => {
+    dispatch(finishMetadataLoading({id, data: response}));
+    resolve();
+  }).catch(reject);
+});
+
+
 export const loadQuestions = () => (dispatch, getState) => new Promise((resolve, reject) => {
-  const {questionaire: {questions: {loading, data}}} = getState();
+  const {questionaire: {id, questions: {loading, data}}} = getState();
   if (loading || data != null) {
     resolve();
     return;
   }
 
-  dispatch(startQuestionsLoading());
-  api.getQuestions().then((response) => {
-    dispatch(finishQuestionsLoading(response));
+  dispatch(startQuestionsLoading(id));
+  api.getQuestions(id).then((response) => {
+    dispatch(finishQuestionsLoading({id, questions: response}));
     resolve();
   }).catch(reject);
 });
 
 
 export const submitAnswers = () => (dispatch, getState) => new Promise((resolve, reject) => {
-  const {questionaire: {answers, completed}} = getState();
+  const {questionaire: {id, answers, completed}} = getState();
   if (!completed) reject();
 
-  api.submitQuestionaire(answers).then((response) => {
+  api.submitQuestionaire(id, answers).then((response) => {
     dispatch(finishSubmit());
     resolve(response);
   }).catch(reject);

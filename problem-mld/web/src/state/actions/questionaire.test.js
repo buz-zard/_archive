@@ -53,7 +53,7 @@ describe('loadQuestions', () => {
       type: action.QUESTIONS_LOADING_STARTED,
     }, {
       type: action.QUESTIONS_LOADING_FINISHED,
-      payload: questions,
+      payload: {questions},
     }];
 
     mockApi.getQuestions.mockReturnValueOnce(Promise.resolve(questions));

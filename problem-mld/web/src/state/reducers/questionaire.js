@@ -1,12 +1,16 @@
 import update from 'immutability-helper';
 
 import {
+  INITIALIZED,
+  METADATA_LOADING_FINISHED,
   QUESTIONS_LOADING_STARTED, QUESTIONS_LOADING_FINISHED,
   QUESTION_ANSWERED, COMPLETED, SUBMITTED,
 } from '../actions/questionaire';
 
 
 const DEFAULT_STATE = {
+  id: null,
+  info: null,
   questions: {
     loading: false,
     data: null,
@@ -19,26 +23,48 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, {type, payload}) => {
   switch (type) {
+    case INITIALIZED:
+      if (payload != null) {
+        return {
+          ...DEFAULT_STATE,
+          id: payload,
+        };
+      }
+      return DEFAULT_STATE;
+    case METADATA_LOADING_FINISHED:
+      if (payload.id != null && state.id === payload.id) {
+        return update(state, {
+          $merge: {
+            info: payload.data,
+          },
+        });
+      }
+      return state;
     case QUESTIONS_LOADING_STARTED:
-      return update(state, {
-        $merge: {
-          questions: {
-            ...DEFAULT_STATE.questions,
-            loading: true,
+      if (payload != null && state.id === payload) {
+        return update(state, {
+          $merge: {
+            questions: {
+              ...DEFAULT_STATE.questions,
+              loading: true,
+            },
           },
-          answers: DEFAULT_STATE.answers,
-        },
-      });
+        });
+      }
+      return state;
     case QUESTIONS_LOADING_FINISHED:
-      return update(state, {
-        questions: {
-          $set: {
-            loading: false,
-            data: payload,
-            currentIndex: 0,
+      if (payload.id != null && state.id === payload.id) {
+        return update(state, {
+          questions: {
+            $set: {
+              loading: false,
+              data: payload.questions,
+              currentIndex: 0,
+            },
           },
-        },
-      });
+        });
+      }
+      return state;
     case QUESTION_ANSWERED: {
       const {currentIndex, data: questions} = state.questions;
       const question = questions[currentIndex];

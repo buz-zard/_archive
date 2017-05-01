@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v1';
 
+import {Container} from './Question';
+
 
 class SingleQuestion extends React.Component {
 
@@ -19,7 +21,7 @@ class SingleQuestion extends React.Component {
     const {number, label, options, last, ...props} = this.props;
     const {answer} = this.state;
     return (
-      <div {...props}>
+      <Container {...props}>
         <div className='mb2'>{number}. {label}</div>
         <div>
           {options.map((item) => {
@@ -43,7 +45,7 @@ class SingleQuestion extends React.Component {
             {last ? 'Submit' : 'Next'}
           </button>
         </div>
-      </div>
+      </Container>
     );
   }
 }

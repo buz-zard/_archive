@@ -3,11 +3,59 @@ import * as types from '../actions/questionaire';
 
 
 // #############################################################################
+// Generic actions
+// #############################################################################
+describe('generic actions', () => {
+  it('initializes', () => {
+    expect(reducer({
+      id: 253,
+      questions: {},
+      answers: [{
+        id: 1,
+        value: 2,
+      }],
+    }, {
+      type: types.INITIALIZED,
+      payload: 1,
+    })).toEqual({
+      id: 1,
+      info: null,
+      questions: {
+        loading: false,
+        data: null,
+        currentIndex: null,
+      },
+      answers: [],
+      completed: false,
+    });
+  });
+
+
+  it('sets metadata', () => {
+    expect(reducer({
+      id: 1,
+      questions: {},
+      answers: [],
+    }, {
+      type: types.METADATA_LOADING_FINISHED,
+      payload: {id: 1, data: {label: 'JavaScrip quiz level 99'}},
+    })).toEqual({
+      id: 1,
+      info: {label: 'JavaScrip quiz level 99'},
+      questions: {},
+      answers: [],
+    });
+  });
+});
+
+
+// #############################################################################
 // Questions
 // #############################################################################
 describe('questions', () => {
-  it('sets loading and resets answers', () => {
+  it('sets loading true', () => {
     expect(reducer({
+      id: 253,
       questions: {},
       answers: [{
         id: 1,
@@ -15,27 +63,51 @@ describe('questions', () => {
       }],
     }, {
       type: types.QUESTIONS_LOADING_STARTED,
+      payload: 253,
     })).toEqual({
+      id: 253,
       questions: {
         loading: true,
         data: null,
         currentIndex: null,
       },
-      answers: [],
+      answers: [{
+        id: 1,
+        value: 2,
+      }],
     });
   });
 
-  it('finises loading', () => {
+
+  it('finises loading with right questionaire id', () => {
     expect(reducer({
+      id: 67,
       questions: {loading: true},
     }, {
       type: types.QUESTIONS_LOADING_FINISHED,
-      payload: [{id: 33}],
+      payload: {id: 67, questions: [{id: 33}]},
     })).toEqual({
+      id: 67,
       questions: {
         loading: false,
         data: [{id: 33}],
         currentIndex: 0,
+      },
+    });
+  });
+
+
+  it('doesn\'t set data if id is wrong', () => {
+    expect(reducer({
+      id: 67,
+      questions: {loading: true},
+    }, {
+      type: types.QUESTIONS_LOADING_FINISHED,
+      payload: {id: 76, questions: [{id: 33}]},
+    })).toEqual({
+      id: 67,
+      questions: {
+        loading: true,
       },
     });
   });

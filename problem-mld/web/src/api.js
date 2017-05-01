@@ -1,5 +1,3 @@
-import fixtures from './fixtures';
-
 const baseUrl = '/api';
 
 
@@ -10,9 +8,9 @@ const call = (method, url, options = {}) => {
       Accept: 'application/json',
     },
   };
-  if (options.data != null) {
-    params.headers.Content = 'application/json';
-    params.body = JSON.stringify(options.data);
+  if (options.body != null) {
+    params.headers['Content-Type'] = 'application/json';
+    params.body = JSON.stringify(options.body);
   }
 
   return new Promise((resolve, reject) => {
@@ -30,12 +28,16 @@ const call = (method, url, options = {}) => {
 
 
 export default {
-  getQuestions() {
-    // return call('get', 'questions');
-    return new Promise(resolve => setTimeout(() => resolve(fixtures.questions), 500));
+  getQuestionaires() {
+    return call('get', 'questionaires');
   },
-  submitQuestionaire(answers) {
-    return call('post', 'questionaires/answers', {body: answers});
-    // return new Promise(resolve => setTimeout(() => resolve(), 500));
+  getQuestionaire(questionaireId) {
+    return call('get', `questionaires/${questionaireId}`);
+  },
+  getQuestions(questionaireId) {
+    return call('get', `questionaires/${questionaireId}/questions`);
+  },
+  submitQuestionaire(questionaireId, answers) {
+    return call('post', `questionaires/${questionaireId}/answers`, {body: answers});
   },
 };

@@ -3,7 +3,7 @@ import {injectGlobal} from 'styled-components';
 import './_tachyons.css';
 
 
-const BLOKK_FONT = `${process.env.PUBLIC_URL}fonts/BLOKKNeue-Regular`;
+const BLOKK_FONT = `${process.env.PUBLIC_URL}/fonts/BLOKKNeue-Regular`;
 
 /* eslint-disable */
 injectGlobal`

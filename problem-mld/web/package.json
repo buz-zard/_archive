@@ -5,6 +5,7 @@
   "repository": "git@github.com:buz-zard/_archive.git",
   "author": "Karolis <pastas.k@gmail.com>",
   "license": "MIT",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "cross-env NODE_PATH=./ NODE_ENV=development react-scripts start",
     "validate": "run-p ci:test lint",
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "cross-env": "^4.0.0",
+    "history": "^4.6.1",
     "immutability-helper": "^2.1.2",
     "lodash": "^4.17.4",
     "npm-run-all": "^4.0.2",
@@ -22,6 +24,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "^4.0.8",
     "recompose": "^0.23.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
