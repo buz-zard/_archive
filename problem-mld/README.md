@@ -13,7 +13,8 @@ Development
 
 Deployment
 - `make install` - install and setup deployment environment __*__ :wrench:
-- `make deploy.api-dev` - deploy API to AWS Eslatic Beanstalk __dev__ [environment](http://mld-dev.eu-central-1.elasticbeanstalk.com/) :rocket:
+- `make deploy.api-dev` - deploy API to AWS Eslatic Beanstalk [environment](http://mld-dev.eu-central-1.elasticbeanstalk.com/) :rocket:
+- `make deploy.web-dev` - deploy web UI to AWS S3 & CloudFront environments :rocket:
 
 
 ---
