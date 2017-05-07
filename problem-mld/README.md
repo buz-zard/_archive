@@ -4,12 +4,12 @@
 ---
 
 Deployment
-- `make install` - install and setup deployment environment * :wrench:
+- `make install` - install and setup deployment environment __*__ :wrench:
 - `make deploy.api-dev` - deploy API to AWS Eslatic Beanstalk __dev__ [environment](http://mld-dev.eu-central-1.elasticbeanstalk.com/) :rocket:
 
 
 ---
-\* Manualy append at the bottom of `.elasticbeanstalk/config.yml` file:
+__*__ Manualy append above line at the bottom of `.elasticbeanstalk/config.yml` file:
 ```
 deploy:
   artifact: build.zip
