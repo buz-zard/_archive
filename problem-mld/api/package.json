@@ -7,10 +7,11 @@
   "license": "MIT",
   "main": "build/index.js",
   "scripts": {
-    "start": "nodemon src/index.js --exec babel-node",
-    "validate": "npm run lint",
+    "start": "node build/index.js",
+    "prebuild": "rimraf ./build",
     "build": "babel src -d build",
-    "serve": "node build/index.js",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "validate": "npm run lint",
     "lint": "eslint src"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1"
   }
 }

@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
-import config from './config.json';
+import config from './config';
 import {
   questionaires as questionairesController,
   questions as questionsController,
@@ -34,7 +34,7 @@ app.route(`${config.apiPrefix}/questionaires/:questionaireId/answers`)
   .post(answersController.submitAnswer);
 
 
-app.listen(config.port, () => {
+app.listen(process.env.PORT || config.port || 8081, () => {
   console.log(`Api server started on port ${config.port}!`);
 });
 

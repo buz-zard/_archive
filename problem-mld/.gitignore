@@ -1,0 +1,11 @@
+# deployment
+/deployment/venv
+
+# production
+/build
+build.zip
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.config.yml
+!.elasticbeanstalk/*.global.yml

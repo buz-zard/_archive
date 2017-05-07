@@ -5,9 +5,9 @@
   "repository": "git@github.com:buz-zard/_archive.git",
   "author": "Karolis <pastas.k@gmail.com>",
   "license": "MIT",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:8081",
   "scripts": {
-    "start": "cross-env NODE_PATH=./ NODE_ENV=development react-scripts start",
+    "dev": "cross-env NODE_PATH=./ NODE_ENV=development react-scripts start",
     "validate": "run-p ci:test lint",
     "build": "cross-env NODE_PATH=./ react-scripts build",
     "test": "cross-env NODE_PATH=./ react-scripts test --env=jsdom",
