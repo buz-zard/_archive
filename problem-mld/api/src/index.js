@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('API');
 });
 
 
@@ -34,7 +34,7 @@ app.route(`${config.apiPrefix}/questionaires/:questionaireId/answers`)
   .post(answersController.submitAnswer);
 
 
-app.listen(process.env.PORT || config.port || 8081, () => {
+app.listen(process.env.PORT || config.port, () => {
   console.log(`Api server started on port ${config.port}!`);
 });
 
