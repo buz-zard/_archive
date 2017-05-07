@@ -1,5 +1,13 @@
 #### [Assignment](https://github.com/buz-zard/_archive/blob/master/problem-mld/ASSIGNMENT.md) - quiz web app.
 
+#### End result - [http://dmumd3bz0dmmc.cloudfront.net/](http://dmumd3bz0dmmc.cloudfront.net/) :point_left:
+
+A quiz web app built using JavaScript frameworks and tools, deployed on AWS.
+
+---
+
+Development
+- `cd ./web && yarn start` - start web development server :construction:
 
 ---
 
