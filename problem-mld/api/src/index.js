@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+// import mysql from 'mysql';
 
 import config from './config';
 import {
@@ -14,6 +15,19 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+
+// switch (process.env.NODE_ENV) {
+//   case 'production':
+//     app.set('connection', mysql.createConnection({
+//       host: process.env.RDS_HOSTNAME,
+//       user: process.env.RDS_USERNAME,
+//       password: process.env.RDS_PASSWORD,
+//       port: process.env.RDS_PORT,
+//     }));
+//     break;
+//   default:
+//     break;
+// }
 
 
 app.get('/', (req, res) => {
@@ -35,7 +49,7 @@ app.route(`${config.apiPrefix}/questionaires/:questionaireId/answers`)
 
 
 app.listen(process.env.PORT || config.port, () => {
-  console.log(`Api server started on port ${config.port}!`);
+  console.log(`API server started on port ${process.env.PORT || config.port}!`);
 });
 
 

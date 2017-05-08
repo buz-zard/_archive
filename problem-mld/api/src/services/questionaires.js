@@ -1,9 +1,11 @@
 import fixtures from '../fixtures';
 
+const Questionaire = require('../models').Questionaire;
+
 
 export default {
   getList() {
-    return Promise.resolve(fixtures.questionaires);
+    return Questionaire.findAll({order: [['order', 'ASC']]});
   },
   getOne(id) {
     const questionaire = fixtures.questionaires.find(item => item.id === id);

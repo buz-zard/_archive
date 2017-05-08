@@ -7,6 +7,9 @@
 # production
 /build
 
+# production
+db.sqlite
+
 # misc
 .DS_Store
 .env

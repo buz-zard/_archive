@@ -11,13 +11,17 @@
     "prebuild": "rimraf ./build",
     "build": "babel src -d build",
     "dev": "nodemon src/index.js --exec babel-node",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all",
     "validate": "npm run lint",
     "lint": "eslint src"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "sequelize": "^3.30.4",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
