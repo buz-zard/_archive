@@ -26,7 +26,10 @@ api.build:
 api.bundle:
 	mkdir -p build
 	cp ./api/package.json ./build/package.json
+	cp ./api/yarn.lock ./build/yarn.lock
+	cp ./api/.build.sequelizerc ./build/.sequelizerc
 	cp -r ./api/build ./build/build
+	cp -r .ebextensions ./build/.ebextensions
 	cd build && zip -rq ../build.zip . *
 
 api.deploy-dev:

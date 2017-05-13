@@ -20,6 +20,7 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "morgan": "^1.8.1",
+    "pg": "^6.1.5",
     "sequelize": "^3.30.4",
     "sqlite3": "^3.1.8"
   },
@@ -35,6 +36,8 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "nodemon": "^1.11.0",
-    "rimraf": "^2.6.1"
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "sequelize-cli": "^2.7.0"
   }
 }

@@ -7,7 +7,8 @@ A quiz web app built using JavaScript frameworks and tools, deployed on AWS.
 ---
 
 Development
-- `cd ./web && yarn start` - start web development server :construction:
+- `cd ./api && yarn dev` - start API development server :construction:
+- `cd ./web && yarn dev` - start web development server :construction:
 
 ---
 
