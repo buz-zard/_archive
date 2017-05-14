@@ -24,7 +24,7 @@ class Questionaires extends React.Component {
         <ul>
           {items.map(item =>
             <li key={item.id}>
-              <Link to={`/quiz/${item.id}`}>{item.label}</Link>
+              <Link to={`/quiz/${item.id}`}>{item.name}</Link>
             </li>,
           )}
         </ul>

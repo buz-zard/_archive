@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "build/index.js",
   "scripts": {
-    "prestart": "./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed:all",
+    "prestart": "run-s migrate",
     "start": "node build/index.js",
     "prebuild": "rimraf ./build",
     "build": "babel src -d build",
@@ -21,6 +21,7 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "morgan": "^1.8.1",
+    "npm-run-all": "^4.0.2",
     "pg": "^6.1.5",
     "sequelize": "^3.30.4",
     "sequelize-cli": "^2.7.0",
@@ -38,7 +39,6 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1"
   }
 }
