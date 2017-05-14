@@ -11,6 +11,8 @@ _aws := $(_python) $(_venv)/bin/aws
 
 install: venv.install venv.update aws.ini eb.init
 
+deploy: deploy.api-dev deploy.web-dev
+
 deploy.api-dev: venv.update clean api.build api.bundle api.deploy-dev
 
 deploy.web-dev: venv.update web.build web.deploy-dev
