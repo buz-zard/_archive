@@ -2,7 +2,7 @@
 
 #### End result - [http://dmumd3bz0dmmc.cloudfront.net](http://dmumd3bz0dmmc.cloudfront.net) :point_left:
 
-A quiz web app built using JavaScript frameworks and tools, deployed on AWS.
+A quiz web app built using JavaScript frameworks and tools, deployed on AWS __**__.
 
 ---
 
@@ -25,3 +25,6 @@ __*__ Manualy append above line at the bottom of `.elasticbeanstalk/config.yml` 
 deploy:
   artifact: build.zip
 ```
+__**__ AWS architecture schema:
+
+![example](https://github.com/buz-zard/_archive/blob/master/problem-mld/deployment/aws-schema.png)
