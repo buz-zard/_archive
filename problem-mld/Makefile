@@ -43,7 +43,7 @@ api.deploy-dev:
 # ##############################################################################
 
 web.build:
-	cd ./web && yarn && yarn validate && yarn build
+	cd ./web && npm i && yarn validate && yarn build
 
 web.deploy-dev:
 	$(_aws) s3 rm s3://prototype-mld-dev --recursive --region eu-central-1
