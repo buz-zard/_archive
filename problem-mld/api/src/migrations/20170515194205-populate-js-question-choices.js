@@ -49,6 +49,6 @@ module.exports = {
       }, {});
   },
   down(queryInterface) {
-    return queryInterface.bulkDelete('Questions', null, {});
+    return queryInterface.bulkDelete('Choices', null, {});
   },
 };

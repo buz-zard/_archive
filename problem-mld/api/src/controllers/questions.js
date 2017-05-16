@@ -1,19 +1,16 @@
 import {questions} from '../services';
 
 
-const onError = res => err => res.status(500).send(err);
-
-
 export default {
-  getListForQuestionaire(req, res) {
+  getListForQuestionaire(req, res, next) {
     questions.getListByQuestionaire(parseInt(req.params.questionaireId, 10)).then((response) => {
       res.json(response);
-    }).catch(onError(res));
+    }).catch(next);
   },
-  getChoicesListForQuestion(req, res) {
+  getChoicesListForQuestion(req, res, next) {
     questions.getChoicesByQuestionId(parseInt(req.params.questionId, 10)).then((response) => {
       res.json(response);
-    }).catch(onError(res));
+    }).catch(next);
   },
 };
 

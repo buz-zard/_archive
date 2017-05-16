@@ -8,11 +8,23 @@ import CurrentQuestion from './CurrentQuestion';
 import {QuestionShell} from '../question';
 
 
-const QuestionaireSubmitted = ({onRetry}) =>
+const QuestionaireSubmitted = ({onRetry, result}) =>
   <div>
     <p>Questionaire submitted!</p>
+    {result.mistakes === 0 &&
+      <p>Well done, no mistakes!</p>
+    }
+    {result.mistakes > 0 &&
+      <p>Mistakes: {result.mistakes}</p>
+    }
     <Button onClick={onRetry}>Try again</Button>
   </div>;
+
+QuestionaireSubmitted.propTypes = {
+  result: PropTypes.shape({
+    mistakes: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 QuestionaireSubmitted.propTypes = {
   onRetry: PropTypes.func.isRequired,

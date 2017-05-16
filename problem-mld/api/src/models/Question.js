@@ -1,6 +1,3 @@
-import {Questionaire} from './';
-
-
 export default (sequelize, DataTypes) => {
   const Question = sequelize.define('Question', {
     name: DataTypes.STRING,
@@ -10,11 +7,11 @@ export default (sequelize, DataTypes) => {
       defaultValue: 'SINGLE',
       allowNull: false,
     },
-    questionaireId: {
-      type: DataTypes.INTEGER,
-      model: Questionaire,
-      key: 'id',
-    },
   });
+
+  Question.associate = (models) => {
+    Question.hasMany(models.Choice, {onDelete: 'cascade', as: 'choices', foreignKey: 'questionId'});
+  };
+
   return Question;
 };

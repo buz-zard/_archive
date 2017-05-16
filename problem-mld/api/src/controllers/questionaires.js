@@ -1,19 +1,16 @@
 import {questionaires} from '../services';
 
 
-const onError = res => err => res.status(500).send(err);
-
-
 export default {
-  getList(req, res) {
+  getList(req, res, next) {
     questionaires.getList().then((response) => {
       res.json(response);
-    }).catch(onError(res));
+    }).catch(next);
   },
-  getOneById(req, res) {
+  getOneById(req, res, next) {
     questionaires.getOne(parseInt(req.params.id, 10)).then((response) => {
       res.json(response);
-    }).catch(onError(res));
+    }).catch(next);
   },
 };
 

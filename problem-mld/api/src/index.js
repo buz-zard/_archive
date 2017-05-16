@@ -1,5 +1,7 @@
 import express from 'express';
+import http from 'http';
 import bodyParser from 'body-parser';
+import errorHandler from 'express-error-handler';
 import morgan from 'morgan';
 
 import config from './config';
@@ -9,11 +11,12 @@ import {
   answers as answersController,
 } from './controllers';
 
-
 const app = express();
+const server = http.createServer(app);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(errorHandler({server}));
 
 
 app.get('/', (req, res) => {
@@ -37,9 +40,9 @@ app.route(`${config.apiPrefix}/questionaires/:questionaireId/answers`)
   .post(answersController.submitAnswer);
 
 
-app.listen(process.env.PORT || config.port, () => {
-  console.log(`API server started on port ${process.env.PORT || config.port}!`);
+server.listen(process.env.PORT || config.port, () => {
+  console.log(`\nAPI server started on port - ${process.env.PORT || config.port}\n`); // eslint-disable-line
 });
 
 
-export default app;
+export default server;

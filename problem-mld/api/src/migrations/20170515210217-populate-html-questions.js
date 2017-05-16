@@ -22,7 +22,7 @@ module.exports = {
         ], {});
       });
   },
-  down(queryInterface) {
-    return queryInterface.bulkDelete('Questions', null, {});
+  down() {
+    return Promise.reject();
   },
 };

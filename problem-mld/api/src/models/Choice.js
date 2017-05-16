@@ -16,5 +16,10 @@ export default (sequelize, DataTypes) => {
       key: 'id',
     },
   });
+
+  Choice.associate = (models) => {
+    Choice.belongsTo(models.Question, {foreignKey: 'questionId'});
+  };
+
   return Choice;
 };

@@ -12,7 +12,7 @@ import QuestionaireRenderer from './QuestionaireRenderer';
 
 class Questionaire extends React.Component {
 
-  state = {submitting: false, submitted: false}
+  state = {submitting: false, submitted: false, result: null}
 
   componentDidMount() {
     const {requestQuestions, id} = this.props;
@@ -26,7 +26,7 @@ class Questionaire extends React.Component {
 
     this.setState({submitting: true});
     onSubmitAnswers()
-      .then(() => this.setState({submitting: false, submitted: true}))
+      .then(data => this.setState({submitting: false, submitted: true, result: data}))
       .catch(() => this.setState({submitting: false}));
   }
 
@@ -34,7 +34,7 @@ class Questionaire extends React.Component {
 
   render() {
     const {info} = this.props;
-    const {submitting, submitted} = this.state;
+    const {submitting, submitted, result} = this.state;
     return (
       <div>
         <h3>
@@ -45,6 +45,7 @@ class Questionaire extends React.Component {
           submitted={submitted}
           onSubmit={this.onSubmit}
           onRetry={this.onRetry}
+          result={result}
         />
       </div>
     );
@@ -78,10 +79,12 @@ const enhance = compose(
         ]);
       },
       onSubmitAnswers() {
-        return Promise.all([
-          dispatch(completeQuestionaire()),
-          dispatch(submitAnswers()),
-        ]);
+        return new Promise((resolve, reject) => {
+          Promise.all([
+            dispatch(completeQuestionaire()),
+            dispatch(submitAnswers()),
+          ]).then(data => resolve(data[1])).catch(reject);
+        });
       },
     }),
   ),

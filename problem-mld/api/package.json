@@ -15,12 +15,16 @@
     "dev-rebuild": "rimraf db.sqlite && npm run migrate",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
-    "validate": "npm run lint",
-    "lint": "eslint src"
+    "validate": "run-p lint test",
+    "lint": "eslint src",
+    "test": "jest src",
+    "tdd": "npm t -- --watch"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "express-error-handler": "^1.1.0",
+    "lodash": "^4.17.4",
     "morgan": "^1.8.1",
     "npm-run-all": "^4.0.2",
     "pg": "^6.1.5",
@@ -39,6 +43,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "jest": "^20.0.1",
     "nodemon": "^1.11.0",
     "rimraf": "^2.6.1"
   }
