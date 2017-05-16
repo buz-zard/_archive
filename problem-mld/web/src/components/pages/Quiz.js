@@ -6,7 +6,7 @@ import Questionaire from '../questionaire';
 
 
 const Quiz = ({match}) =>
-  <div className='mv5'>
+  <div className='mv4'>
     <Questionaire id={_.toInteger(match.params.id)} />
   </div>;
 

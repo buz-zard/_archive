@@ -81,4 +81,4 @@ eb.init:
 
 clean:
 	rm -rf ./build
-	rm ./build.zip
+	rm -f ./build.zip

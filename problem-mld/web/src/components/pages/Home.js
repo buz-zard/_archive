@@ -4,8 +4,8 @@ import {Questionaires} from 'src/components';
 
 
 const Home = () =>
-  <div className='mv5'>
-    <h1>Quiz master</h1>
+  <div className='mv4'>
+    <h1>Hey, Quiz Master!</h1>
     <Questionaires />
   </div>;
 

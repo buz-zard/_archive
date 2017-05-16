@@ -7,7 +7,7 @@ import {
   initialize, loadMetadata, loadQuestions,
   completeQuestionaire, submitAnswers,
 } from 'src/state/actions/questionaire';
-import QuestionaireHOC from './QuestionaireHOC';
+import QuestionaireRenderer from './QuestionaireRenderer';
 
 
 class Questionaire extends React.Component {
@@ -38,9 +38,9 @@ class Questionaire extends React.Component {
     return (
       <div>
         <h3>
-          {info && info.label}&nbsp;
+          {info && info.name}&nbsp;
         </h3>
-        <QuestionaireHOC
+        <QuestionaireRenderer
           submitting={submitting}
           submitted={submitted}
           onSubmit={this.onSubmit}
@@ -54,7 +54,7 @@ class Questionaire extends React.Component {
 Questionaire.propTypes = {
   id: PropTypes.number.isRequired,
   info: PropTypes.shape({
-    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }),
   requestQuestions: PropTypes.func.isRequired,
   onSubmitAnswers: PropTypes.func.isRequired,

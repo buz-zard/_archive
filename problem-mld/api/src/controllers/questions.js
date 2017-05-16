@@ -10,5 +10,10 @@ export default {
       res.json(response);
     }).catch(onError(res));
   },
+  getChoicesListForQuestion(req, res) {
+    questions.getChoicesByQuestionId(parseInt(req.params.questionId, 10)).then((response) => {
+      res.json(response);
+    }).catch(onError(res));
+  },
 };
 

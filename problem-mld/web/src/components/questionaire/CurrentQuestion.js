@@ -7,7 +7,7 @@ import {answerQuestion} from 'src/state/actions/questionaire';
 import Question from '../question';
 
 
-const QuestionHOC = ({question, questionIndex, saveAnswer, lastQuestion, onSubmit}) =>
+const CurrentQuestion = ({question, questionIndex, saveAnswer, lastQuestion, onSubmit}) =>
   <Question
     {...question}
     number={questionIndex + 1}
@@ -18,7 +18,7 @@ const QuestionHOC = ({question, questionIndex, saveAnswer, lastQuestion, onSubmi
     }}
   />;
 
-QuestionHOC.propTypes = {
+CurrentQuestion.propTypes = {
   question: PropTypes.shape({}).isRequired,
   questionIndex: PropTypes.number.isRequired,
   saveAnswer: PropTypes.func.isRequired,
@@ -27,7 +27,7 @@ QuestionHOC.propTypes = {
 };
 
 
-const CurrentQuestion = compose(
+const CurrentQuestionHOC = compose(
   connect(
     (state) => {
       const {completed, questions: {currentIndex, data: questions}} = state.questionaire;
@@ -46,7 +46,7 @@ const CurrentQuestion = compose(
       },
     }),
   ),
-  branch(props => props.question != null && props.completed !== true, renderComponent(QuestionHOC)),
+  branch(props => props.question != null && props.completed !== true, renderComponent(CurrentQuestion)),
 )(renderNothing());
 
-export default CurrentQuestion;
+export default CurrentQuestionHOC;

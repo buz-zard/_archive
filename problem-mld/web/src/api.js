@@ -37,6 +37,9 @@ export default {
   getQuestions(questionaireId) {
     return call('get', `questionaires/${questionaireId}/questions`);
   },
+  getChoices(questionId) {
+    return call('get', `questionaires/questions/${questionId}/choices`);
+  },
   submitQuestionaire(questionaireId, answers) {
     return call('post', `questionaires/${questionaireId}/answers`, {body: answers});
   },

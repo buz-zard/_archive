@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {compose, branch, renderComponent} from 'recompose';
 
-import LoadingIndicator from '../LoadingIndicator';
+import {Button, LoadingIndicator} from 'src/components';
 import CurrentQuestion from './CurrentQuestion';
 import {QuestionShell} from '../question';
 
@@ -11,7 +11,7 @@ import {QuestionShell} from '../question';
 const QuestionaireSubmitted = ({onRetry}) =>
   <div>
     <p>Questionaire submitted!</p>
-    <button type='button' onClick={onRetry}>Try again</button>
+    <Button onClick={onRetry}>Try again</Button>
   </div>;
 
 QuestionaireSubmitted.propTypes = {
@@ -21,7 +21,7 @@ QuestionaireSubmitted.propTypes = {
 const QuestionaireSubmit = ({onSubmit}) =>
   <div>
     <p>Oops! Something went wrong.</p>
-    <button type='button' onClick={onSubmit}>Submit answers again</button>
+    <Button onClick={onSubmit}>Submit answers again</Button>
   </div>;
 
 QuestionaireSubmit.propTypes = {
@@ -29,7 +29,7 @@ QuestionaireSubmit.propTypes = {
 };
 
 
-const QuestionaireHOC = compose(
+const QuestionaireRenderer = compose(
   connect(
     (state) => {
       const {completed, questions: {loading}} = state.questionaire;
@@ -43,4 +43,4 @@ const QuestionaireHOC = compose(
   branch(props => props.completed === true, renderComponent(QuestionaireSubmit)),
 )(CurrentQuestion);
 
-export default QuestionaireHOC;
+export default QuestionaireRenderer;

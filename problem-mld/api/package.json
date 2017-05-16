@@ -12,6 +12,7 @@
     "prebuild": "rimraf ./build",
     "build": "babel src -d build",
     "dev": "nodemon src/index.js --exec babel-node",
+    "dev-rebuild": "rimraf db.sqlite && npm run migrate",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "validate": "npm run lint",

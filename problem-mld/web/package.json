@@ -15,7 +15,9 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "cross-env": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "history": "^4.6.1",
     "immutability-helper": "^2.1.2",
     "lodash": "^4.17.4",

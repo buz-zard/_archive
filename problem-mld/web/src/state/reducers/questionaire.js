@@ -68,11 +68,10 @@ export default (state = DEFAULT_STATE, {type, payload}) => {
     case QUESTION_ANSWERED: {
       const {currentIndex, data: questions} = state.questions;
       const question = questions[currentIndex];
-      if (question.type === 'single'
-        && !Array.isArray(payload) // Answer is single value
+      if (question.type === 'SINGLE'
+        && !Array.isArray(payload) // Answer is SINGLE value
         && payload != null
-        && state.answers.find(item => item.questionId === question.id) == null // Answer isn't answered
-        && question.options.find(item => item.value === payload) != null) { // Answer is from options
+        && state.answers.find(item => item.questionId === question.id) == null) { // Answer isn't answered
         const answer = {questionId: question.id, answer: payload};
         return update(state, {
           questions: {currentIndex: {
@@ -80,25 +79,17 @@ export default (state = DEFAULT_STATE, {type, payload}) => {
           }},
           answers: {$push: [answer]},
         });
-      } else if (question.type === 'multi'
+      } else if (question.type === 'MULTI'
         && Array.isArray(payload) // Answer is array
         && payload.length > 0 // Array is not empty
         && state.answers.find(item => item.questionId === question.id) == null) { // Answer isn't answered
-        let answerIsValid = true;
-        payload.forEach((_answer) => { // Answer is from options
-          if (!(_answer != null && question.options.find(_option => _option.value === _answer) != null)) {
-            answerIsValid = false;
-          }
+        const answer = {questionId: question.id, answer: payload};
+        return update(state, {
+          questions: {currentIndex: {
+            $set: currentIndex < questions.length - 1 ? currentIndex + 1 : currentIndex,
+          }},
+          answers: {$push: [answer]},
         });
-        if (answerIsValid) {
-          const answer = {questionId: question.id, answer: payload};
-          return update(state, {
-            questions: {currentIndex: {
-              $set: currentIndex < questions.length - 1 ? currentIndex + 1 : currentIndex,
-            }},
-            answers: {$push: [answer]},
-          });
-        }
       }
       return state;
     }

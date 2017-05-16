@@ -30,6 +30,9 @@ app.route(`${config.apiPrefix}/questionaires/:id`)
 app.route(`${config.apiPrefix}/questionaires/:questionaireId/questions`)
   .get(questionsController.getListForQuestionaire);
 
+app.route(`${config.apiPrefix}/questionaires/questions/:questionId/choices`)
+  .get(questionsController.getChoicesListForQuestion);
+
 app.route(`${config.apiPrefix}/questionaires/:questionaireId/answers`)
   .post(answersController.submitAnswer);
 

@@ -1,3 +1,4 @@
+import 'font-awesome/css/font-awesome.css';
 import {injectGlobal} from 'styled-components';
 
 import './_tachyons.css';
@@ -19,13 +20,20 @@ injectGlobal`
     font-weight: normal;
     font-style: normal;
   }
+
+  html, #root {
+    height: 100%;
+  }
   
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #2c3e50;
+    height: 100%;
   }
 
   * {
@@ -33,3 +41,11 @@ injectGlobal`
   }
 `;
 /* eslint-enable */
+
+
+export const getTheme = () => ({
+  color: {
+    text: '#2c3e50',
+    accent: '#8e44ad',
+  },
+});

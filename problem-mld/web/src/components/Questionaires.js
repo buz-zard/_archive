@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {withProps} from 'recompose';
+import styled from 'styled-components';
 
 import api from 'src/api';
-import LoadingIndicator from './LoadingIndicator';
+import {Icon, LoadingIndicator} from './';
+
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.color.accent};
+`;
 
 
 class Questionaires extends React.Component {
@@ -20,14 +27,15 @@ class Questionaires extends React.Component {
     if (!items.length) return <LoadingIndicator />;
     return (
       <div>
-        <p>Test you skills in one of these quizes</p>
-        <ul>
+        <p>Test you skills in one of the quizes</p>
+        <div className='ph3'>
           {items.map(item =>
-            <li key={item.id}>
-              <Link to={`/quiz/${item.id}`}>{item.name}</Link>
-            </li>,
+            <div key={item.id} className='mv1'>
+              <Icon className='fa-hand-o-right mr2' />
+              <StyledLink to={`/quiz/${item.id}`}>{item.name}</StyledLink>
+            </div>,
           )}
-        </ul>
+        </div>
       </div>
     );
   }

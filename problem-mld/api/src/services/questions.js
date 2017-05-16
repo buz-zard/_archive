@@ -1,12 +1,11 @@
-import fixtures from '../fixtures';
+import {Question, Choice} from '../models';
 
 
 export default {
   getListByQuestionaire(id) {
-    const questions = fixtures.questions.find(item => item.questionaireId === id);
-    if (questions != null) {
-      return Promise.resolve(questions.data);
-    }
-    return Promise.reject();
+    return Question.findAll({where: {questionaireId: id}, order: [['order', 'ASC']]});
+  },
+  getChoicesByQuestionId(id) {
+    return Choice.findAll({where: {questionId: id}, order: [['order', 'ASC']]});
   },
 };
