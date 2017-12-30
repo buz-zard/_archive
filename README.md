@@ -2,6 +2,9 @@
 
 #### List of some completed code challanges, university tasks and side projects:
 
++ [chalange] Login form + server list - [tservers](https://github.com/buz-zard/senior-frontend-party) (2017-09)
+  * __Keywords__ - `JS` `React` `Redux`
+
 + [challange] Quiz app - [problem-mld](https://github.com/buz-zard/_archive/tree/master/problem-mld) (2017-05)
   * __Keywords__ - `AWS (S3, CloudFront, ElasticBeanstalk, RDS)` `JS` `Node` `Express` `React` `Redux`
 
