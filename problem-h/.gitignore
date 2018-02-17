@@ -1,0 +1,11 @@
+# npm files
+node_modules
+package-lock.json
+*.log*
+
+# Build products
+/build
+/dist
+
+# IDE
+.vscode
