@@ -3,5 +3,11 @@
   "version": "0.0.0",
   "author": "Karolis Šarapnickis <pastas.k@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "lint:md": "markdownlint $(find . -name '*.md' -not -path '**/node_modules/*')"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.7.1"
+  }
 }
