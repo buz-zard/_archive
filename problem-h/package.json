@@ -8,7 +8,7 @@
     "port": 3000
   },
   "scripts": {
-    "develop": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js --port $npm_package_config_port",
+    "develop": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js --port ${PORT:=$npm_package_config_port}",
     "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "clean": "rimraf build",
     "lint": "run-p lint:*",
@@ -16,6 +16,7 @@
     "lint:md": "markdownlint $(find . -name '*.md' -not -path '**/node_modules/*')",
     "format": "prettier --write '**/*.*'",
     "test-build": "yarn build && serve -s build",
+    "precommit": "lint-staged",
     "prepush": "yarn lint"
   },
   "dependencies": {
@@ -41,6 +42,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
+    "lint-staged": "^6.1.1",
     "markdownlint-cli": "^0.7.1",
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",
@@ -52,5 +54,15 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{css,scss,md,json}": [
+      "format",
+      "git add"
+    ]
   }
 }
