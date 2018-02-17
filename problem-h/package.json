@@ -11,13 +11,15 @@
     "develop": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js --port ${PORT:=$npm_package_config_port}",
     "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "clean": "rimraf build",
+    "test": "jest",
     "lint": "run-p lint:*",
     "lint:js": "eslint .",
     "lint:md": "markdownlint $(find . -name '*.md' -not -path '**/node_modules/*')",
     "format": "prettier --write '**/*.*'",
+    "qa": "run-p lint test",
     "test-build": "yarn build && serve -s build",
     "precommit": "lint-staged",
-    "prepush": "yarn lint"
+    "prepush": "yarn qa"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -26,6 +28,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "react-sticky-el": "^1.0.16",
     "react-stickynode": "^1.4.1",
     "styled-components": "^3.1.6",
     "tachyons-sass": "^4.9.2"
@@ -51,6 +54,7 @@
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
+    "jest": "^22.3.0",
     "lint-staged": "^6.1.1",
     "markdownlint-cli": "^0.7.1",
     "node-sass": "^4.7.2",

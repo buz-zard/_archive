@@ -19,7 +19,7 @@ const Container = styled.span`
 function HeaderLink({ className, ...props }) {
   return (
     <Container>
-      <NavLink className={cx('ph2', className)} {...props} />
+      <NavLink className={cx('Header__Link ph2', className)} {...props} />
     </Container>
   );
 }

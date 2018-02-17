@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Sticky from 'react-stickynode';
+import Sticky from 'react-sticky-el';
 
 import { FAIcon, HeaderLink } from './';
 
@@ -11,31 +11,29 @@ const Logo = styled(Link)`
 `;
 
 const Container = styled.header`
-  .sticky-outer-wrapper {
-    .sticky-inner-wrapper {
-      background: white;
-      transition: background 300ms ease-out;
+  .Header {
+    background: white;
+    transition: background 300ms ease-out;
 
-      .Logo {
-        transition: font-size 300ms ease-out;
-      }
-
-      .HeaderLink {
-        transition: color 300ms ease-out;
-      }
+    .Header__Logo {
+      transition: font-size 300ms ease-out;
     }
 
-    &.active {
-      .sticky-inner-wrapper {
-        background: ${props => props.theme.color.cyan};
+    .Header__Link {
+      transition: color 300ms ease-out;
+    }
+  }
 
-        .Logo {
-          font-size: 1rem;
-        }
+  .sticky {
+    .Header {
+      background: ${props => props.theme.color.cyan};
 
-        .HeaderLink {
-          color: white;
-        }
+      .Header__Logo {
+        font-size: 1rem;
+      }
+
+      .Header__Link {
+        color: white;
       }
     }
   }
@@ -43,28 +41,26 @@ const Container = styled.header`
 
 class Header extends React.Component {
   componentDidMount() {
-    setTimeout(() => {
-      window.scroll(window.scrollX, window.scrollY + 1);
-      window.scroll(window.scrollX, window.scrollY - 1);
-    });
+    window.scroll(window.scrollX, window.scrollY + 1);
+    window.scroll(window.scrollX, window.scrollY - 1);
   }
 
   render() {
     return (
       <Container>
-        <Sticky>
-          <div className="pa3 ph4-ns">
+        <Sticky stickyStyle={{ zIndex: 1 }}>
+          <div className="Header pa3 ph4-ns">
             <div className="flex items-center">
               <div className="flex-grow-1">
-                <Logo to="/" className="f4 Logo">
+                <Logo to="/" className="f4 Header__Logo">
                   <FAIcon type="home" />
                   <span> BNBADMIN</span>
                 </Logo>
               </div>
-              <HeaderLink exact to="/" className="nl2 HeaderLink">
+              <HeaderLink exact to="/" className="nl2">
                 Home
               </HeaderLink>
-              <HeaderLink to="/properties" className="nr2 HeaderLink">
+              <HeaderLink to="/properties" className="nr2">
                 My Properties
               </HeaderLink>
             </div>

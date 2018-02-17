@@ -5,3 +5,5 @@ export { default as Header } from './Header';
 export { default as Footer } from './Footer';
 export { default as Article } from './Article';
 export { default as HeaderLink } from './HeaderLink';
+export { default as Property } from './Property';
+export { default as MyPoperties } from './MyPoperties';
