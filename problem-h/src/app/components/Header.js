@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Sticky from 'react-sticky-el';
+import cx from 'classnames';
 
 import { FAIcon, HeaderLink } from './';
 
@@ -13,14 +14,17 @@ const Logo = styled(Link)`
 const Container = styled.header`
   .Header {
     background: white;
-    transition: background 300ms ease-out;
 
-    .Header__Logo {
-      transition: font-size 300ms ease-out;
-    }
+    &.animatable {
+      transition: background 300ms ease-out;
 
-    .Header__Link {
-      transition: color 300ms ease-out;
+      .Header__Logo {
+        transition: font-size 300ms ease-out;
+      }
+
+      .Header__Link {
+        transition: color 300ms ease-out;
+      }
     }
   }
 
@@ -40,16 +44,22 @@ const Container = styled.header`
 `;
 
 class Header extends React.Component {
+  state = { animatable: false };
+
   componentDidMount() {
     window.scroll(window.scrollX, window.scrollY + 1);
     window.scroll(window.scrollX, window.scrollY - 1);
+    setTimeout(() => {
+      this.setState({ animatable: true });
+    });
   }
 
   render() {
+    const { animatable } = this.state;
     return (
       <Container>
         <Sticky stickyStyle={{ zIndex: 1 }}>
-          <div className="Header pa3 ph4-ns">
+          <div className={cx('Header pa3 ph4-ns', animatable && 'animatable')}>
             <div className="flex items-center">
               <div className="flex-grow-1">
                 <Logo to="/" className="f4 Header__Logo">
