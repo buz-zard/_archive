@@ -1,15 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Loading } from './components';
+import routes from './routes';
 import './style';
 
 function App() {
-  return (
-    <div>
-      <h1>Hello</h1>
-      <Loading />
-    </div>
-  );
+  return <Router>{routes()}</Router>;
 }
 
 export default App;

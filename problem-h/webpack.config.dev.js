@@ -7,6 +7,9 @@ const baseConfig = require('./webpack.config.base');
 
 module.exports = merge.smart(baseConfig, {
   devtool: 'source-map',
+  devServer: {
+    historyApiFallback: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html'),
