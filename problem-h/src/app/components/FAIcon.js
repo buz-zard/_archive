@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 const FAIcon = ({ type, className, ...props }) => (
   <i
-    className={classNames('fa', `fa-${type}`, className)}
+    className={cx('fa', `fa-${type}`, className)}
     aria-hidden="true"
     {...props}
   />

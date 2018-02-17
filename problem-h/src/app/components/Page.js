@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Header, Footer } from './';
 
-function Page({ children }) {
+function Page({ children, className }) {
   return (
     <React.Fragment>
       <Header />
-      <main>{children}</main>
+      <main className={className}>{children}</main>
       <Footer />
     </React.Fragment>
   );
@@ -15,6 +15,11 @@ function Page({ children }) {
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
+
+Page.defaultProps = {
+  className: undefined,
 };
 
 export default Page;

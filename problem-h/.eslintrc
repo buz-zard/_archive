@@ -9,10 +9,6 @@
     "prettier/prettier": [2],
     "import/prefer-default-export": [0],
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
-    "jsx-a11y/anchor-is-valid": [0],
-    "max-len": ["error", 120],
-    "no-confusing-arrow": [0],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-use-before-define": ["error", {"functions": false}]
+    "jsx-a11y/anchor-is-valid": [0]
   }
 }

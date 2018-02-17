@@ -4,19 +4,19 @@ import styled from 'styled-components';
 import { FAIcon } from './';
 
 const Container = styled.footer`
-  background-color: #efefef;
+  background-color: ${props => props.theme.color.bgLighGray};
 `;
 
 function Footer() {
   return (
     <Container className="ph3 pv4 ph4-ns pv5-ns ph5-l">
-      <div>
+      <div className="tc">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </div>
-      <div className="mt2 mt3-ns f7">
+      <div className="mt2 mt3-ns f7 tc">
         <FAIcon type="copyright" /> {new Date().getFullYear()} ALL RIGHTS
-        RESERVED THECOMPANY.COM
+        RESERVED BNBADMIN.COM
       </div>
     </Container>
   );
