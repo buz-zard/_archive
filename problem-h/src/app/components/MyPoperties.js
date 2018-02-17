@@ -1,57 +1,30 @@
 import React from 'react';
 
-import { Property } from '../components';
+import api from '../api';
+import { Loading, Property } from '../components';
 
-const data = [
-  {
-    owner: 'carlos',
-    address: {
-      line1: 'Flat 5',
-      line4: '7 Westbourne Terrace',
-      postCode: 'W2 3UL',
-      city: 'London',
-      country: 'U.K.',
-    },
-    airbnbId: 3512500,
-    numberOfBedrooms: 1,
-    numberOfBathrooms: 1,
-    incomeGenerated: 2000.34,
-  },
-  {
-    owner: 'ankur',
-    address: {
-      line1: '4',
-      line2: 'Tower Mansions',
-      line3: 'Off Station road',
-      line4: '86-87 Grange Road',
-      postCode: 'SE1 3BW',
-      city: 'London',
-      country: 'U.K.',
-    },
-    airbnbId: 1334159,
-    numberOfBedrooms: 3,
-    numberOfBathrooms: 1,
-    incomeGenerated: 10000,
-  },
-  {
-    owner: 'elaine',
-    address: {
-      line1: '4',
-      line2: '332b',
-      line4: 'Goswell Road',
-      postCode: 'EC1V 7LQ',
-      city: 'London',
-      country: 'U.K.',
-    },
-    airbnbId: 12220057,
-    numberOfBedrooms: 2,
-    numberOfBathrooms: 2,
-    incomeGenerated: 1200,
-  },
-];
+class MyPoperties extends React.Component {
+  state = { data: undefined, hasLoaded: false };
 
-function MyPoperties() {
-  return data.map(item => <Property key={item.airbnbId} {...item} />);
+  componentDidMount() {
+    api
+      .getMyProperties()
+      .then(data => {
+        this.setState({ data, hasLoaded: true });
+      })
+      .catch(() => {
+        this.setState({ hasLoaded: true });
+      });
+  }
+
+  render() {
+    const { data, hasLoaded } = this.state;
+    if (!hasLoaded) return <Loading />;
+    if (!(data && data.length)) {
+      return <p>You do not have any properties to manage</p>;
+    }
+    return data.map(item => <Property key={item.airbnbId} {...item} />);
+  }
 }
 
 export default MyPoperties;
