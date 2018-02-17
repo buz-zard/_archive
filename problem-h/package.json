@@ -5,9 +5,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "lint:md": "markdownlint $(find . -name '*.md' -not -path '**/node_modules/*')"
+    "lint": "run-p lint:*",
+    "lint:md": "markdownlint $(find . -name '*.md' -not -path '**/node_modules/*')",
+    "prepush": "yarn lint"
   },
   "devDependencies": {
-    "markdownlint-cli": "^0.7.1"
+    "husky": "^0.14.3",
+    "markdownlint-cli": "^0.7.1",
+    "npm-run-all": "^4.1.2"
   }
 }
