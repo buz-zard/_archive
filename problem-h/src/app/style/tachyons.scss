@@ -28,7 +28,7 @@
 
 //  Variables
 //  Importing here will allow you to override any variables in the modules
-// @import '~tachyons-sass/scss/variables';
+@import '~tachyons-sass/scss/variables';
 
 //  Debugging
 // @import '~tachyons-sass/scss/debug-children';
@@ -38,7 +38,7 @@
 //  @import '~tachyons-sass/scss/debug';
 
 //  Modules
-//  @import '~tachyons-sass/scss/box-sizing';
+@import '~tachyons-sass/scss/box-sizing';
 //  @import '~tachyons-sass/scss/aspect-ratios';
 //  @import '~tachyons-sass/scss/images';
 //  @import '~tachyons-sass/scss/background-size';
@@ -53,7 +53,7 @@
 //  @import '~tachyons-sass/scss/code';
 //  @import '~tachyons-sass/scss/coordinates';
 //  @import '~tachyons-sass/scss/clears';
-//  @import '~tachyons-sass/scss/display';
+@import '~tachyons-sass/scss/display';
 //  @import '~tachyons-sass/scss/flexbox';
 //  @import '~tachyons-sass/scss/floats';
 //  @import '~tachyons-sass/scss/font-family';
@@ -73,7 +73,7 @@
 //  @import '~tachyons-sass/scss/rotations';
 //  @import '~tachyons-sass/scss/skins';
 //  @import '~tachyons-sass/scss/skins-pseudo';
-//  @import '~tachyons-sass/scss/spacing';
+@import '~tachyons-sass/scss/spacing';
 //  @import '~tachyons-sass/scss/negative-margins';
 //  @import '~tachyons-sass/scss/tables';
 //  @import '~tachyons-sass/scss/text-decoration';
@@ -81,7 +81,7 @@
 //  @import '~tachyons-sass/scss/text-transform';
 //  @import '~tachyons-sass/scss/type-scale';
 //  @import '~tachyons-sass/scss/typography';
-//  @import '~tachyons-sass/scss/utilities';
+@import '~tachyons-sass/scss/utilities';
 //  @import '~tachyons-sass/scss/visibility';
 //  @import '~tachyons-sass/scss/white-space';
 //  @import '~tachyons-sass/scss/vertical-align';
