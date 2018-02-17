@@ -10,6 +10,8 @@ const COLORS = {
 
 export const theme = {
   color: {
-    bgLighGray: COLORS.lightGrey1,
+    cyan: COLORS.cyan1,
+    orange: COLORS.orange1,
+    lighGray: COLORS.lightGrey1,
   },
 };

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FAIcon } from './';
 
 const Container = styled.footer`
-  background-color: ${props => props.theme.color.bgLighGray};
+  background-color: ${props => props.theme.color.lighGray};
 `;
 
 function Footer() {
@@ -16,7 +16,7 @@ function Footer() {
       </div>
       <div className="mt2 mt3-ns f7 tc">
         <FAIcon type="copyright" /> {new Date().getFullYear()} ALL RIGHTS
-        RESERVED BNBADMIN.COM
+        RESERVED <span className="b">BNBADMIN.COM</span>
       </div>
     </Container>
   );

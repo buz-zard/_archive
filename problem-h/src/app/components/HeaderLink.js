@@ -8,8 +8,10 @@ const Container = styled.span`
   a {
     text-decoration: none;
     color: black;
+
     &.active {
-      color: red;
+      font-weight: bold;
+      text-decoration: underline;
     }
   }
 `;
