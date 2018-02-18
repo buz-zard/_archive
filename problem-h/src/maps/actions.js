@@ -7,9 +7,16 @@ import { makeAddressKey } from './utils';
 
 // async
 export const requestCoordinates = addressData => async (dispatch, getState) => {
+  const state = getState();
   const address = makeAddressKey(addressData);
   if (!address) return false;
-  if (selectors.isGeocodingFetching(getState(), address)) return false;
+  if (selectors.isGeocodingFetching(state, address)) return false;
+  if (
+    selectors.hasGeocodingFetched(state, address) &&
+    selectors.getGeocodingError(state, address) == null
+  ) {
+    return false;
+  }
   const meta = { address };
 
   const result = await dispatch({

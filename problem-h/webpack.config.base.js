@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { paths } = require('./webpack.config.constants');
 
 module.exports = {
-  entry: ['babel-polyfill', path.join(paths.SRC, 'index.js')],
+  entry: ['babel-polyfill', 'whatwg-fetch', path.join(paths.SRC, 'index.js')],
   module: {
     rules: [
       {
