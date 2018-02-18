@@ -2,6 +2,9 @@
 
 #### List of some completed code challanges, university tasks and side projects:
 
++ [challange] Airbnb property admin - [problem-h](https://github.com/buz-zard/_archive/tree/master/problem-h) (2018-02)
+  * __Keywords__ - `JS` `React` `Redux`
+
 + [chalange] Login form + server list - [tservers](https://github.com/buz-zard/senior-frontend-party) (2017-09)
   * __Keywords__ - `JS` `React` `Redux`
 
@@ -28,5 +31,4 @@
 
 + [university] Interactive Q-Tree data structure algorithm implementation - [quadoctree](https://github.com/buz-zard/_archive/tree/master/quadoctree) (2014-03)
   * __Keywords__ - `Python`
-
 ---
