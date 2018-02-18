@@ -1,13 +1,11 @@
 import properties from './data/properties.json';
-import { getRandomInt } from './utils';
+
+const getRandomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
 
 const mockResponse = data =>
   new Promise(resolve => {
     setTimeout(resolve.bind(null, data), getRandomInt(100, 800));
   });
 
-export default {
-  getMyProperties() {
-    return mockResponse(properties);
-  },
-};
+export const getProperties = () => mockResponse(properties);

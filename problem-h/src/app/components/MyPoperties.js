@@ -1,26 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
+import properties from '../../properties';
 import { WithMapsAPI } from '../../maps';
-import api from '../api';
 import { Loading, Property } from '../components';
 
 class MyPoperties extends React.Component {
-  state = { data: undefined, hasLoaded: false };
-
   componentDidMount() {
-    api
-      .getMyProperties()
-      .then(data => {
-        this.setState({ data, hasLoaded: true });
-      })
-      .catch(() => {
-        this.setState({ hasLoaded: true });
-      });
+    this.props.requestData();
   }
 
   render() {
-    const { data, hasLoaded } = this.state;
-    if (!hasLoaded) return <Loading />;
+    const { data, hasFetched } = this.props;
+    if (!hasFetched) return <Loading />;
     if (!(data && data.length)) {
       return <p>You do not have any properties to manage</p>;
     }
@@ -32,4 +26,24 @@ class MyPoperties extends React.Component {
   }
 }
 
-export default MyPoperties;
+MyPoperties.propTypes = {
+  requestData: PropTypes.func.isRequired,
+  hasFetched: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+MyPoperties.defaultProps = {
+  data: undefined,
+};
+
+const enhance = connect(
+  state => ({
+    data: properties.selectors.getData(state),
+    hasFetched: properties.selectors.hasFetched(state),
+  }),
+  dispatch => ({
+    requestData: bindActionCreators(properties.actions.requestData, dispatch),
+  })
+);
+
+export default enhance(MyPoperties);
