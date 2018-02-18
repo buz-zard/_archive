@@ -1,0 +1,5 @@
+import { NAME } from './constants';
+
+export const GET_GEOCODING = `${NAME}.GET_GEOCODING`;
+export const GET_GEOCODING_SUCCESS = `${NAME}.GET_GEOCODING_SUCCESS`;
+export const GET_GEOCODING_FAILURE = `${NAME}.GET_GEOCODING_FAILURE`;

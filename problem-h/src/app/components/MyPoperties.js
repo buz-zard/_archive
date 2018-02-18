@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { WithMapsAPI } from '../../maps';
 import api from '../api';
 import { Loading, Property } from '../components';
 
@@ -23,7 +24,11 @@ class MyPoperties extends React.Component {
     if (!(data && data.length)) {
       return <p>You do not have any properties to manage</p>;
     }
-    return data.map(item => <Property key={item.airbnbId} {...item} />);
+    return (
+      <WithMapsAPI>
+        {data.map(item => <Property key={item.airbnbId} {...item} />)}
+      </WithMapsAPI>
+    );
   }
 }
 
