@@ -1,3 +1,5 @@
+import { injectGlobal } from 'styled-components';
+
 import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
@@ -88,3 +90,19 @@ export const GMAP_STYLE = [
     ],
   },
 ];
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+  html {
+    background-color: ${COLORS.cyan1};
+  }
+
+  .c-orange {
+    color: ${COLORS.orange1};
+  }
+
+  .c-gray {
+    color: ${COLORS.gray1};
+  }
+`;
+/* eslint-enable no-unused-expressions */

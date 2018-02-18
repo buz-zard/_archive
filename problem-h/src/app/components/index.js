@@ -7,3 +7,5 @@ export { default as Article } from './Article';
 export { default as HeaderLink } from './HeaderLink';
 export { default as Property } from './Property';
 export { default as MyPoperties } from './MyPoperties';
+export { default as PropertyFocus } from './PropertyFocus';
+export { default as PropertyFocusMarker } from './PropertyFocusMarker';

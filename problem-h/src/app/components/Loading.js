@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import cx from 'classnames';
 
 import { FAIcon } from './';
 
@@ -24,12 +26,20 @@ const Container = styled.div`
   color: ${props => props.theme.color.gray};
 `;
 
-function Loading() {
+function Loading({ className }) {
   return (
-    <Container className="pa2">
+    <Container className={cx('pa3', className)}>
       <FAIcon type="circle-o-notch" className="fa-spin fa-2x fa-fw center db" />
     </Container>
   );
 }
+
+Loading.propTypes = {
+  className: PropTypes.string.isRequired,
+};
+
+Loading.defaultProps = {
+  className: undefined,
+};
 
 export default Loading;

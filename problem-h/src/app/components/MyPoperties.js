@@ -14,7 +14,7 @@ class MyPoperties extends React.Component {
 
   render() {
     const { data, hasFetched } = this.props;
-    if (!hasFetched) return <Loading />;
+    if (!hasFetched) return <Loading className="mv4" />;
     if (!(data && data.length)) {
       return <p>You do not have any properties to manage</p>;
     }

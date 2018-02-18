@@ -1,10 +1,18 @@
 import React from 'react';
 
-import { Page, Article } from '../components';
+import { Page, Article, PropertyFocus } from '../components';
+import { FOCUS_AREA } from '../constants';
 
 function Home() {
   return (
     <Page className="pa3 ph4-ns pt4 pb5">
+      <Article title="Let's focus!">
+        <p>
+          We have decided to contentrate more on the central properties. So take
+          a look at the map below and identify which properties are essential.
+        </p>
+        <PropertyFocus area={FOCUS_AREA} zoom={12} />
+      </Article>
       <Article title="Hello world">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

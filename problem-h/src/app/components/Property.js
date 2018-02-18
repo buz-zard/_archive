@@ -4,10 +4,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Marker } from 'react-google-maps';
+import haversine from 'haversine';
 
 import maps, { Map } from '../../maps';
+import { FOCUS_AREA } from '../constants';
 import { toNonRoundedFixedString } from '../utils';
 import { GMAP_STYLE } from '../style';
+import { FAIcon } from './';
 
 const DEFAULT_COORDINATES = { lat: 51.507, lng: 0.127 };
 
@@ -25,7 +28,7 @@ const MapContainer = styled.div`
 
 class Property extends React.Component {
   componentDidMount() {
-    this.props.requestCoordinates(this.props.address);
+    this.props.requestCoordinates();
   }
 
   render() {
@@ -54,6 +57,26 @@ class Property extends React.Component {
               {toNonRoundedFixedString(incomeGenerated, 2)} £
             </div>
           </div>
+          {coordinates && (
+            <div className="fl w-100 mt3">
+              {haversine(
+                { latitude: coordinates.lat, longitude: coordinates.lng },
+                {
+                  latitude: FOCUS_AREA.point.lat,
+                  longitude: FOCUS_AREA.point.lng,
+                },
+                { unit: 'meter' }
+              ) > FOCUS_AREA.radius ? (
+                <div className="c-gray">
+                  <FAIcon type="exclamation-circle" /> low focus
+                </div>
+              ) : (
+                <div className="c-orange">
+                  <FAIcon type="trophy" /> high focus
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <MapContainer className="fl w-100 w-50-l">
           <Map
@@ -107,9 +130,9 @@ const enhance = connect(
       maps.utils.makeAddressKey(address)
     ),
   }),
-  dispatch => ({
+  (dispatch, { address }) => ({
     requestCoordinates: bindActionCreators(
-      maps.actions.requestCoordinates,
+      maps.actions.requestCoordinates.bind(null, address),
       dispatch
     ),
   })
