@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { paths } = require('./webpack.config.constants');
 const baseConfig = require('./webpack.config.base');
@@ -15,8 +16,9 @@ module.exports = merge.smart(baseConfig, {
   devtool: 'cheap-module-source-map',
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new CopyWebpackPlugin([{ from: 'public' }]),
     new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html'),
+      template: path.join(paths.PUBLIC, 'index.html'),
       filename: 'index.html',
       inject: 'body',
       minify: {
