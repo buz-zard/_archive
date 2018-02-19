@@ -6,11 +6,6 @@ const { paths } = require('./webpack.config.constants');
 const baseConfig = require('./webpack.config.base');
 
 module.exports = merge.smart(baseConfig, {
-  // output: {
-  //   // path: paths.PUBLIC,
-  //   publicPath: '/',
-  //   // filename: '[name].js',
-  // },
   devtool: 'source-map',
   devServer: {
     historyApiFallback: true,
