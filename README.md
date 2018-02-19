@@ -5,7 +5,7 @@
 + [challange] Airbnb property admin - [problem-h](https://github.com/buz-zard/_archive/tree/master/problem-h) (2018-02)
   * __Keywords__ - `JS` `React` `Redux`
 
-+ [chalange] Login form + server list - [tservers](https://github.com/buz-zard/senior-frontend-party) (2017-09)
++ [challange] Login form + server list - [tservers](https://github.com/buz-zard/senior-frontend-party) (2017-09)
   * __Keywords__ - `JS` `React` `Redux`
 
 + [challange] Quiz app - [problem-mld](https://github.com/buz-zard/_archive/tree/master/problem-mld) (2017-05)
