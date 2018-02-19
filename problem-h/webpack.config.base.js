@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 const { paths } = require('./webpack.config.constants');
 
@@ -36,5 +37,10 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('[name].[hash].css'),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new OfflinePlugin({
+      ServiceWorker: {
+        navigateFallbackURL: '/',
+      },
+    }),
   ],
 };

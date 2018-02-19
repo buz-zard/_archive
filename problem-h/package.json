@@ -27,6 +27,7 @@
     "font-awesome": "^4.7.0",
     "haversine": "^1.1.0",
     "idx": "^2.2.0",
+    "offline-plugin": "^4.9.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
