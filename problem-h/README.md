@@ -4,11 +4,12 @@
 
 ## Prerequisites
 
-* `node` & `yarn`
+* `node`
+* `yarn`
 
 ## Setup
 
-* `yarn`
+1 `yarn`
 
 ## Commands
 
@@ -16,7 +17,7 @@
   * `yarn lint` - lint all packages 🚨
   * `yarn test` - run tests 🛠
   * `yarn format` - prettify all files 💅🏻
-* Main development commands:
+* Development:
   * `yarn develop` - start development server at <http://localhost:3000/> (or
     pass `PORT` env variable for a custom one) 🚧
   * `yarn build` - build the application 👷🏻
