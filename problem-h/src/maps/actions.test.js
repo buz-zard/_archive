@@ -21,7 +21,7 @@ const RESPONSE_200_JSON = {
   },
 };
 
-describe('invoke', () => {
+describe('requestCoordinates', () => {
   beforeEach(() => {
     fetch.resetMocks();
     selectorsMock.isGeocodingFetching.mockReset();
@@ -62,6 +62,8 @@ describe('invoke', () => {
     return store.dispatch(actions.requestCoordinates(address)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
       expect(selectorsMock.isGeocodingFetching.mock.calls.length).toBe(1);
+      expect(selectorsMock.hasGeocodingFetched.mock.calls.length).toBe(1);
+      expect(selectorsMock.getGeocodingError.mock.calls.length).toBe(1);
     });
   });
 
@@ -118,6 +120,8 @@ describe('invoke', () => {
     return store.dispatch(actions.requestCoordinates(address)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
       expect(selectorsMock.isGeocodingFetching.mock.calls.length).toBe(1);
+      expect(selectorsMock.hasGeocodingFetched.mock.calls.length).toBe(1);
+      expect(selectorsMock.getGeocodingError.mock.calls.length).toBe(1);
     });
   });
 });

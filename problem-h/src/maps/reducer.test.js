@@ -62,7 +62,7 @@ describe('geocoding', () => {
     });
   });
 
-  it('should handle fething success', () => {
+  it('should handle fething failure', () => {
     const key = 'address 1';
     const geocoding = {
       [key]: {
@@ -73,12 +73,12 @@ describe('geocoding', () => {
       },
       2: { val: 4 },
     };
-    const payload = { status: 'ok', data: [] };
+    const payload = { oh: 'ooo', reason: [1, 2, 3] };
     expect(
       reducer(
         { geocoding },
         {
-          type: types.GET_GEOCODING_SUCCESS,
+          type: types.GET_GEOCODING_FAILURE,
           meta: { address: key },
           payload,
         }
@@ -89,8 +89,8 @@ describe('geocoding', () => {
         [key]: {
           fetching: false,
           fetched: true,
-          data: payload,
-          error: null,
+          data: null,
+          error: payload,
         },
       },
     });
