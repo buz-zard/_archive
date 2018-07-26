@@ -1,6 +1,15 @@
 ---
+# Projects
 
-#### List of some completed code challanges, university tasks and side projects:
+## Ongoing
+
++ [sideproject] Personal website - [karolis.sh](https://github.com/buz-zard/karolis.sh)
+  * __Keywords__ - `AWS (S3, CloudFront, Route 53)` `JS` `React` `Gatsby`
+
++ [sideproject] Presentational site for a construction company - [esconstruction.eu](https://github.com/buz-zard/cc-web)
+  * __Keywords__ - `AWS (S3, CloudFront, Route 53)` `JS` `React` `Gatsby`
+
+## History
 
 + [challange] Airbnb property admin - [problem-h](https://github.com/buz-zard/_archive/tree/master/problem-h) (2018-02)
   * __Keywords__ - `JS` `React` `Redux`
@@ -10,9 +19,6 @@
 
 + [challange] Quiz app - [problem-mld](https://github.com/buz-zard/_archive/tree/master/problem-mld) (2017-05)
   * __Keywords__ - `AWS (S3, CloudFront, ElasticBeanstalk, RDS)` `JS` `Node` `Express` `React` `Redux`
-
-+ [sideproject] Personal website - [karolis.sh](https://github.com/buz-zard/karolis.sh) (2017)
-  * __Keywords__ - `AWS (S3, CloudFront, Route 53)` `JS` `React`
 
 + [challange] Infinite scroll list - [problem-v2](https://github.com/buz-zard/_archive/tree/master/problem-v2) (2017-04)
   * __Keywords__ - `JS` `React` `Redux`
