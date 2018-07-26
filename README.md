@@ -3,10 +3,10 @@
 
 ## Ongoing
 
-+ [sideproject] Personal website - [karolis.sh](https://github.com/buz-zard/karolis.sh)
++ [sideproject] Personal website - [karolis.sh](https://github.com/buz-zard/karolis.sh) (2018)
   * __Keywords__ - `AWS (S3, CloudFront, Route 53)` `JS` `React` `Gatsby`
 
-+ [sideproject] Presentational site for a construction company - [esconstruction.eu](https://github.com/buz-zard/cc-web)
++ [sideproject] Presentational site for a construction company - [esconstruction.eu](https://github.com/buz-zard/cc-web) (2018)
   * __Keywords__ - `AWS (S3, CloudFront, Route 53)` `JS` `React` `Gatsby`
 
 ## History
