@@ -21,7 +21,7 @@
     "font-awesome": "^4.7.0",
     "history": "^4.6.1",
     "immutability-helper": "^2.1.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "npm-run-all": "^4.0.2",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
