@@ -25,7 +25,7 @@
     "express": "^4.15.2",
     "express-error-handler": "^1.1.0",
     "lodash": "^4.17.4",
-    "morgan": "^1.8.1",
+    "morgan": "^1.9.1",
     "npm-run-all": "^4.0.2",
     "pg": "^6.1.5",
     "sequelize": "^3.30.4",
